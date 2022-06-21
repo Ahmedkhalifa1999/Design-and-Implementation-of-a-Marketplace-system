@@ -1,4 +1,4 @@
-QT       += core gui websockets
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     accountdetails.cpp \
     cartcheckout.cpp \
+    datamanager.cpp \
     itemview.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 HEADERS += \
     accountdetails.h \
     cartcheckout.h \
+    datamanager.h \
     itemview.h \
     mainwindow.h \
     signinsignup.h
