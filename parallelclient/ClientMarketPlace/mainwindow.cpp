@@ -20,6 +20,8 @@ void MainWindow::on_registerButton_clicked()
     QString email= ui->email->text();
     QString password= ui->password->text();
     QString address= ui->address->text();
+    QString number= ui->number->text();
+
 
     //check the correctness if correct go to shop page if not QmessageBox of type warning
 }
