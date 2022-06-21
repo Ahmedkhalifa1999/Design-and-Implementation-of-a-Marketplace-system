@@ -48,7 +48,7 @@ public:
     explicit DataManager(QObject *parent = nullptr);
 
     //Sign-in & sign-up methods
-    bool signUp(SignUpData data, SignInSignUp &caller);
+    bool signUp(SignUpData data, SignInSignUp &caller, bool &validEmail, bool &validPhone);
     bool signIn(SignInData data, SignInSignUp &caller);
     bool autoSignIn(QString &email, SignInSignUp &caller);
 
