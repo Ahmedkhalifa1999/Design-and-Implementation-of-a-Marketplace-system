@@ -9,28 +9,16 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    accountdetails.cpp \
-    cartcheckout.cpp \
     datamanager.cpp \
-    itemview.cpp \
     main.cpp \
-    mainwindow.cpp \
-    signinsignup.cpp
+    mainwindow.cpp
 
 HEADERS += \
-    accountdetails.h \
-    cartcheckout.h \
     datamanager.h \
-    itemview.h \
-    mainwindow.h \
-    signinsignup.h
+    mainwindow.h
 
 FORMS += \
-    accountdetails.ui \
-    cartcheckout.ui \
-    itemview.ui \
-    mainwindow.ui \
-    signinsignup.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -3,11 +3,7 @@
 
 #include <QObject>
 #include <QString>
-#include <accountdetails.h>
-#include <cartcheckout.h>
-#include <itemview.h>
 #include <mainwindow.h>
-#include <signinsignup.h>
 
 typedef struct {
     const QString &firstName;
@@ -48,15 +44,15 @@ public:
     explicit DataManager(QObject *parent = nullptr);
 
     //Sign-in & sign-up methods
-    bool signUp(SignUpData data, SignInSignUp &caller, bool &validEmail, bool &validPhone);
-    bool signIn(SignInData data, SignInSignUp &caller);
-    bool autoSignIn(QString &email, SignInSignUp &caller);
+    bool signUp(SignUpData data, MainWindow &caller, bool &validEmail, bool &validPhone);
+    bool signIn(SignInData data, MainWindow &caller);
+    bool autoSignIn(QString &email, MainWindow &caller);
 
     //Cart-related functionality
     std::vector<DetailedCartItem> &viewCart();
     void addToCart(CartItem item);
     void updateCart(std::vector<CartItem> &updated);
-    void checkout(CartCheckout &caller);
+    void checkout(MainWindow &caller);
 
     //Account-related functionality
     void getAccountDetails();
