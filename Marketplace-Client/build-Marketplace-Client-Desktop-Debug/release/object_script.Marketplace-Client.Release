@@ -1,0 +1,13 @@
+release/accountdetails.o
+release/cartcheckout.o
+release/datamanager.o
+release/itemview.o
+release/main.o
+release/mainwindow.o
+release/signinsignup.o
+release/moc_accountdetails.o
+release/moc_cartcheckout.o
+release/moc_datamanager.o
+release/moc_itemview.o
+release/moc_mainwindow.o
+release/moc_signinsignup.o
