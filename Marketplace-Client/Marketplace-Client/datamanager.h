@@ -1,23 +1,33 @@
-#ifndef DATAMANAGER_H
+﻿#ifndef DATAMANAGER_H
 #define DATAMANAGER_H
 
 #include <QObject>
 #include <QString>
-#include <mainwindow.h>
+#include <QImage>
 
 typedef struct {
-    const QString &firstName;
-    const QString &lastName;
-    const QString &email;
-    const QString &password;
-    const QString &address;
-    const QString &phone;
+    QString firstName;
+    QString lastName;
+    QString email;
+    QString password;
+    QString address;
+    QString phone;
 } SignUpData;
 
 typedef struct {
-    const QString &email;
-    const QString &password;
+    bool validEmail;
+    bool ValidPhone;
+} SignUpResult;
+
+typedef struct {
+    QString email;
+    QString password;
 } SignInData;
+
+typedef struct {
+    bool result;
+    QString email;
+} AutoSignInResult;
 
 typedef struct {
     unsigned int ID;
@@ -25,15 +35,68 @@ typedef struct {
 } CartItem;
 
 typedef struct {
-    QString &name;
-    QPixmap &icon;
+    QString name;
+    QImage icon;
+    unsigned int price;
     unsigned int quantity;
-} DetailedCartItem;
+} DetailedCartItem, DetailedOrderItem;
 
 typedef struct {
     unsigned int ID;
     bool availableQuantity;
 } CheckoutResult;
+
+typedef struct {
+    unsigned int pounds;
+    unsigned int piasters;
+} MoneyAmount;
+
+typedef struct {
+    QString firstName;
+    QString lastName;
+    QString email;
+    QString address;
+    QString phone;
+    MoneyAmount wallet;
+} AccountDetails;
+
+typedef enum {
+    ACCEPTED,
+    SHIPPING,
+    SHIPPED,
+    REJECTED,
+} OrderState;
+
+typedef struct {
+    unsigned int ID;
+    OrderState state;
+    MoneyAmount totalAmount;
+} OrderSummary;
+
+typedef struct {
+    unsigned int ID;
+    OrderState state;
+    MoneyAmount totalAmount;
+    std::vector<DetailedOrderItem> items;
+} DetailedOrder;
+
+typedef struct {
+    QString name;
+    std::vector<QString> categories;
+} SearchQuery;
+
+typedef struct {
+    QString name;
+    QImage icon;
+    unsigned int price;
+} Item;
+
+typedef struct {
+    QString name;
+    QString description;
+    std::vector<QImage> Images;
+    unsigned int price;
+} DetailedItem;
 
 class DataManager : public QObject
 {
@@ -44,24 +107,27 @@ public:
     explicit DataManager(QObject *parent = nullptr);
 
     //Sign-in & sign-up methods
-    bool signUp(SignUpData data, MainWindow &caller, bool &validEmail, bool &validPhone);
-    bool signIn(SignInData data, MainWindow &caller);
-    bool autoSignIn(QString &email, MainWindow &caller);
+    SignUpResult signUp(SignUpData data);
+    bool signIn(SignInData data);
+    AutoSignInResult autoSignIn();
 
     //Cart-related functionality
-    std::vector<DetailedCartItem> &viewCart();
+    std::vector<DetailedCartItem> viewCart();
     void addToCart(CartItem item);
-    void updateCart(std::vector<CartItem> &updated);
-    void checkout(MainWindow &caller);
+    void updateCart(std::vector<CartItem> updated);
+    void checkout();
 
     //Account-related functionality
     void getAccountDetails();
+    void updateAccountDetails(AccountDetails details);
     void getOrderHistory();
-    void walletDeposit();
+    void getOrderDetails(unsigned int ID);
+    void walletDeposit(MoneyAmount amount);
 
     //Shop-related functionality
-    void getItemList();
-    void getItemData();
+    void getItemList(SearchQuery query, unsigned int maxResults);
+    void getItemData(unsigned int ID);
+    void getCategories();
 
 public slots:
 
@@ -72,6 +138,18 @@ signals:
 
     //Cart-related signals
     void checkout_signal(bool result, std::vector<CheckoutResult> detailedResult);
+
+    //Account-related signals
+    void getAccountDetails_signal(AccountDetails result);
+    void updateAccountDetails_signal(bool result);
+    void getOrderHistory_signal(std::vector<OrderSummary> result);
+    void getOrderDetails_signal(DetailedOrder result);
+    void walletDeposit_signal(bool result);
+
+    //Shop-related signals
+    void getItemList_signal(std::vector<Item> result);
+    void getItemData_signal(DetailedItem result);
+    void getCategories_signal(std::vector<QString> result);
 };
 
 #endif // DATAMANAGER_H
