@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include <QImage>
+#include <QTcpSocket>
 
 typedef struct {
     QString firstName;
@@ -101,25 +102,26 @@ typedef struct {
 class DataManager : public QObject
 {
     Q_OBJECT
-
+    QTcpSocket socket;
 
 public:
     explicit DataManager(QObject *parent = nullptr);
+    DataManager(unsigned int serverAddress, unsigned int serverPort);
 
     //Sign-in & sign-up methods
     SignUpResult signUp(SignUpData data);
-    bool signIn(SignInData data);
+    bool signIn(SignInData data, bool save);
     AutoSignInResult autoSignIn();
 
     //Cart-related functionality
-    std::vector<DetailedCartItem> viewCart();
+    std::vector<DetailedCartItem> getCart();
     void addToCart(CartItem item);
     void updateCart(std::vector<CartItem> updated);
     void checkout();
 
     //Account-related functionality
     void getAccountDetails();
-    void updateAccountDetails(AccountDetails details);
+    bool updateAccountDetails(AccountDetails details);
     void getOrderHistory();
     void getOrderDetails(unsigned int ID);
     void walletDeposit(MoneyAmount amount);
