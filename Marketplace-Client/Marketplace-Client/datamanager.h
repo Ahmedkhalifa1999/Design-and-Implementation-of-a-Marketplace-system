@@ -45,6 +45,12 @@ typedef struct {
 typedef struct {
     unsigned int ID;
     bool availableQuantity;
+} CheckoutItem;
+
+typedef struct {
+    bool unavailableItem;
+    bool notEnoughFunds;
+    std::vector<CheckoutItem> itemAvailability;
 } CheckoutResult;
 
 typedef struct {
@@ -84,9 +90,11 @@ typedef struct {
 typedef struct {
     QString name;
     std::vector<QString> categories;
+    unsigned int maxResults;
 } SearchQuery;
 
 typedef struct {
+    unsigned int ID;
     QString name;
     QImage icon;
     unsigned int price;
@@ -127,7 +135,7 @@ public:
     void walletDeposit(MoneyAmount amount);
 
     //Shop-related functionality
-    void getItemList(SearchQuery query, unsigned int maxResults);
+    void getItemList(SearchQuery query);
     void getItemData(unsigned int ID);
     void getCategories();
 
@@ -139,7 +147,7 @@ signals:
     void signIn_signal(bool result);
 
     //Cart-related signals
-    void checkout_signal(bool result, std::vector<CheckoutResult> detailedResult);
+    void checkout_signal(CheckoutResult detailedResult);
 
     //Account-related signals
     void getAccountDetails_signal(AccountDetails result);

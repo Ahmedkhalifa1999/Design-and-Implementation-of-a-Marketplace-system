@@ -1,10 +1,8 @@
-package ConnectionAndThreadHandling;
-
 import java.net.*;
 import java.io.*;
 
 
-public class SockeHandling {
+public class Server {
     /*
     1- ServerSocket is the port number where the connection will be established
     2- The Server starts the connection
@@ -14,7 +12,7 @@ public class SockeHandling {
     */
     private final ServerSocket serverSocket;
 
-    public SockeHandling(ServerSocket serverSocket)
+    public Server(ServerSocket serverSocket)
     {
         this.serverSocket = serverSocket;
     }
@@ -26,7 +24,7 @@ public class SockeHandling {
             while(!serverSocket.isClosed()){
                 Socket socket = serverSocket.accept();
 
-                ThreadHandler clientHandler = new ThreadHandler(socket);
+                ClientHandler clientHandler = new ClientHandler(socket);
                 Thread thread = new Thread(clientHandler);
 
                 thread.start();

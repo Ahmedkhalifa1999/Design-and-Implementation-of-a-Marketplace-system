@@ -1,5 +1,3 @@
-package ConnectionAndThreadHandling;
-
 import java.net.*;
 import java.io.*;
 
@@ -9,7 +7,7 @@ import java.io.*;
 1- parsing json function and put the data in bufferReader
 2-
 */
-public class ThreadHandler implements Runnable {
+public class ClientHandler implements Runnable {
 
     /*
     socket is used for starting the connection
@@ -25,7 +23,7 @@ public class ThreadHandler implements Runnable {
 
 
 
-    public ThreadHandler(Socket socket)
+    public ClientHandler(Socket socket)
     {
         try {
             this.socket = socket;
