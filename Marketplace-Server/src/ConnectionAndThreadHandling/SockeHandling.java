@@ -1,3 +1,5 @@
+package ConnectionAndThreadHandling;
+
 import java.net.*;
 import java.io.*;
 
@@ -24,7 +26,7 @@ public class SockeHandling {
             while(!serverSocket.isClosed()){
                 Socket socket = serverSocket.accept();
 
-                ClientHandler clientHandler = new ClientHandler(socket);
+                ThreadHandler clientHandler = new ThreadHandler(socket);
                 Thread thread = new Thread(clientHandler);
 
                 thread.start();
