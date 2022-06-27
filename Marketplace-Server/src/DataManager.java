@@ -1,3 +1,5 @@
+import java.awt.image.BufferedImage;
+
 public class DataManager {
 
     private int userID;
@@ -12,44 +14,83 @@ public class DataManager {
     ) { }
 
     public record UserCredentials(
-
+            String email,
+            String password
     ) { }
 
-    public record CartItem() {
+    public record CartItem(
+            int ID,
+            int quantity
+    ) { }
 
+    public record CheckoutItem(
+            int ID,
+            int availableQuantity
+    ) { }
+    public record CheckoutResult(
+            boolean unavailableItem,
+            boolean notEnoughFunds,
+            CheckoutItem[] itemAvailability
+    ) { }
+
+    public record MoneyAmount(
+            int pounds,
+            int piasters
+    ) { }
+    public record AccountDetails(
+            String firstName,
+            String lastName,
+            String email,
+            String address,
+            String phone,
+            MoneyAmount amount
+    ) { }
+
+    public enum OrderState {
+            ACCEPTED,
+            SHIPPING,
+            SHIPPED,
+            REJECTED
     }
+    public record OrderSummary(
+            int ID,
+            OrderState state,
+            MoneyAmount totalAmount
+    ) { }
 
-    public record CheckoutResult() {
+    public record DetailedOrderItem(
+            String name,
+            BufferedImage icon,
+            MoneyAmount price,
+            int quantity
+    ) { }
+    public record DetailedOrder(
+            int ID,
+            OrderState state,
+            MoneyAmount totalAmount,
+            DetailedOrderItem[] items
+    ) { }
 
-    }
+    public record SearchQuery(
+            String name,
+            String[] categories,
+            int maxResults
+    )
+    { }
 
-    public record AccountDetails() {
+    public record Item(
+            int ID,
+            String name,
+            BufferedImage icon,
+            MoneyAmount price
+    ) { }
 
-    }
-
-    public record OrderSummary() {
-
-    }
-
-    public record DetailedOrder() {
-
-    }
-
-    public record MoneyAmount() {
-
-    }
-
-    public record SearchQuery() {
-
-    }
-
-    public record Item() {
-
-    }
-
-    public record DetailedItem() {
-
-    }
+    public record DetailedItem(
+            String name,
+            String description,
+            BufferedImage[] images,
+            MoneyAmount price
+    ) { }
 
     public boolean register(RegistrationData data) {
         return false;

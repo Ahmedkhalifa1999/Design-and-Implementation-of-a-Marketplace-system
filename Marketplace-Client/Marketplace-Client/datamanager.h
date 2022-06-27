@@ -7,6 +7,11 @@
 #include <QTcpSocket>
 
 typedef struct {
+    unsigned int pounds;
+    unsigned int piasters;
+} MoneyAmount;
+
+typedef struct {
     QString firstName;
     QString lastName;
     QString email;
@@ -38,7 +43,7 @@ typedef struct {
 typedef struct {
     QString name;
     QImage icon;
-    unsigned int price;
+    MoneyAmount price;
     unsigned int quantity;
 } DetailedCartItem, DetailedOrderItem;
 
@@ -52,11 +57,6 @@ typedef struct {
     bool notEnoughFunds;
     std::vector<CheckoutItem> itemAvailability;
 } CheckoutResult;
-
-typedef struct {
-    unsigned int pounds;
-    unsigned int piasters;
-} MoneyAmount;
 
 typedef struct {
     QString firstName;
@@ -97,14 +97,14 @@ typedef struct {
     unsigned int ID;
     QString name;
     QImage icon;
-    unsigned int price;
+    MoneyAmount price;
 } Item;
 
 typedef struct {
     QString name;
     QString description;
-    std::vector<QImage> Images;
-    unsigned int price;
+    std::vector<QImage> images;
+    MoneyAmount price;
 } DetailedItem;
 
 class DataManager : public QObject
