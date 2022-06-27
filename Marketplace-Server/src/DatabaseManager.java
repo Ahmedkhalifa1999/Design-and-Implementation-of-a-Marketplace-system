@@ -14,15 +14,38 @@ public class DatabaseManager {
 
     private static String ImagesDirectory;
 
-    public static BufferedImage[] getImages(int ID) {
+    public static ArrayList<String> getImages(int ID) {
         //convert to string
         String s = String.valueOf(ID);
-
         File file = new File("Marketplace-Server/database/images");
-        String[] arr = new String[10];
-        //arr -> array of paths of matched images
+        ArrayList<String> arr = new ArrayList<String>();
+        //arr -> arraylist of paths of matched images
         arr = findFile(s, file);
+        File[] list = file.listFiles();
 
+
+    }
+
+    public static String getIcon (int ID)
+    {
+        //convert to string
+        String str= String.valurOf(ID);
+        String out;
+        File file = new File("Marketplace-Server/database/icons");
+        if (list != null)
+            for (File fil : list) {
+                boolean flag = true;
+                String s = fil.getName();
+                for (int i = 0; i < name.length(); i++) {
+                    if (name.charAt(i) != s.charAt(i))
+                        flag = false;
+                }
+                if (flag) {
+                    out=fil.getPath();
+                }
+
+            }
+        return out;
     }
 
     public static void start_connection() throws Exception {
@@ -30,9 +53,9 @@ public class DatabaseManager {
         PreparedStatement pstmt = null;
     }
 
-    public String[] findFile(String name,File file) {
+    public ArrayList<String> findFile(String name,File file) {
         File[] list = file.listFiles();
-        String[] arr = new String[10];
+        ArrayList<String> arr = new ArrayList<String>();
         int str_indx = 0;
         if (list != null)
             for (File fil : list) {
@@ -43,7 +66,7 @@ public class DatabaseManager {
                         flag = false;
                 }
                 if (flag) {
-                    arr[str_indx++] = fil.getPath();
+                    arr.add(fil.getPath());
                 }
 
             }
