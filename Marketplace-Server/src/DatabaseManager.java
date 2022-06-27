@@ -18,8 +18,8 @@ public class DatabaseManager {
 
     public static void start_connection() throws Exception {
         Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
-        Statement stmt = connection.createStatement();
+        PreparedStatement pstmt = null;
     }
 
-    
+    //    public static void store_item_data()
 }
