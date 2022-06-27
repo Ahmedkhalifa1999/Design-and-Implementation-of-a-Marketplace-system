@@ -30,6 +30,8 @@ void MainWindow::on_registerButton_clicked()
     QString address = ui->address->text();
 
     //check the correctness if true connect to the DB and go to the home page if false show QMessageBox warning
+    shop=new Shop(this);
+    shop->show();
 }
 
 

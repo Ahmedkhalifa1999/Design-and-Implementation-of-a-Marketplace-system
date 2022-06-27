@@ -19,6 +19,8 @@ void Login::on_logButton_clicked()
  QString password = ui->passLog->text();
 
  //check from the DB if correct go to home if not QMessageBox warning
+ //shop = new Shop(this);
+  shop->show();
 
 }
 

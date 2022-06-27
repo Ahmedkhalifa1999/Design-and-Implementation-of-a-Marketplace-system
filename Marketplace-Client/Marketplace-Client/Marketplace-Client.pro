@@ -12,16 +12,19 @@ SOURCES += \
     datamanager.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    shop.cpp
 
 HEADERS += \
     datamanager.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    shop.h
 
 FORMS += \
     login.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    shop.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
