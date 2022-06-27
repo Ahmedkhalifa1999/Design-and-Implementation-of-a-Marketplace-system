@@ -1,4 +1,5 @@
 import java.awt.image.BufferedImage;
+
 public class DatabaseManager {
     //to be modified
     static final String DB_URL = "jdbc:mysql://localhost:3306/world";
