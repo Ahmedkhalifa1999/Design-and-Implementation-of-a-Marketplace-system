@@ -6,6 +6,39 @@
 #include <QImage>
 #include <QTcpSocket>
 
+#define SIGNUP_REQUEST                0
+#define SIGNUP_RESPONSE               1
+
+#define LOGIN_REQUEST                 2
+#define LOGIN_RESPONSE                3
+
+#define CHECKOUT_REQUEST              4
+#define CHECKOUT_RESPONSE             5
+
+#define GETACCOUNTDETAILS_REQUEST     6
+#define GETACCOUNTDETAILS_RESPONSE    7
+
+#define UPDATEACCOUNTDETAILS_REQUEST  8
+#define UPDATEACCOUNTDETAILS_RESPONSE 9
+
+#define GETORDERHISTORY_REQUEST       10
+#define GETORDERHISTORY_RESPONSE      11
+
+#define GETORDERDETAILS_REQUEST       12
+#define GETORDERDETAILS_RESPONSE      13
+
+#define WALLETDEPOSIT_REQUEST         14
+#define WALLETDEPOSIT_RESPONSE        15
+
+#define GETITEMLIST_REQUEST           16
+#define GETITEMLIST_RESPONSE          17
+
+#define GETITEMDATA_REQUEST           18
+#define GETITEMDATA_RESPONSE          19
+
+#define GETCATEGORIES_REQUEST         20
+#define GETCATEGORIES_RESPONSE        21
+
 typedef struct {
     unsigned int pounds;
     unsigned int piasters;
@@ -22,7 +55,7 @@ typedef struct {
 
 typedef struct {
     bool validEmail;
-    bool ValidPhone;
+    bool validPhone;
 } SignUpResult;
 
 typedef struct {
@@ -140,6 +173,11 @@ public:
     void getCategories();
 
 public slots:
+
+
+    //slot process the signal emitted from server
+
+
 
 signals:
     //Sign-in & sign-up signals
