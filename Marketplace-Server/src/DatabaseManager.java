@@ -28,23 +28,26 @@ public class DatabaseManager {
         }
     }
 
-    public double getWallet(String email)
+    public MoneyAmount getWallet(String email)
     {
         try {
             Connection connection = start_connection();
             PreparedStatement statement = connection.prepareStatement("SELECT wallet from customer where email=?");
             statement.setString(1,email);
             ResultSet resultSet = statement.executeQuery();
-            double wallet = 0;
+            int pou=0;
+            int pia=0;
             while (resultSet.next()) {
-                wallet = resultSet.getInt("wallet");
+                pou = (int)(resultSet.getInt("wallet")/100);
+                pia = (int)(resultSet.getInt("wallet")%100);
             }
+            MoneyAmount wallet = new MoneyAmount(pou,pia);
             return wallet;
         }
         catch (Exception e)
         {
             System.out.println(e);
-            return 1;
+            return null;
         }
     }
 

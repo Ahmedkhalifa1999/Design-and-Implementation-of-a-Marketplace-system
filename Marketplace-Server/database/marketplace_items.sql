@@ -38,7 +38,7 @@ CREATE TABLE `items` (
 
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (1,'Grey sweatpants',80,10,'clothes'),(2,'Black sweatpants',80,2,'clothes'),(3,'Black Hoodie',180,9,'clothes'),(4,'Iphone 13 pro',24000,0,'Mobiles'),(5,'Iphone 13 pro max',27000,5,'Mobiles'),(6,'Nivea body cream cocoa butter 50ml',15,50,'skin care'),(7,'Iphone 13 ',20000,10,'Mobiles'),(8,'TRESemme Botanix Conditioner 200ml',32,10,'Hair care'),(9,'Apple AirPods Pro with Charging Case',3790,3,'Headphones & Earphones'),(10,'Technic Pressed Pigment Eye Shadow Palette Invite Only',369,2,'Makeup');
+INSERT INTO `items` VALUES (1,'Grey sweatpants',80,10,'clothes'),(2,'Black sweatpants',80,2,'clothes'),(3,'Black Hoodie',180,9,'clothes'),(4,'Iphone 13 pro',24000,2,'Mobiles'),(5,'Iphone 13 pro max',27000,5,'Mobiles'),(6,'Nivea body cream cocoa butter 50ml',15,50,'skin care'),(7,'Iphone 13 ',20000,10,'Mobiles'),(8,'TRESemme Botanix Conditioner 200ml',32,10,'Hair care'),(9,'Apple AirPods Pro with Charging Case',3790,3,'Headphones & Earphones'),(10,'Technic Pressed Pigment Eye Shadow Palette Invite Only',369,2,'Makeup');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-22 22:21:33
+-- Dump completed on 2022-06-29  0:19:35
