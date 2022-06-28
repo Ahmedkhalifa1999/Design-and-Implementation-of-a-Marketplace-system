@@ -1,8 +1,10 @@
-import java.net.*;
-import java.io.*;
+import java.io.IOException;
+import java.nio.channels.AsynchronousServerSocketChannel;
+import java.nio.channels.AsynchronousSocketChannel;
+import java.util.concurrent.Future;
 
 
-public class Server {
+public class Server implements Runnable{
     /*
     1- ServerSocket is the port number where the connection will be established
     2- The Server starts the connection
@@ -10,41 +12,65 @@ public class Server {
     4- Every request from the user will make a thread
     5- After finishing the connection go to closeServerSocket.
     */
-    private final ServerSocket serverSocket;
+    private final AsynchronousServerSocketChannel serverSocket;
 
-    public Server(ServerSocket serverSocket)
+
+
+
+    public Server(AsynchronousServerSocketChannel RequestSocket)
     {
-        this.serverSocket = serverSocket;
+        this.serverSocket = OpenConnection(RequestSocket);
+
+    }
+
+    public AsynchronousServerSocketChannel OpenConnection(AsynchronousServerSocketChannel RequestSocket)
+    {
+        try{
+            // open the server socket and bind it with the address of the client
+            RequestSocket =  AsynchronousServerSocketChannel.open().bind(RequestSocket.getLocalAddress());
+
+        }
+        catch (IOException e){
+            closeServerSocket();
+        }
+
+        return RequestSocket;
     }
 
 
     public void StartServer()
     {
-        try{
-            while(!serverSocket.isClosed()){
-                Socket socket = serverSocket.accept();
+        while(this.serverSocket.isOpen()){
 
-                ClientHandler clientHandler = new ClientHandler(socket);
-                Thread thread = new Thread(clientHandler);
+            Future<AsynchronousSocketChannel> socket =  serverSocket.accept();
+            //AsynchronousSocketChannel connection = socket.get();
 
-                thread.start();
+            ClientHandler clientHandler = new ClientHandler(socket);
 
-            }
-        }
-        catch(IOException e){
-            closeServerSocket();
+
+
         }
     }
 
     public void closeServerSocket() {
         try {
-            if (serverSocket != null) {
-                serverSocket.close();
+            if (this.serverSocket != null) {
+                this.serverSocket.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+    @Override
+    public void run() {
+
+
+
+
+    }
+
 
 
 }
