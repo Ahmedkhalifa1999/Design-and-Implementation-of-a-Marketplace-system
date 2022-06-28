@@ -8,7 +8,7 @@ import java.io.*;
 2-
 */
 public class ClientHandler implements Runnable {
-
+ 
     /*
     socket is used for starting the connection
     BufferReader contains the data from the client
