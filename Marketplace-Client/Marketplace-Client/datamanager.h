@@ -61,7 +61,7 @@ typedef struct {
 typedef struct {
     QString email;
     QString password;
-} SignInData;
+} SignInData, UpdateAccountResult;
 
 typedef struct {
     bool result;
@@ -162,7 +162,7 @@ public:
 
     //Account-related functionality
     void getAccountDetails();
-    bool updateAccountDetails(AccountDetails details);
+    UpdateAccountResult updateAccountDetails(AccountDetails details);
     void getOrderHistory();
     void getOrderDetails(unsigned int ID);
     void walletDeposit(MoneyAmount amount);
@@ -178,7 +178,7 @@ public:
 
 public slots:
 
-    void server_response();
+    void server_response(qint64 bytes);
     //slot process the signal emitted from server
 
 

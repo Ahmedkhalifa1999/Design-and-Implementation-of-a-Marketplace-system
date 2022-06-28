@@ -19,6 +19,7 @@ DataManager :: DataManager(unsigned int serverAddress, unsigned int serverPort){
 
     QString serverAddressString  = QString::number(serverAddress);
     socket.connectToHost(QHostAddress(serverAddressString), serverPort);
+    QObject::connect(&socket, &QTcpSocket::bytesWritten, this, &DataManager::server_response);
 }
 bool DataManager :: validate_Email(const QString email)
 {
@@ -149,7 +150,7 @@ void DataManager :: getAccountDetails(){
  //Check available fund
 }*/
 
-bool DataManager :: updateAccountDetails(AccountDetails details){
+UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
     // Validate phone and email
     bool updateResult  = true;
     if((validate_Email(details.email)== false)||(validate_Phone(details.phone) ==  false)){
@@ -199,7 +200,7 @@ void DataManager :: getItemData(unsigned int ID);
 void DataManager :: getCategories();
 */
 
-void DataManager :: server_response(){
+void DataManager :: server_response(qint64 bytes){
     //Read Socket
     QByteArray serverResponse = socket.readAll();
     //convert to JsonDocument
