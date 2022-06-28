@@ -5,6 +5,9 @@
 #include <QJsonDocument>
 #include <QByteArray>
 #include <QCryptographicHash>
+#include <QDebug>
+#include <QJsonArray>
+
 
 DataManager::DataManager(QObject *parent)
     : QObject{parent}
@@ -17,10 +20,10 @@ DataManager :: DataManager(unsigned int serverAddress, unsigned int serverPort){
     QString serverAddressString  = QString::number(serverAddress);
     socket.connectToHost(QHostAddress(serverAddressString), serverPort);
 }
-bool validate_Email(const QString email)
+bool DataManager :: validate_Email(const QString email)
 {
     bool result = true;
-    QRegularExpression regex("^[0-9a-zA-Z]+([0-9a-zA-Z][-._+])[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)([0-9a-zA-Z][.])[a-zA-Z]{2,6}$");
+    QRegularExpression regex("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
     if(!regex.match(email).hasMatch())
     {
         result = false;
@@ -29,11 +32,11 @@ bool validate_Email(const QString email)
     return result;
 }
 
-bool validate_Phone(const QString phone)
+bool DataManager :: validate_Phone(const QString phone)
 {
 
     bool result = true;
-    QRegularExpression regex("+20(10|11|12|15)[0-9]{8}");
+    QRegularExpression regex("^((\\+?(\\d{2}))\\s?)?((\\d{2})|(\\((\\d{2})\\))\\s?)?(\\d{3,15})(\\-(\\d{3,15}))?$");
     if(!regex.match(phone).hasMatch())
     {
         result = false;
@@ -41,7 +44,7 @@ bool validate_Phone(const QString phone)
     return result;
 }
 
-SignUpResult  DataManager :: signUp  (SignUpData data){
+SignUpResult DataManager :: signUp  (SignUpData data){
     SignUpResult signUpResult;
 
     if(validate_Email(data.email))
@@ -91,6 +94,7 @@ SignUpResult  DataManager :: signUp  (SignUpData data){
     QByteArray signUpDataQByteArray = signUpJsonDoc.toJson(QJsonDocument::Compact);
     //writeToSocket
     socket.write(signUpDataQByteArray);
+
     //connect Signals and Slots
     return signUpResult;
 }
@@ -139,6 +143,61 @@ void DataManager :: getAccountDetails(){
 
 }
 
+//mehtaga hagat mn el cart fa hasebha dlw2ty
+/*void DataManager :: checkout(){
+// Send checkout Request
+ //Check available fund
+}*/
+
+bool DataManager :: updateAccountDetails(AccountDetails details){
+    // Validate phone and email
+    bool updateResult  = true;
+    if((validate_Email(details.email)== false)||(validate_Phone(details.phone) ==  false)){
+        return false;
+    }
+
+    // Build JSON file
+    QJsonObject accountDetailsObject;
+    accountDetailsObject.insert("RequestID", QJsonValue::fromVariant(UPDATEACCOUNTDETAILS_REQUEST));
+    accountDetailsObject.insert("FirstName", QJsonValue::fromVariant(details.firstName));
+    accountDetailsObject.insert("LastName", QJsonValue::fromVariant(details.lastName));
+    accountDetailsObject.insert("Email", QJsonValue::fromVariant(details.email));
+    accountDetailsObject.insert("Address", QJsonValue::fromVariant(details.address));
+    accountDetailsObject.insert("Phone", QJsonValue::fromVariant(details.phone));
+    accountDetailsObject.insert("Pounds", QJsonValue::fromVariant(details.wallet.pounds));
+    accountDetailsObject.insert("Piasters", QJsonValue::fromVariant(details.wallet.piasters));
+
+    QJsonDocument accountDetailsJsonDoc(accountDetailsObject);
+    //ToJson Compact
+    QByteArray accountDetailsQByteArray = accountDetailsJsonDoc.toJson(QJsonDocument::Compact);
+    //writeToSocket
+    socket.write(accountDetailsQByteArray);
+    return updateResult;
+}
+
+void DataManager :: getOrderHistory()
+{
+    //Build JSON File
+    QJsonObject orderHistoryObject;
+    orderHistoryObject.insert("RequestID", QJsonValue::fromVariant(GETORDERHISTORY_REQUEST));
+
+    QJsonDocument orderHistoryJsonDoc(orderHistoryObject);
+    //ToJson Compact
+    QByteArray orderHistoryQByteArray = orderHistoryJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Send SignInData to Server
+    socket.write(orderHistoryQByteArray);
+}
+
+
+/*void DataManager :: getOrderDetails(unsigned int ID);
+void DataManager :: walletDeposit(MoneyAmount amount);
+
+//Shop-related functionality
+void DataManager :: getItemList(SearchQuery query);
+void DataManager :: getItemData(unsigned int ID);
+void DataManager :: getCategories();
+*/
 
 void DataManager :: server_response(){
     //Read Socket
@@ -151,20 +210,22 @@ void DataManager :: server_response(){
     //Extract ID
     int serverResponseID = serverQmap["ID"].toInt();
     bool serverbooleanResponse ;
+    QJsonArray jsonarray;
     switch (serverResponseID){
     //ID for which Request
     case SIGNUP_RESPONSE:
-        //Extract Result
-        serverbooleanResponse = serverQmap["Result"].toBool();
+        //Retrieve the Result from Server
+        serverbooleanResponse =
+                serverQmap["Result"].toBool();
         emit signUp_signal(serverbooleanResponse);
         break;
     case SIGNIN_RESPONSE:
-        //Extract Result
+        //Retrieve the Result from Server
         serverbooleanResponse = serverQmap["Result"].toBool();
         emit signIn_signal(serverbooleanResponse);
         break;
     case GETACCOUNTDETAILS_RESPONSE:
-     {
+    {
         //Retrieve from server struct member values
         //Pass them to signal Emitted to UI
 
@@ -181,6 +242,11 @@ void DataManager :: server_response(){
         emit getAccountDetails_signal(accountDetails);
         break;
     }
+    case UPDATEACCOUNTDETAILS_RESPONSE:
+        //Retrieve the Result from Server
+        serverbooleanResponse = serverQmap["Result"].toBool();
+        emit updateAccountDetails_signal(serverbooleanResponse);
+        break;
     case WALLETDEPOSIT_RESPONSE:
         //Extract Result
         serverbooleanResponse = serverQmap["Result"].toBool();

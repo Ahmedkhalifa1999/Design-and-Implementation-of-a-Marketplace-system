@@ -172,6 +172,10 @@ public:
     void getItemData(unsigned int ID);
     void getCategories();
 
+    //Helper functions in SignUp and SignIn
+    bool validate_Email(const QString email);
+    bool validate_Phone(const QString phone);
+
 public slots:
 
     void server_response();
