@@ -2,9 +2,11 @@ import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.io.*;
 import java.util.*;
+import java.lang.String;
+import java.util.ArrayList;
 
 public class DatabaseManager {
     //to be modified
@@ -12,7 +14,39 @@ public class DatabaseManager {
     static final String USER = "root";
     static final String PASS = "1412001BAmr";
 
-    private static String ImagesDirectory;
+    //private static String ImagesDirectory;
+
+    public static void start_connection() {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            return connection;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public double getWallet(String email)
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT wallet from customer where email=?");
+            statement.setString(1,email);
+            ResultSet resultSet = statement.executeQuery();
+            double wallet = 0;
+            while (resultSet.next()) {
+                wallet = resultSet.getInt("wallet");
+            }
+            return wallet;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return 1;
+        }
+    }
 
     public static ArrayList<String> getImages(int ID) {
         //convert to string
@@ -48,10 +82,7 @@ public class DatabaseManager {
         return out;
     }
 
-    public static void start_connection() throws Exception {
-        Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
-        PreparedStatement pstmt = null;
-    }
+
 
     public ArrayList<String> findFile(String name,File file) {
         File[] list = file.listFiles();
