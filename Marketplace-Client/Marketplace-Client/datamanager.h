@@ -56,12 +56,12 @@ typedef struct {
 typedef struct {
     bool validEmail;
     bool validPhone;
-} SignUpResult;
+} SignUpResult , UpdateAccountResult;
 
 typedef struct {
     QString email;
     QString password;
-} SignInData, UpdateAccountResult;
+} SignInData;
 
 typedef struct {
     bool result;

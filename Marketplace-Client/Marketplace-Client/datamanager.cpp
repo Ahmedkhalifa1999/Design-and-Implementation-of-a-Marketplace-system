@@ -7,6 +7,7 @@
 #include <QCryptographicHash>
 #include <QDebug>
 #include <QJsonArray>
+#include <QJsonValue>
 
 
 DataManager::DataManager(QObject *parent)
@@ -152,9 +153,28 @@ void DataManager :: getAccountDetails(){
 
 UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
     // Validate phone and email
-    bool updateResult  = true;
-    if((validate_Email(details.email)== false)||(validate_Phone(details.phone) ==  false)){
-        return false;
+    UpdateAccountResult  updateAccountResult;
+
+    if(validate_Email(details.email))
+    {
+        updateAccountResult.validEmail = true;
+    }
+    else
+    {
+        updateAccountResult.validEmail = false;
+
+    }
+    if(validate_Phone(details.phone))
+    {
+        updateAccountResult.validPhone = true;
+    }
+    else
+    {
+        updateAccountResult.validPhone = false;
+    }
+    if((updateAccountResult.validEmail == false)||(updateAccountResult.validPhone = false)){
+
+        return updateAccountResult;
     }
 
     // Build JSON file
@@ -173,7 +193,7 @@ UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
     QByteArray accountDetailsQByteArray = accountDetailsJsonDoc.toJson(QJsonDocument::Compact);
     //writeToSocket
     socket.write(accountDetailsQByteArray);
-    return updateResult;
+    return updateAccountResult;
 }
 
 void DataManager :: getOrderHistory()
@@ -204,25 +224,28 @@ void DataManager :: server_response(qint64 bytes){
     //Read Socket
     QByteArray serverResponse = socket.readAll();
     //convert to JsonDocument
-    QJsonDocument serverJsonResponse = QJsonDocument::fromJson(serverResponse);
-    // Get QVarient
-    QVariant serverQvariant = serverJsonResponse.toVariant();
-    QMap serverQmap = serverQvariant.toMap();   //QString , QVarient
-    //Extract ID
-    int serverResponseID = serverQmap["ID"].toInt();
-    bool serverbooleanResponse ;
-    QJsonArray jsonarray;
+    QJsonDocument serverResponseJsonDoc = QJsonDocument::fromJson(serverResponse);
+    // Get object from document
+    QJsonObject serverResponseJsonObj = serverResponseJsonDoc.object();
+    // Get value from object
+    QJsonValue serverResponseIDJsonValue = serverResponseJsonObj.value("ID");
+    QJsonValue serverResponseResultJsonValue;
+
+
+    unsigned int serverResponseID = serverResponseIDJsonValue.toInt();
+    bool serverbooleanResponse;
     switch (serverResponseID){
     //ID for which Request
     case SIGNUP_RESPONSE:
         //Retrieve the Result from Server
-        serverbooleanResponse =
-                serverQmap["Result"].toBool();
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Result");
+        serverbooleanResponse = serverResponseResultJsonValue.toBool();
         emit signUp_signal(serverbooleanResponse);
         break;
     case SIGNIN_RESPONSE:
         //Retrieve the Result from Server
-        serverbooleanResponse = serverQmap["Result"].toBool();
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Result");
+        serverbooleanResponse = serverResponseResultJsonValue.toBool();
         emit signIn_signal(serverbooleanResponse);
         break;
     case GETACCOUNTDETAILS_RESPONSE:
@@ -231,13 +254,14 @@ void DataManager :: server_response(qint64 bytes){
         //Pass them to signal Emitted to UI
 
         AccountDetails accountDetails;
-        accountDetails.firstName = serverQmap["FirstName"].toString();
-        accountDetails.lastName = serverQmap["LastName"].toString();
-        accountDetails.email = serverQmap["Email"].toString();
-        accountDetails.address = serverQmap["Address"].toString();
-        accountDetails.phone = serverQmap["Phone"].toString();
-        accountDetails.wallet.pounds = serverQmap["Pounds"].toInt();
-        accountDetails.wallet.piasters = serverQmap["Piasters"].toInt();
+
+        accountDetails.firstName = (serverResponseJsonObj.value("FirstName")).toString();
+        accountDetails.lastName = (serverResponseJsonObj.value("LastName")).toString();
+        accountDetails.email =  (serverResponseJsonObj.value("Email")).toString();
+        accountDetails.address =  (serverResponseJsonObj.value("Address")).toString();
+        accountDetails.phone =  (serverResponseJsonObj.value("Phone")).toString();
+        accountDetails.wallet.pounds =  (serverResponseJsonObj.value("Pounds")).toInt();
+        accountDetails.wallet.piasters = (serverResponseJsonObj.value("Piasters")).toInt();
 
         //emit signal to UI
         emit getAccountDetails_signal(accountDetails);
@@ -245,13 +269,37 @@ void DataManager :: server_response(qint64 bytes){
     }
     case UPDATEACCOUNTDETAILS_RESPONSE:
         //Retrieve the Result from Server
-        serverbooleanResponse = serverQmap["Result"].toBool();
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Result");
+        serverbooleanResponse = serverResponseResultJsonValue.toBool();
         emit updateAccountDetails_signal(serverbooleanResponse);
         break;
+
     case WALLETDEPOSIT_RESPONSE:
         //Extract Result
-        serverbooleanResponse = serverQmap["Result"].toBool();
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Result");
+        serverbooleanResponse = serverResponseResultJsonValue.toBool();
         emit walletDeposit_signal(serverbooleanResponse);
         break;
+    case GETORDERHISTORY_RESPONSE :
+    {
+        QVector <OrderSummary> OrderHistory;
+        QJsonArray serverResponseJsonArray;
+        QJsonValue  jsonvalue ; // used inside loop
+        OrderSummary Order;     // used inside loop
+        serverResponseJsonArray = serverResponseJsonDoc.array();
+        // Get value from object
+        serverResponseResultJsonValue = serverResponseJsonObj.value("OrderHistory");
+        // Get array from value
+        serverResponseJsonArray = serverResponseResultJsonValue.toArray();
+        for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
+            Order.ID = (jsonvalue.toObject().value("ID")).toInt();
+            Order.state =(OrderState)((jsonvalue.toObject().value("state")).toInt());
+            Order.totalAmount.pounds = (jsonvalue.toObject().value("Pound")).toInt();
+            Order.totalAmount.piasters = (jsonvalue.toObject().value("Piasters")).toInt();
+            OrderHistory.append(Order);
+        }
+        emit getOrderHistory_signal(OrderHistory);
+        break;
+    }
     }
 }
