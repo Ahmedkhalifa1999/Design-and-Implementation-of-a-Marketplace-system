@@ -89,36 +89,40 @@ public class DataManager {
             BufferedImage[] images,
             MoneyAmount price
     ) { }
-
+/*
+public record RegistrationData(
+            String firstName,
+            String email,
+            String password,
+            String address,
+            String phone
+    ) { }
+ */
     public boolean register(RegistrationData data) {
 
-        UserCredentials userdata = new UserCredentials(data.email , data.password);
 
-        if(authenticate(userdata)){
-            //store registeration data in the database.
-            return true;
+        if(checkavailabilty(data.email)){
+
+            return false;
         }
+        string
+        addCustomer()
 
-        return false;
+        return true;
+
+
     }
 
     public boolean authenticate(UserCredentials data) {
 
-        if(! (validate(data.email)))
+        if(data.password = (getPassword(data.email)))
         {
             return true;
         }
         return false;
     }
 
-    /*
-    public record CheckoutResult(
-            boolean unavailableItem,
-            boolean notEnoughFunds,
-            CheckoutItem[] itemAvailability
-    ) { }
 
-     */
     //function getWallet that takes the email of the customer and return the wallet of the user(double)
     public CheckoutResult checkout(CartItem data[]) {
 
