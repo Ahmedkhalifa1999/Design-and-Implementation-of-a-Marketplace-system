@@ -5,11 +5,12 @@ public class DataManager {
     private int userID;
 
     public record RegistrationData(
-            String Name,
+            String firstName,
+            String lastName,
             String email,
             String password,
             String address,
-            double phone
+            String phone
     ) { }
 
     public record UserCredentials(
@@ -32,17 +33,17 @@ public class DataManager {
             CheckoutItem[] itemAvailability
     ) { }
 
-    //public record MoneyAmount(
-           // int pounds,
-           // int piasters
-    //) { }
+    public record MoneyAmount(
+            int pounds,
+            int piasters
+    ) { }
     public record AccountDetails(
-            String Name,
+            String firstName,
+            String lastName,
             String email,
             String address,
-            double phone,
-            int creditcard,
-            double money
+            String phone,
+            MoneyAmount amount
     ) { }
 
     public enum OrderState {
@@ -54,19 +55,19 @@ public class DataManager {
     public record OrderSummary(
             int ID,
             OrderState state,
-            double totalAmount
+            MoneyAmount totalAmount
     ) { }
 
     public record DetailedOrderItem(
             String name,
             BufferedImage icon,
-            double price,
+            MoneyAmount price,
             int quantity
     ) { }
     public record DetailedOrder(
             int ID,
             OrderState state,
-            double totalAmount,
+            MoneyAmount totalAmount,
             DetailedOrderItem[] items
     ) { }
 
@@ -81,14 +82,14 @@ public class DataManager {
             int ID,
             String name,
             BufferedImage icon,
-            double price
+            MoneyAmount price
     ) { }
 
     public record DetailedItem(
             String name,
             String description,
             BufferedImage[] images,
-            double price
+            MoneyAmount price
     ) { }
 
     public boolean register(RegistrationData data) {
@@ -101,7 +102,7 @@ public class DataManager {
 
     public CheckoutResult checkout(CartItem data[]) {
         return null;
-    } //function getWallet takes the email of the user and return double which is the total amount of money that customer have
+    }
 
     public AccountDetails getAccountDetails() {
         return null;
