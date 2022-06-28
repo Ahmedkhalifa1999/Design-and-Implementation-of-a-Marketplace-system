@@ -101,7 +101,7 @@ public class DataManager {
 
     public CheckoutResult checkout(CartItem data[]) {
         return null;
-    }
+    } //function getWallet takes the email of the user and return double which is the total amount of money that customer have
 
     public AccountDetails getAccountDetails() {
         return null;
@@ -119,8 +119,7 @@ public class DataManager {
         return null;
     }
 
-    //function getWallet takes the email of the user and return double which is the total amount of money that customer have
-    public boolean walletDeposit(double amount) {
+    public boolean walletDeposit(MoneyAmount amount) {
         return true;
     }
 
