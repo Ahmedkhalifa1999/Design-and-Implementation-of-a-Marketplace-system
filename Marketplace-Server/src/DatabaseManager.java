@@ -8,6 +8,7 @@ import java.util.*;
 import java.lang.String;
 import java.util.ArrayList;
 
+
 public class DatabaseManager {
     //to be modified
     static final String DB_URL = "jdbc:mysql://localhost:3306/marketplace";
@@ -16,7 +17,7 @@ public class DatabaseManager {
 
     //private static String ImagesDirectory;
 
-    public static void start_connection() {
+    public static Connection start_connection() {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
             return connection;
@@ -28,7 +29,7 @@ public class DatabaseManager {
         }
     }
 
-    public MoneyAmount getWallet(String email)
+    public DataManager.MoneyAmount getWallet(String email)
     {
         try {
             Connection connection = start_connection();
@@ -41,7 +42,7 @@ public class DatabaseManager {
                 pou = (int)(resultSet.getInt("wallet")/100);
                 pia = (int)(resultSet.getInt("wallet")%100);
             }
-            MoneyAmount wallet = new MoneyAmount(pou,pia);
+            DataManager.MoneyAmount wallet = new DataManager.MoneyAmount(pou,pia);
             return wallet;
         }
         catch (Exception e)
@@ -51,24 +52,29 @@ public class DatabaseManager {
         }
     }
 
-    public static ArrayList<String> getImages(int ID) {
+    public ArrayList<String> getImages(int ID) {
         //convert to string
         String s = String.valueOf(ID);
         File file = new File("Marketplace-Server/database/images");
         ArrayList<String> arr = new ArrayList<String>();
         //arr -> arraylist of paths of matched images
-        arr = findFile(s, file);
-        File[] list = file.listFiles();
+        arr = findFilearr(s, file);
+        return arr;
 
 
     }
 
-    public static String getIcon (int ID)
-    {
+    public String getIcon(int ID) {
         //convert to string
-        String str= String.valurOf(ID);
-        String out;
+        String s = String.valueOf(ID);
         File file = new File("Marketplace-Server/database/icons");
+        String str = findFilestr(s, file);
+        return str;
+    }
+    public String findFilestr(String name,File file)
+    {
+        File[] list = file.listFiles();
+        String out="";
         if (list != null)
             for (File fil : list) {
                 boolean flag = true;
@@ -87,10 +93,9 @@ public class DatabaseManager {
 
 
 
-    public ArrayList<String> findFile(String name,File file) {
+    public ArrayList<String> findFilearr(String name,File file) {
         File[] list = file.listFiles();
         ArrayList<String> arr = new ArrayList<String>();
-        int str_indx = 0;
         if (list != null)
             for (File fil : list) {
                 boolean flag = true;
