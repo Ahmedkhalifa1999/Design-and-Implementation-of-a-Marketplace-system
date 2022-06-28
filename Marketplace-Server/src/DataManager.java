@@ -6,7 +6,6 @@ public class DataManager {
 
     public record RegistrationData(
             String firstName,
-            String lastName,
             String email,
             String password,
             String address,
@@ -39,7 +38,6 @@ public class DataManager {
     ) { }
     public record AccountDetails(
             String firstName,
-            String lastName,
             String email,
             String address,
             String phone,
@@ -93,30 +91,99 @@ public class DataManager {
     ) { }
 
     public boolean register(RegistrationData data) {
+
+        UserCredentials userdata = new UserCredentials(data.email , data.password);
+
+        if(authenticate(userdata)){
+            //store registeration data in the database.
+            return true;
+        }
+
         return false;
     }
 
     public boolean authenticate(UserCredentials data) {
+
+        if(! (validate(data.email)))
+        {
+            return true;
+        }
         return false;
     }
 
+    /*
+    public record CheckoutResult(
+            boolean unavailableItem,
+            boolean notEnoughFunds,
+            CheckoutItem[] itemAvailability
+    ) { }
+
+     */
     public CheckoutResult checkout(CartItem data[]) {
+
+        CheckoutResult output;
+
+        for(int i=0; i< data.length() ; i++)
+        {
+            if(/*data[i].ID exist */ /*data[i].quantity > quantity in databse*/){
+
+                data[i].quantity = /*database quantity*/ - data[i].quantity;
+
+            }
+            else{
+                output.unavailableItem = true;
+                return output.unavailableItem;
+            }
+        }
         return null;
     }
 
+
     public AccountDetails getAccountDetails() {
-        return null;
+
+        //call the function to get name, email , address , phone , amount of money
+
+        AccountDetails userdetails;
+
+
+
+        return userdetails;
     }
 
     public void UpdateAccountDetails(AccountDetails data) {
 
+        // update the data for this user in the database.
+
     }
 
-    public OrderSummary[] getOrderHistory() {
-        return null;
+
+    public OrderSummary getOrderHistory() {
+
+        // call the function and get the orderid , state of the order , the total price of the order
+        OrderSummary orderdata;
+
+        return orderdata;
     }
 
+    /*
+    public record DetailedOrderItem(
+            String name,
+            BufferedImage icon,
+            MoneyAmount price,
+            int quantity
+    ) { }
+    public record DetailedOrder(
+            int ID,
+            OrderState state,
+            MoneyAmount totalAmount,
+            DetailedOrderItem[] items
+    ) { }
+
+     */
     public DetailedOrder getOrderDetails(int ID) {
+
+
+
         return null;
     }
 
