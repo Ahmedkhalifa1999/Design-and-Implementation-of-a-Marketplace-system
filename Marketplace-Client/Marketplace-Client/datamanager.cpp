@@ -41,8 +41,6 @@ bool validate_Phone(const QString phone)
     return result;
 }
 
-
-
 SignUpResult  DataManager :: signUp  (SignUpData data){
     SignUpResult signUpResult;
 
@@ -126,6 +124,20 @@ bool DataManager :: signIn(SignInData data, bool save){
     // Save SignInData if Save = true
     return true;
 }
+void DataManager :: getAccountDetails(){
+
+    //Build JSON File
+    QJsonObject accountDetailsObject;
+    accountDetailsObject.insert("RequestID", QJsonValue::fromVariant(GETACCOUNTDETAILS_REQUEST));
+
+    QJsonDocument accountDetailsJsonDoc(accountDetailsObject);
+    //ToJson Compact
+    QByteArray accountDetailsQByteArray = accountDetailsJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Send SignInData to Server
+    socket.write(accountDetailsQByteArray);
+
+}
 
 
 void DataManager :: server_response(){
@@ -135,7 +147,7 @@ void DataManager :: server_response(){
     QJsonDocument serverJsonResponse = QJsonDocument::fromJson(serverResponse);
     // Get QVarient
     QVariant serverQvariant = serverJsonResponse.toVariant();
-    QMap serverQmap = serverQvariant.toMap();
+    QMap serverQmap = serverQvariant.toMap();   //QString , QVarient
     //Extract ID
     int serverResponseID = serverQmap["ID"].toInt();
     bool serverbooleanResponse ;
@@ -151,6 +163,24 @@ void DataManager :: server_response(){
         serverbooleanResponse = serverQmap["Result"].toBool();
         emit signIn_signal(serverbooleanResponse);
         break;
+    case GETACCOUNTDETAILS_RESPONSE:
+     {
+        //Retrieve from server struct member values
+        //Pass them to signal Emitted to UI
+
+        AccountDetails accountDetails;
+        accountDetails.firstName = serverQmap["FirstName"].toString();
+        accountDetails.lastName = serverQmap["LastName"].toString();
+        accountDetails.email = serverQmap["Email"].toString();
+        accountDetails.address = serverQmap["Address"].toString();
+        accountDetails.phone = serverQmap["Phone"].toString();
+        accountDetails.wallet.pounds = serverQmap["Pounds"].toInt();
+        accountDetails.wallet.piasters = serverQmap["Piasters"].toInt();
+
+        //emit signal to UI
+        emit getAccountDetails_signal(accountDetails);
+        break;
+    }
     case WALLETDEPOSIT_RESPONSE:
         //Extract Result
         serverbooleanResponse = serverQmap["Result"].toBool();
