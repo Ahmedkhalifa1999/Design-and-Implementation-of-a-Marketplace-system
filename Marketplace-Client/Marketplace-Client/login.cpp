@@ -1,6 +1,6 @@
 #include "login.h"
 #include "ui_login.h"
-
+#include"datamanager.h"
 Login::Login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login)
@@ -20,6 +20,7 @@ void Login::on_logButton_clicked()
 
  //check from the DB if correct go to home if not QMessageBox warning
  //shop = new Shop(this);
+  shop->getCategories();
   shop->show();
 
 }

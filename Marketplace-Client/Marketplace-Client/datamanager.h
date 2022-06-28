@@ -139,6 +139,8 @@ public:
     void getItemData(unsigned int ID);
     void getCategories();
 
+
+
 public slots:
 
 signals:
@@ -161,5 +163,6 @@ signals:
     void getItemData_signal(DetailedItem result);
     void getCategories_signal(std::vector<QString> result);
 };
+
 
 #endif // DATAMANAGER_H
