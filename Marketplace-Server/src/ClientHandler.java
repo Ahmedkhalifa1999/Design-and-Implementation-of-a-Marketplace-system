@@ -1,77 +1,55 @@
-import java.net.*;
-import java.io.*;
-
+import java.nio.channels.AsynchronousSocketChannel;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 
 /*
 1- parsing json function and put the data in bufferReader
 2-
-*/
+/
 public class ClientHandler implements Runnable {
- 
-    /*
+
+    /
     socket is used for starting the connection
     BufferReader contains the data from the client
     BufferWriter contains the data for the client
-     */
-    private Socket socket = null;
-    private BufferedReader bufferedReader = null;
-    private BufferedWriter bufferedWriter = null;
-    //string username
+    */
+private final Future<AsynchronousSocketChannel> socket;
 
-
-
-
-
-    public ClientHandler(Socket socket)
-    {
-        try {
-            this.socket = socket;
-            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+public ClientHandler(Future<AsynchronousSocketChannel> socket)
+        {
+        this.socket = socket;
         }
-        catch (IOException e){
-            closeEverything(socket , bufferedReader , bufferedWriter);
-        }
-    }
 
-    public void closeEverything(Socket socket , BufferedReader bufferedReader , BufferedWriter bufferedWriter)
-    {
-        try{
-            if(bufferedReader != null){
-                bufferedReader.close();
-            }
-            if(bufferedWriter != null){
-                bufferedReader.close();
-            }
-            if(socket != null){
-                socket.close();
-            }
+public void closeEverything(Future<AsynchronousSocketChannel> socket)
+        {
+
+        if(socket != null){
+        boolean flag;
+        flag = socket.cancel(true);
+        }
 
         }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
-    @Override
-    public void run()
-    {
-        String messageFromClient;
+@Override
+public void run()
+        {
         // Continue to listen for messages while a connection with the client is still established.
-        while (socket.isConnected()) {
-            try {
-                // Read what the client sent and then send it to every other client.
-                messageFromClient = bufferedReader.readLine();
+        while (true) {
+        try {
+        // Read what the client sent and then send it to every other client.
+        AsynchronousSocketChannel data = socket.get();
+
+        if(socket.isCancelled() || socket.isDone()){ break; }
 
 
-            }
-            catch (IOException e) {
-                // Close everything gracefully.
-                closeEverything(socket, bufferedReader, bufferedWriter);
-                break;
-            }
         }
-    }
+        catch (InterruptedException | ExecutionException e) {
+        // Close everything gracefully.
+        closeEverything(socket);
+        break;
+        }
+        }
+        }
 
-}
+        }
