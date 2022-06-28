@@ -38,17 +38,24 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
    <property name="geometry">
     <rect>
      <x>390</x>
-     <y>100</y>
-     <width>111</width>
-     <height>21</height>
+     <y>80</y>
+     <width>151</width>
+     <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">font: 700 14pt &quot;Segoe UI&quot;;
+    <string notr="true">
+
 background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
    </property>
    <property name="text">
-    <string>My Account</string>
+    <string>Account Details</string>
    </property>
   </widget>
  </widget>
