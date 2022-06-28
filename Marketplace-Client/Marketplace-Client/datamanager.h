@@ -9,8 +9,8 @@
 #define SIGNUP_REQUEST                0
 #define SIGNUP_RESPONSE               1
 
-#define LOGIN_REQUEST                 2
-#define LOGIN_RESPONSE                3
+#define SIGNIN_REQUEST                2
+#define SIGNIN_RESPONSE               3
 
 #define CHECKOUT_REQUEST              4
 #define CHECKOUT_RESPONSE             5
@@ -174,9 +174,8 @@ public:
 
 public slots:
 
-
+    void server_response();
     //slot process the signal emitted from server
-
 
 
 signals:

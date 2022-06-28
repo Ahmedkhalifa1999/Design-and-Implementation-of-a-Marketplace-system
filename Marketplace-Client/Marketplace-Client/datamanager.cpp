@@ -4,9 +4,7 @@
 #include <QRegularExpression>
 #include <QJsonDocument>
 #include <QByteArray>
-
-
-
+#include <QCryptographicHash>
 
 DataManager::DataManager(QObject *parent)
     : QObject{parent}
@@ -70,14 +68,23 @@ SignUpResult  DataManager :: signUp  (SignUpData data){
 
         return signUpResult;
     }
+    //hashing
+    QCryptographicHash qCryptPassword = QCryptographicHash(QCryptographicHash::Sha3_256);
+    //from Qstring to QByteArray (not encrypted)
+    QByteArray qBytePassword = (data.password).toUtf8();
+    // Encrypting the QByteArray format of password
+    QByteArray qByteCryptPassword = QCryptographicHash::hash(qBytePassword , QCryptographicHash::Sha3_256);
+    //from QByteArray to Qstring (encrypted)
+    QString qStringCryptPassword =  QString::fromUtf8(qByteCryptPassword);
 
+
+    //Build JSON File
     QJsonObject signUpDataObject;
     signUpDataObject.insert("RequestID", QJsonValue::fromVariant(SIGNUP_REQUEST));
     signUpDataObject.insert("FirstName", QJsonValue::fromVariant(data.firstName));
     signUpDataObject.insert("LastName", QJsonValue::fromVariant(data.lastName));
     signUpDataObject.insert("Email", QJsonValue::fromVariant(data.email));
-    //hashing
-    //recordObject.insert("Password", QJsonValue::fromVariant(data.password));
+    signUpDataObject.insert("Password", QJsonValue::fromVariant(qStringCryptPassword));
     signUpDataObject.insert("Address", QJsonValue::fromVariant(data.address));
     signUpDataObject.insert("Phone", QJsonValue::fromVariant(data.phone));
 
@@ -87,8 +94,37 @@ SignUpResult  DataManager :: signUp  (SignUpData data){
     //writeToSocket
     socket.write(signUpDataQByteArray);
     //connect Signals and Slots
-
     return signUpResult;
+}
+bool DataManager :: signIn(SignInData data, bool save){
+    //Validate Email
+    if(!validate_Email(data.email))
+    {
+        return false;
+    }
+    //Hashing
+    QCryptographicHash qCryptPassword = QCryptographicHash(QCryptographicHash::Sha3_256);
+    //from Qstring to QByteArray (not encrypted)
+    QByteArray qBytePassword = (data.password).toUtf8();
+    // Encrypting the QByteArray format of password
+    QByteArray qByteCryptPassword = QCryptographicHash::hash(qBytePassword , QCryptographicHash::Sha3_256);
+    //from QByteArray to Qstring (encrypted)
+    QString qStringCryptPassword =  QString::fromUtf8(qByteCryptPassword);
+
+    //Build JSON File
+    QJsonObject signInDataObject;
+    signInDataObject.insert("RequestID", QJsonValue::fromVariant(SIGNIN_REQUEST));
+    signInDataObject.insert("Email", QJsonValue::fromVariant(data.email));
+    signInDataObject.insert("Password", QJsonValue::fromVariant(qStringCryptPassword));
+
+    QJsonDocument signInJsonDoc(signInDataObject);
+    //ToJson Compact
+    QByteArray signInDataQByteArray = signInJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Send SignInData to Server
+    socket.write(signInDataQByteArray);
+    // Save SignInData if Save = true
+    return true;
 }
 
 
@@ -122,5 +158,3 @@ void DataManager :: server_response(){
         break;
     }
 }
-
-
