@@ -22,7 +22,7 @@ private slots:
 
 private:
     Ui::Login *ui;
-    Shop *shop=new Shop();
+    Shop *shop;
 };
 
 #endif // LOGIN_H

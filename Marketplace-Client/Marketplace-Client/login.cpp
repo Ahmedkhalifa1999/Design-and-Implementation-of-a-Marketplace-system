@@ -20,7 +20,6 @@ void Login::on_logButton_clicked()
 
  //check from the DB if correct go to home if not QMessageBox warning
  //shop = new Shop(this);
-  shop->getCategories();
   shop->show();
 
 }

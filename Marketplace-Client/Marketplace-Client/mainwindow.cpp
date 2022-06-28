@@ -22,12 +22,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_registerButton_clicked()
 {
-    QString fname = ui->fname->text();
-    QString lname = ui->lname->text();
-    QString email = ui->email->text();
-    QString password = ui->password->text();
-    QString number = ui->number->text();
-    QString address = ui->address->text();
+//    QString fname = ui->fname->text();
+//    QString lname = ui->lname->text();
+//    QString email = ui->email->text();
+//    QString password = ui->password->text();
+//    QString number = ui->number->text();
+//    QString address = ui->address->text();
 
     //check the correctness if true connect to the DB and go to the home page if false show QMessageBox warning
     shop=new Shop(this);
