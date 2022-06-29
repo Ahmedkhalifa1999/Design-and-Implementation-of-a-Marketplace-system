@@ -214,7 +214,8 @@ public class DatabaseManager {
             int pou = (int)price/100;
             int pia = (int)price%100;
             DataManager.MoneyAmount f_price = new DataManager.MoneyAmount(pou, pia);
-            DataManager.DetailedItem res = new DataManager.DetailedItem(name, --, images, f_price);
+            String desc = ""; //need to know what is the description
+            DataManager.DetailedItem res = new DataManager.DetailedItem(name, desc, images, f_price);
             return res;
         } catch (Exception e) {
             e.printStackTrace();
