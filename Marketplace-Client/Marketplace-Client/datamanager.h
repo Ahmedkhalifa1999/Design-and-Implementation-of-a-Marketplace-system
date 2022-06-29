@@ -5,6 +5,7 @@
 #include <QString>
 #include <QImage>
 #include <QTcpSocket>
+#include <QVector>
 
 #define SIGNUP_REQUEST                0
 #define SIGNUP_RESPONSE               1
@@ -117,12 +118,12 @@ typedef struct {
     unsigned int ID;
     OrderState state;
     MoneyAmount totalAmount;
-    std::vector<DetailedOrderItem> items;
+    QVector<DetailedOrderItem> items;
 } DetailedOrder;
 
 typedef struct {
     QString name;
-    std::vector<QString> categories;
+    QVector<QString> categories;
     unsigned int maxResults;
 } SearchQuery;
 
@@ -193,12 +194,12 @@ signals:
     //Account-related signals
     void getAccountDetails_signal(AccountDetails result);
     void updateAccountDetails_signal(bool result);
-    void getOrderHistory_signal(std::vector<OrderSummary> result);
+    void getOrderHistory_signal(QVector<OrderSummary> result);
     void getOrderDetails_signal(DetailedOrder result);
     void walletDeposit_signal(bool result);
 
     //Shop-related signals
-    void getItemList_signal(std::vector<Item> result);
+    void getItemList_signal(QVector<Item> result);
     void getItemData_signal(DetailedItem result);
     void getCategories_signal(std::vector<QString> result);
 };

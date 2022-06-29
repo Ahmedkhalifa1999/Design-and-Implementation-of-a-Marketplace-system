@@ -211,12 +211,67 @@ void DataManager :: getOrderHistory()
 }
 
 
-/*void DataManager :: getOrderDetails(unsigned int ID);
-void DataManager :: walletDeposit(MoneyAmount amount);
+void DataManager :: getOrderDetails(unsigned int ID){
+    //send JSON contain Request ID , orderID
+    QJsonObject orderDetailsObject;
+
+    orderDetailsObject.insert("RequestID", QJsonValue::fromVariant(GETORDERDETAILS_REQUEST));
+    orderDetailsObject.insert("OrderID", QJsonValue::fromVariant(ID));
+
+    QJsonDocument orderDetailsJsonDoc(orderDetailsObject);
+    //ToJson Compact
+    QByteArray orderDetailsQByteArray = orderDetailsJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Send SignInData to Server
+    //Write to Socket
+    socket.write(orderDetailsQByteArray);
+}
+void DataManager :: walletDeposit(MoneyAmount amount){
+    //send JSON contain Request ID , Amount
+    QJsonObject walletDepositObject;
+
+    walletDepositObject.insert("RequestID", QJsonValue::fromVariant(WALLETDEPOSIT_REQUEST));
+    walletDepositObject.insert("Pounds", QJsonValue::fromVariant(amount.pounds));
+    walletDepositObject.insert("Piasters", QJsonValue::fromVariant(amount.piasters));
+
+    QJsonDocument walletDepositJsonDoc(walletDepositObject);
+    //ToJson Compact
+    QByteArray walletDepositQByteArray = walletDepositJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Write to Socket
+    socket.write(walletDepositQByteArray);
+}
 
 //Shop-related functionality
-void DataManager :: getItemList(SearchQuery query);
-void DataManager :: getItemData(unsigned int ID);
+void DataManager :: getItemList(SearchQuery query){
+
+    /* typedef struct {
+        QString name;
+        QVector<QString> categories;
+        unsigned int maxResults;
+    } SearchQuery;*/
+    //send JSON contain Request ID , Amount
+    QJsonObject searchQueryObject;
+    QJsonArray searchQueryArray;
+
+    searchQueryObject.insert("RequestID", QJsonValue::fromVariant(GETITEMLIST_REQUEST));
+    searchQueryObject.insert("Name", QJsonValue::fromVariant(query.name));
+    searchQueryObject.insert("MaxResult", QJsonValue::fromVariant(query.maxResults));
+
+    for(unsigned int i = 0 ; i < query.categories.size() ; i++ ){
+        searchQueryArray.insert(i ,QJsonValue::fromVariant(query.categories[i]) );
+    }
+    // NOT SURE
+    searchQueryObject.insert("Category", (searchQueryArray));
+
+    QJsonDocument searchQueryJsonDoc(searchQueryObject);
+    //ToJson Compact
+    QByteArray searchQueryQByteArray = searchQueryJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Write to Socket
+    socket.write(searchQueryQByteArray);
+}
+/*void DataManager :: getItemData(unsigned int ID);
 void DataManager :: getCategories();
 */
 
@@ -231,9 +286,9 @@ void DataManager :: server_response(qint64 bytes){
     QJsonValue serverResponseIDJsonValue = serverResponseJsonObj.value("ID");
     QJsonValue serverResponseResultJsonValue;
 
-
     unsigned int serverResponseID = serverResponseIDJsonValue.toInt();
     bool serverbooleanResponse;
+
     switch (serverResponseID){
     //ID for which Request
     case SIGNUP_RESPONSE:
@@ -273,20 +328,12 @@ void DataManager :: server_response(qint64 bytes){
         serverbooleanResponse = serverResponseResultJsonValue.toBool();
         emit updateAccountDetails_signal(serverbooleanResponse);
         break;
-
-    case WALLETDEPOSIT_RESPONSE:
-        //Extract Result
-        serverResponseResultJsonValue = serverResponseJsonObj.value("Result");
-        serverbooleanResponse = serverResponseResultJsonValue.toBool();
-        emit walletDeposit_signal(serverbooleanResponse);
-        break;
     case GETORDERHISTORY_RESPONSE :
     {
         QVector <OrderSummary> OrderHistory;
         QJsonArray serverResponseJsonArray;
         QJsonValue  jsonvalue ; // used inside loop
         OrderSummary Order;     // used inside loop
-        serverResponseJsonArray = serverResponseJsonDoc.array();
         // Get value from object
         serverResponseResultJsonValue = serverResponseJsonObj.value("OrderHistory");
         // Get array from value
@@ -301,5 +348,44 @@ void DataManager :: server_response(qint64 bytes){
         emit getOrderHistory_signal(OrderHistory);
         break;
     }
+    case GETORDERDETAILS_RESPONSE:
+    {
+        DetailedOrder OrderDetails;
+        QJsonArray serverResponseJsonArray;
+        QJsonValue  jsonvalue ; // used inside loop
+        DetailedOrderItem item;
+        QVector<DetailedOrderItem> items;
+
+
+
+        OrderDetails.ID = (serverResponseJsonObj.value("OrderID")).toInt();
+        OrderDetails.state = (OrderState)((serverResponseJsonObj.value("State")).toInt());
+        OrderDetails.totalAmount.pounds =(serverResponseJsonObj.value("Pounds")).toInt();
+        OrderDetails.totalAmount.piasters =  (serverResponseJsonObj.value("Piasters")).toInt();
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Items");
+        // Get array from value
+        serverResponseJsonArray = serverResponseResultJsonValue.toArray();
+        for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
+            item.name = (jsonvalue.toObject().value("Name")).toString();
+            item.price.pounds =(jsonvalue.toObject().value("Pounds")).toInt();
+            item.price.piasters =(jsonvalue.toObject().value("Piasters")).toInt();
+            item.quantity = (jsonvalue.toObject().value("Quantity")).toInt();
+            //icons
+            items.append(item);
+        }
+        OrderDetails.items = items;
+        emit getOrderDetails_signal(OrderDetails);
+
+        break;
+    }
+    case WALLETDEPOSIT_RESPONSE:
+        //Extract Result
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Result");
+        serverbooleanResponse = serverResponseResultJsonValue.toBool();
+        emit walletDeposit_signal(serverbooleanResponse);
+        break;
+
+    case GETITEMLIST_RESPONSE:
+        break;
     }
 }
