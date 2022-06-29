@@ -7,6 +7,7 @@
 #include "itemdet.h"
 #include "cart.h"
 #include "account.h"
+#include "buttonid.h"
 
 namespace Ui {
 class Shop;
@@ -19,6 +20,8 @@ class Shop : public QDialog
 public:
     explicit Shop(QWidget *parent = nullptr);
     ~Shop();
+    ButtonId *button;
+
 
 private slots:
     void on_but_clicked();
@@ -37,6 +40,9 @@ private:
     Itemdet *item;
     Cart *cart;
     Account *acc;
+    ButtonId *b;
+    //ButtonId *button;
+
 };
 
 #endif // SHOP_H

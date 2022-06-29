@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     account.cpp \
+    buttonid.cpp \
     cart.cpp \
     datamanager.cpp \
     itemdet.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     account.h \
+    buttonid.h \
     cart.h \
     datamanager.h \
     itemdet.h \

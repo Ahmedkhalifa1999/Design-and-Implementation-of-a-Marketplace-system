@@ -36,16 +36,16 @@
 background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
    </property>
    <property name="text">
-    <string>TheMarket</string>
+    <string> TheMarket</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>70</y>
-     <width>121</width>
-     <height>31</height>
+     <x>380</x>
+     <y>80</y>
+     <width>151</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -61,6 +61,81 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
    </property>
    <property name="text">
     <string>Item Details</string>
+   </property>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>140</y>
+     <width>781</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>779</width>
+      <height>349</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <layout class="QGridLayout" name="gridLayout"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="shopButton">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>510</y>
+     <width>171</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Back To Shop</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addCartButton">
+   <property name="geometry">
+    <rect>
+     <x>680</x>
+     <y>510</y>
+     <width>171</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Add To Cart</string>
    </property>
   </widget>
  </widget>

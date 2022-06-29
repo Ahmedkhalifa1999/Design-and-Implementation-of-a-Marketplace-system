@@ -5,6 +5,7 @@
 #include <QString>
 #include <QPixmap>
 #include <QTcpSocket>
+#include "buttonid.h"
 
 typedef struct {
     unsigned int pounds;
@@ -138,7 +139,7 @@ public:
     void getItemList(SearchQuery query);
     void getItemData(unsigned int ID);
     void getCategories();
-
+    ButtonId *button;
 
 
 public slots:

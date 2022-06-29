@@ -2,11 +2,16 @@
 #include "ui_shop.h"
 #include "datamanager.h"
 #include "itemdet.h"
+#include "buttonid.h"
 QList <QString> myList;
 SearchQuery sq;
 QVector <QPixmap> img;
 QVector <QString> names;
 QVector <MoneyAmount> prices;
+QVector <unsigned int> ids;
+QString search;
+QVector <int> butid;
+
 
 Shop::Shop(QWidget *parent) :
     QDialog(parent),
@@ -15,6 +20,7 @@ Shop::Shop(QWidget *parent) :
     ui->setupUi(this);
     dm->getCategories();
     ui->listWidget->addItems(myList);
+    sq.name = search;
     sq.categories[0] = ui->listWidget->currentItem()->text();
     sq.maxResults = 10;
     dm->getItemList(sq);
@@ -37,10 +43,16 @@ Shop::Shop(QWidget *parent) :
          ui->gridLayout->addWidget(pr, i,2);
     }
 
-    for(int i=0;i<names.size();i++){
+    for(int i=0;i<ids.size();i++){
 
-         QPushButton* but = new QPushButton("view an item");
-         ui->gridLayout->addWidget(but, i,3);
+        b = new ButtonId();
+        b->setText("View an item");
+        b->id = ids[i];
+        ui->gridLayout->addWidget(b, i,3);
+
+         //QPushButton* but = new QPushButton("view an item");
+
+
     }
 
 
@@ -53,8 +65,12 @@ Shop::~Shop()
 }
 void Shop::on_but_clicked()
 {
+//  QObject* obj = sender();
+//  obj = qobject_cast<QObject *>(b);
+  dm->button = qobject_cast<ButtonId *>(QObject::sender());
   item = new Itemdet(this);
   item->show();
+
 }
 
 void Shop::on_cartButton_clicked()
@@ -73,6 +89,9 @@ void Shop::on_accountButton_clicked()
 
 void Shop::on_searchButton_clicked()
 {
+ search = ui->search_lineEdit->text();
+ //sq.name=search;
+ //dm->getItemList(sq);
 
 }
 void Shop::getCategories_slot(std::vector<QString> result){
@@ -88,6 +107,7 @@ void getItemList_slot(std::vector<Item> result){
         img[i]=result[i].icon();
          names[i] =result[i].name;
          prices[i]=result[i].price;
+         ids[i]=result[i].ID;
     }
 
 }
