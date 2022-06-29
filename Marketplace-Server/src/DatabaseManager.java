@@ -99,6 +99,41 @@ public class DatabaseManager {
         }
     }
 
+    public void updateQuantity (int ID,int quantity)
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("UPDATE items SET quantity = ? WHERE itemid = ?");
+            statement.setInt(1,quantity);
+            statement.setInt(2,ID);
+            statement.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+    public int getQuantity(int ID)
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT quantity FROM items where itemid = ?");
+            statement.setInt(1,ID);
+            ResultSet resultSet = statement.executeQuery();
+            int quantity=0;
+            while (resultSet.next()) {
+                quantity = resultSet.getInt("quantity");
+            }
+            return quantity;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return 0;
+        }
+    }
+
     public DataManager.MoneyAmount getWallet(String email)
     {
         try {
