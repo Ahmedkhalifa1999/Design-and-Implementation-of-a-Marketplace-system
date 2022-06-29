@@ -119,7 +119,6 @@ public class DataManager {
     ) { }
 
      */
-    //function getWallet that takes the email of the customer and return the wallet of the user(double)
     public CheckoutResult checkout(CartItem data[]) {
 
         CheckoutResult output;
@@ -188,9 +187,7 @@ public class DataManager {
         return null;
     }
 
-
     public boolean walletDeposit(MoneyAmount amount) {
-
         return true;
     }
 
