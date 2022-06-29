@@ -241,6 +241,70 @@ public class DatabaseManager {
         }
     }
 
+    public boolean updateWallet (DataManager.MoneyAmount money, String email)
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("UPDATE customer SET wallet = wallet + ? WHERE email = ?");
+            int temp = (int)money.pounds()*100 + (int)money.piasters();
+            statement.setLong(1,temp);
+            statement.setString(2,email);
+            statement.executeUpdate();
+            return true;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return false;
+        }
+    }
+    public DataManager.MoneyAmount getPrice(DataManager.CartItem item)
+    {
+        try{
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT itemprice FROM items where itemid = ?");
+            statement.setInt(1,item.ID());
+            long money=0;
+            int quantity = item.quantity();
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next())
+            {
+                money = resultSet.getLong("itemprice");
+            }
+            long temp = quantity*money;
+            int pia = (int)temp%100;
+            int pou = (int)temp/100;
+
+            DataManager.MoneyAmount m = new DataManager.MoneyAmount(pou,pia);
+            return m;
+
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public ArrayList <String> getCategory ()
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT distinct category FROM items");
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList <String> arr=new ArrayList<String>();
+            while (resultSet.next()) {
+                arr.add(resultSet.getString("category"));
+            }
+            return arr;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return null;
+        }
+    }
+
     public String findFilestr(String name,File file)
     {
         File[] list = file.listFiles();
@@ -260,8 +324,6 @@ public class DatabaseManager {
             }
         return out;
     }
-
-
 
     public ArrayList<String> findFilearr(String name,File file) {
         File[] list = file.listFiles();
