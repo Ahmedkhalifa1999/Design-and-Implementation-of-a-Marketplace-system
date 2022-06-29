@@ -7,6 +7,7 @@ public class DataManager {
     private int userID;
     private String email;
     private String password;
+    private Object mutex= new Object();
 
 
 
@@ -127,14 +128,63 @@ public class DataManager {
     // Done , needs testing
     public boolean authenticate(UserCredentials data) {
 
-        
+        if(DatabaseManager.validate(data))
+        {
+            DataManager user = new DataManager(data.email , data.password);
+            return true;
+        }
         return false;
     }
 
 
     // Done , needs testing
-    public CheckoutResult checkout(CartItem data[])
-    {
+
+    public CheckoutResult checkout(CartItem data[]) {
+
+        CheckoutResult output = null;
+        CheckoutItem[] out = null;
+        boolean flag1= false;
+        boolean flag2= false;
+        MoneyAmount wallet= DatabaseManager.getWallet(this.email);
+        MoneyAmount price=null;
+
+        int pia=0;
+        int pou=0;
+        for (int j = 0; j < data.length; j++) {
+            int quan = DatabaseManager.getQuantity(data[j].ID());
+            out[j] = new CheckoutItem(data[j].ID(), quan);
+        }
+        for (int j = 0; j < out.length; j++) {
+            if (out[j].availableQuantity() >= data[j].quantity()) {
+
+                flag1 = true;
+            } else {
+                flag1 = false;
+                break;
+            }
+        }
+        for (int j=0; j<data.length;j++) {
+
+            price =DatabaseManager.getPrice(data[j]);
+            pou+= price.pounds;
+            pia+= price.piasters;
+        }
+
+        if ((pou/100)+pia>(wallet.pounds/100)+wallet.piasters) {
+            flag2 = false;
+        }
+        else flag2= true;
+        if (flag1 && flag2){
+            for(int i=0; i<data.length;i++){
+                int quan = DatabaseManager.getQuantity(data[i].ID());
+                int newQuantity=data[i].quantity;
+                int result = quan-newQuantity;
+                synchronized (mutex) {
+                    DatabaseManager.UpdateQuantity(data[i].ID, result);
+                }
+            }
+        }
+        return output= new CheckoutResult(flag1,flag2,out);
 
     }
 
@@ -145,8 +195,6 @@ public class DataManager {
 
         AccountDetails userDetails = DatabaseManager.acc_details(this.email);
 
-        //call the function to get name, email , address , phone , amount of money
-
         return userdetails;
     }
 
@@ -156,8 +204,7 @@ public class DataManager {
 
 
         updateCustomer(data);
-
-        // update the data for this user in the database.
+        //can't change the email and password
 
     }
 
@@ -166,14 +213,19 @@ public class DataManager {
     public ArrayList<OrderSummary> getOrderHistory()
     {
 
-        return null;
+
+        ArrayList<OrderSummary> orderHistory = DatabaseManager.user_purchase(this.email);
+
+        return orderHistory;
     }
 
 
     // Done ,, needs testing
     public DetailedOrder getOrderDetails(int ID) {
 
-        return null;
+        DetailedOrder orderDetails =DatabaseManager.OrderDetails(ID);
+
+        return orderDetails;
     }
 
     //
@@ -181,31 +233,12 @@ public class DataManager {
 
         boolean transactionComplete = DatabaseManager.updateWallet(amount , this.email);
 
-
-
         return transactionComplete;
     }
 
-    /*
-    public record SearchQuery(
-            String name,
-            String[] categories,
-            int maxResults
-    )
-    { }
-
-    public record Item(
-            int ID,
-            String name,
-            String icon,
-            MoneyAmount price
-    ) { }
-    */
-
-    public Item[] getItemList(SearchQuery query) {
 
 
-
+      public Item[] getItemList(SearchQuery query) {
 
         return null;
     }
