@@ -28,6 +28,76 @@ public class DatabaseManager {
             return null;
         }
     }
+    
+    public void addRegister(DataManager.RegistrationData data)
+    {
+        try{
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO customer (email, name, mobile, Address, wallet,password) VALUES (?,?,?,?,?,?)");
+            statement.setString(1,data.email());
+            statement.setString(2,data.firstName());
+            statement.setString(3, data.phone());
+            statement.setString(4, data.address());
+            statement.setInt(5,0);
+            statement.setString(6, data.password());
+            statement.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+    public boolean checkemail(String email)
+    {
+        try{
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT password FROM customer where email = ?");
+            statement.setString(1,email);
+            ResultSet resultSet = statement.executeQuery();
+            String pass="";
+            while(resultSet.next())
+            {
+                pass=resultSet.getString("password");
+            }
+            if(pass=="")
+            {
+                return false;
+            }
+            return true;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public Boolean validate(DataManager.UserCredentials data)
+    {
+        try{
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT password FROM customer where email = ? and password = ?");
+            statement.setString(1, data.email());
+            statement.setString(2, data.password());
+            ResultSet resultSet = statement.executeQuery();
+            String pass="";
+            while(resultSet.next())
+            {
+                pass=resultSet.getString("password");
+            }
+            if(pass=="")
+            {
+                return false;
+            }
+            return true;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return false;
+        }
+    }
 
     public DataManager.MoneyAmount getWallet(String email)
     {
@@ -52,25 +122,6 @@ public class DatabaseManager {
         }
     }
 
-    public ArrayList<String> getImages(int ID) {
-        //convert to string
-        String s = String.valueOf(ID);
-        File file = new File("Marketplace-Server/database/images");
-        ArrayList<String> arr = new ArrayList<String>();
-        //arr -> arraylist of paths of matched images
-        arr = findFilearr(s, file);
-        return arr;
-
-
-    }
-
-    public String getIcon(int ID) {
-        //convert to string
-        String s = String.valueOf(ID);
-        File file = new File("Marketplace-Server/database/icons");
-        String str = findFilestr(s, file);
-        return str;
-    }
     public String findFilestr(String name,File file)
     {
         File[] list = file.listFiles();
@@ -111,5 +162,23 @@ public class DatabaseManager {
             }
         return arr;
     }
-    //    public static void store_item_data()
+    public ArrayList<String> getImages(int ID) {
+        //convert to string
+        String s = String.valueOf(ID);
+        File file = new File("Marketplace-Server/database/images");
+        ArrayList<String> arr = new ArrayList<String>();
+        //arr -> arraylist of paths of matched images
+        arr = findFilearr(s, file);
+        return arr;
+
+
+    }
+
+    public String getIcon(int ID) {
+        //convert to string
+        String s = String.valueOf(ID);
+        File file = new File("Marketplace-Server/database/icons");
+        String str = findFilestr(s, file);
+        return str;
+    }
 }

@@ -6,7 +6,6 @@ public class DataManager {
 
     public record RegistrationData(
             String firstName,
-            String lastName,
             String email,
             String password,
             String address,
