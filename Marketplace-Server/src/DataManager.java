@@ -1,4 +1,5 @@
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class DataManager {
 
@@ -58,7 +59,7 @@ public class DataManager {
 
     public record DetailedOrderItem(
             String name,
-            BufferedImage icon,
+            String icon,
             MoneyAmount price,
             int quantity
     ) { }
@@ -86,7 +87,7 @@ public class DataManager {
     public record DetailedItem(
             String name,
             String description,
-            BufferedImage[] images,
+            ArrayList<String> images,
             MoneyAmount price
     ) { }
 

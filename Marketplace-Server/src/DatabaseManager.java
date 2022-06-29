@@ -98,7 +98,7 @@ public class DatabaseManager {
     {
         try {
             Connection connection = start_connection();
-            PreparedStatement statement = connection.prepareStatement("SELECT ID, state, totalprice FROM customer WHERE email = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT ID, state, totalprice FROM orders WHERE customeremail = ?");
             statement.setString(1, email);
             ResultSet rs = statement.executeQuery();
             int ID = 0, price = 0, arr_indx = 0;
@@ -122,6 +122,19 @@ public class DatabaseManager {
         }
     }
 
+    public DataManager.DetailedOrder OrderDetails (int ID)
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT ID, state, totalprice,  FROM orders,  WHERE customeremail = ?");
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public DataManager.AccountDetails acc_details (String email)
     {
@@ -180,6 +193,32 @@ public class DatabaseManager {
         {
             System.out.println(e);
             return false;
+        }
+    }
+
+    public DataManager.DetailedItem item_details(int ID)
+    {
+
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT itemname, itemprice FROM items WHERE itemid = ?");
+            statement.setInt(1,ID);
+            ResultSet rs = statement.executeQuery();
+            ArrayList<String> images = getImages(ID); // arr of paths
+            String name = "";
+            int price = 0;
+            while (rs.next()) {
+                name = rs.getString("itemname");
+                price = rs.getInt("itemprice");
+            }
+            int pou = (int)price/100;
+            int pia = (int)price%100;
+            DataManager.MoneyAmount f_price = new DataManager.MoneyAmount(pou, pia);
+            DataManager.DetailedItem res = new DataManager.DetailedItem(name, --, images, f_price);
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
