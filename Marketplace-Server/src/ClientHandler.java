@@ -43,14 +43,12 @@ public class ClientHandler implements Runnable
                 AsynchronousSocketChannel data = socket.get();
 
                 Gson gson = new Gson();
-
-
                 // JSON string to Java object
                 String request;
                 Object object = gson.fromJson(request, Staff.class);
 
-                int x ;
-                switch (x)
+                int ID ;
+                switch (ID)
                 case 0:
                     //sign up / register
                 case 2:
