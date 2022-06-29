@@ -268,6 +268,8 @@ void DataManager :: getItemList(SearchQuery query){
     //ToJson Compact
     QByteArray searchQueryQByteArray = searchQueryJsonDoc.toJson(QJsonDocument::Compact);
 
+
+
     //Write to Socket
     socket.write(searchQueryQByteArray);
 }
@@ -355,6 +357,9 @@ void DataManager :: server_response(qint64 bytes){
         QJsonValue  jsonvalue ; // used inside loop
         DetailedOrderItem item;
         QVector<DetailedOrderItem> items;
+        QString encodedimage;
+        QByteArray decodedimage;
+        QImage image;
 
 
 
@@ -370,9 +375,20 @@ void DataManager :: server_response(qint64 bytes){
             item.price.pounds =(jsonvalue.toObject().value("Pounds")).toInt();
             item.price.piasters =(jsonvalue.toObject().value("Piasters")).toInt();
             item.quantity = (jsonvalue.toObject().value("Quantity")).toInt();
-            //icons
+
+            //convert QbyteArray from document to QString
+            encodedimage = (jsonvalue.toObject().value("Icon")).toString();
+
+            // decode the base64 string to QbyteArray
+            decodedimage = QByteArray::fromBase64(encodedimage.toLatin1());
+
+            // convert to QImage
+            image = QImage::fromData(decodedimage,"JPEG");
+            item.icon = image;
+
             items.append(item);
         }
+
         OrderDetails.items = items;
         emit getOrderDetails_signal(OrderDetails);
 
