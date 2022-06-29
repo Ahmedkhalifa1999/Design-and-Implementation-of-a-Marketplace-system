@@ -15,6 +15,12 @@ public:
     explicit Cart(QWidget *parent = nullptr);
     ~Cart();
 
+private slots:
+    void on_pushButton_clicked();
+
+    void on_Checkout_clicked();
+
+
 private:
     Ui::Cart *ui;
 };

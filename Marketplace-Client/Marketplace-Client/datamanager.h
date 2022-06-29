@@ -42,8 +42,9 @@ typedef struct {
 } CartItem;
 
 typedef struct {
+    unsigned int ID;
     QString name;
-    QImage icon;
+    QPixmap icon();
     MoneyAmount price;
     unsigned int quantity;
 } DetailedCartItem, DetailedOrderItem;
