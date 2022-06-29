@@ -22,6 +22,8 @@ private slots:
     void getItemData_slot(DetailedItem result);
     void on_addCartButton_clicked();
 
+    void on_comboBox_currentTextChanged(const QString &arg1);
+
 private:
     Ui::Itemdet *ui;
     DataManager *dm;

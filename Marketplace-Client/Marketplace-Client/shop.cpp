@@ -45,7 +45,7 @@ Shop::Shop(QWidget *parent) :
 
     for(int i=0;i<ids.size();i++){
 
-        b = new ButtonId();
+        ButtonId *b = new ButtonId();
         b->setText("View an item");
         b->id = ids[i];
         ui->gridLayout->addWidget(b, i,3);
@@ -67,9 +67,10 @@ void Shop::on_but_clicked()
 {
 //  QObject* obj = sender();
 //  obj = qobject_cast<QObject *>(b);
-  dm->button = qobject_cast<ButtonId *>(QObject::sender());
-  item = new Itemdet(this);
-  item->show();
+  button = qobject_cast<ButtonId *>(QObject::sender());
+
+  itemd = new Itemdet(this);
+  itemd->show();
 
 }
 
