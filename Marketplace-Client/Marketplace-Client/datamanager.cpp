@@ -245,12 +245,6 @@ void DataManager :: walletDeposit(MoneyAmount amount){
 //Shop-related functionality
 void DataManager :: getItemList(SearchQuery query){
 
-    /* typedef struct {
-        QString name;
-        QVector<QString> categories;
-        unsigned int maxResults;
-    } SearchQuery;*/
-    //send JSON contain Request ID , Amount
     QJsonObject searchQueryObject;
     QJsonArray searchQueryArray;
 
@@ -268,17 +262,40 @@ void DataManager :: getItemList(SearchQuery query){
     //ToJson Compact
     QByteArray searchQueryQByteArray = searchQueryJsonDoc.toJson(QJsonDocument::Compact);
 
-
-
     //Write to Socket
     socket.write(searchQueryQByteArray);
 }
-/*void DataManager :: getItemData(unsigned int ID);
-void DataManager :: getCategories();
-*/
+void DataManager :: getItemData(unsigned int ID){
+    //send JSON contain Request ID , Amount
+    QJsonObject itemDataObject;
+
+    itemDataObject.insert("RequestID", QJsonValue::fromVariant(GETITEMDATA_REQUEST));
+    itemDataObject.insert("ItemID", QJsonValue::fromVariant(ID));
+
+    QJsonDocument itemDataJsonDoc(itemDataObject);
+    //ToJson Compact
+    QByteArray itemDataQByteArray = itemDataJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Write to Socket
+    socket.write(itemDataQByteArray);
+}
+void DataManager :: getCategories(){
+    //send JSON contain Request ID , Amount
+    QJsonObject categoriesObject;
+
+    categoriesObject.insert("RequestID", QJsonValue::fromVariant(GETCATEGORIES_REQUEST));
+
+    QJsonDocument categoriesJsonDoc(categoriesObject);
+    //ToJson Compact
+    QByteArray categoriesQByteArray = categoriesJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Write to Socket
+    socket.write(categoriesQByteArray);
+}
 
 void DataManager :: server_response(qint64 bytes){
     //Read Socket
+
     QByteArray serverResponse = socket.readAll();
     //convert to JsonDocument
     QJsonDocument serverResponseJsonDoc = QJsonDocument::fromJson(serverResponse);
@@ -385,7 +402,7 @@ void DataManager :: server_response(qint64 bytes){
             image = QImage::fromData(decodedimage,"JPEG");
             item.icon = image;
 
-             OrderDetails.items .append(item);
+            OrderDetails.items .append(item);
         }
 
         emit getOrderDetails_signal(OrderDetails);
@@ -400,6 +417,86 @@ void DataManager :: server_response(qint64 bytes){
         break;
 
     case GETITEMLIST_RESPONSE:
+    {
+        QVector <Item> ItemList;
+        QJsonArray serverResponseJsonArray;
+        QJsonValue  jsonvalue ; // used inside loop
+        Item item;     // used inside loop
+        QString encodedimage;
+        QByteArray decodedimage;
+        QImage image;
+
+        // Get value from object
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Items");
+        // Get array from value
+        serverResponseJsonArray = serverResponseResultJsonValue.toArray();
+        for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
+            item.ID = (jsonvalue.toObject().value("ID")).toInt();
+            item.name =(jsonvalue.toObject().value("name")).toString();
+            item.price.pounds = (jsonvalue.toObject().value("Pound")).toInt();
+            item.price.piasters = (jsonvalue.toObject().value("Piasters")).toInt();
+
+            //convert QbyteArray from document to QString
+            encodedimage = (jsonvalue.toObject().value("Icon")).toString();
+
+            // decode the base64 string to QbyteArray
+            decodedimage = QByteArray::fromBase64(encodedimage.toLatin1());
+
+            // convert to QImage
+            image = QImage::fromData(decodedimage,"JPEG");
+            item.icon = image;
+            ItemList.append(item);
+        }
+        emit getItemList_signal(ItemList);
         break;
     }
+    case GETITEMDATA_RESPONSE :
+    {
+        QJsonArray serverResponseJsonArray;
+        DetailedItem detailedItem;
+        QString encodedimage;
+        QByteArray decodedimage;
+        QImage image; //
+        QJsonValue  jsonvalue ; // used inside loop
+
+
+        detailedItem.name = (serverResponseJsonObj.value("Name")).toString();
+        detailedItem.description = (serverResponseJsonObj.value("Description")).toString();
+        detailedItem.price.pounds =  (serverResponseJsonObj.value("Pounds")).toInt();
+        detailedItem.price.piasters = (serverResponseJsonObj.value("Piasters")).toInt();
+        // Get value from object
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Images");
+        // Get array from value
+        serverResponseJsonArray = serverResponseResultJsonValue.toArray();
+        for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
+
+            //convert QbyteArray from document to QString
+            encodedimage = serverResponseJsonArray[i].toString();
+
+            // decode the base64 string to QbyteArray
+            decodedimage = QByteArray::fromBase64(encodedimage.toLatin1());
+
+            // convert to QImage
+            image = QImage::fromData(decodedimage,"JPEG");
+            (detailedItem.images).append(image);
+        }
+        emit getItemData_signal( detailedItem );
+        break;
+    }
+    case GETCATEGORIES_RESPONSE :{
+        QVector <QString> categories;
+        QJsonArray serverResponseJsonArray;
+        QJsonValue  jsonvalue ; // used inside loop
+        // Get value from object
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Categories");
+        // Get array from value
+        serverResponseJsonArray = serverResponseResultJsonValue.toArray();
+        for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
+            categories.append(serverResponseJsonArray[i].toString());
+        }
+        emit getCategories_signal(categories);
+        break;
+    }
+    }
+
 }

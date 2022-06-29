@@ -89,7 +89,7 @@ typedef struct {
 typedef struct {
     bool unavailableItem;
     bool notEnoughFunds;
-    std::vector<CheckoutItem> itemAvailability;
+    QVector<CheckoutItem> itemAvailability;
 } CheckoutResult;
 
 typedef struct {
@@ -137,7 +137,7 @@ typedef struct {
 typedef struct {
     QString name;
     QString description;
-    std::vector<QImage> images;
+    QVector<QImage> images;
     MoneyAmount price;
 } DetailedItem;
 
@@ -156,9 +156,9 @@ public:
     AutoSignInResult autoSignIn();
 
     //Cart-related functionality
-    std::vector<DetailedCartItem> getCart();
+    QVector<DetailedCartItem> getCart();
     void addToCart(CartItem item);
-    void updateCart(std::vector<CartItem> updated);
+    void updateCart(QVector<CartItem> updated);
     void checkout();
 
     //Account-related functionality
@@ -201,7 +201,7 @@ signals:
     //Shop-related signals
     void getItemList_signal(QVector<Item> result);
     void getItemData_signal(DetailedItem result);
-    void getCategories_signal(std::vector<QString> result);
+    void getCategories_signal(QVector<QString> result);
 };
 
 #endif // DATAMANAGER_H
