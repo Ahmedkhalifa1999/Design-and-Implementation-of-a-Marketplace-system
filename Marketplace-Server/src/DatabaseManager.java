@@ -73,6 +73,19 @@ public class DatabaseManager {
         }
     }
 
+    public ArrayList<DataManager.OrderSummary> user_purchase (String email)
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer WHERE email = ?");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     public DataManager.AccountDetails acc_details (String email)
     {
         try {

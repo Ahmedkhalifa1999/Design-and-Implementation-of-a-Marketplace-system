@@ -38,7 +38,6 @@ public class DataManager {
     ) { }
     public record AccountDetails(
             String firstName,
-            String lastName,
             String email,
             String address,
             String phone,
