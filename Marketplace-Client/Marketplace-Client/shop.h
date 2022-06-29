@@ -6,6 +6,7 @@
 #include "mainwindow.h"
 #include "itemdet.h"
 #include "cart.h"
+#include "account.h"
 
 namespace Ui {
 class Shop;
@@ -34,6 +35,8 @@ private:
     Ui::Shop *ui;
     DataManager *dm;
     Itemdet *item;
+    Cart *cart;
+    Account *acc;
 };
 
 #endif // SHOP_H

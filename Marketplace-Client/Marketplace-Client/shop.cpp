@@ -59,13 +59,15 @@ void Shop::on_but_clicked()
 
 void Shop::on_cartButton_clicked()
 {
-
+ cart = new Cart(this);
+ cart->show();
 }
 
 
 void Shop::on_accountButton_clicked()
 {
-
+  acc = new Account(this);
+  acc->show();
 }
 
 
