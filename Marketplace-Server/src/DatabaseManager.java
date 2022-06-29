@@ -98,7 +98,23 @@ public class DatabaseManager {
     {
         try {
             Connection connection = start_connection();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer WHERE email = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT ID, state, totalprice FROM customer WHERE email = ?");
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
+            int ID = 0, price = 0, arr_indx = 0;
+            String state = "";
+            ArrayList<DataManager.OrderSummary> res = new ArrayList<DataManager.OrderSummary>();
+            while(rs.next()) {
+                ID = rs.getInt("ID");
+                price = rs.getInt("totalprice");
+                state = rs.getString("state");
+                int pou = (int)price / 100;
+                int pia = (int)price % 100;
+                DataManager.MoneyAmount tot_price = new DataManager.MoneyAmount(pou, pia);
+                DataManager.OrderSummary temp = new DataManager.OrderSummary(ID, DataManager.OrderState.valueOf(state), tot_price);
+                res.set(arr_indx++, temp);
+            }
+            return res;
         }
         catch (Exception e) {
             e.printStackTrace();
