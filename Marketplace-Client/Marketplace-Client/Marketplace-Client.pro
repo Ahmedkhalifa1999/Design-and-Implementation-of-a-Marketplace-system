@@ -12,7 +12,7 @@ SOURCES += \
     account.cpp \
     cart.cpp \
     datamanager.cpp \
-    item.cpp \
+    itemdet.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -22,7 +22,7 @@ HEADERS += \
     account.h \
     cart.h \
     datamanager.h \
-    item.h \
+    itemdet.h \
     login.h \
     mainwindow.h \
     shop.h
@@ -30,7 +30,7 @@ HEADERS += \
 FORMS += \
     account.ui \
     cart.ui \
-    item.ui \
+    itemdet.ui \
     login.ui \
     mainwindow.ui \
     shop.ui

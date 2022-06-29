@@ -4,6 +4,8 @@
 #include <QDialog>
 #include"datamanager.h"
 #include "mainwindow.h"
+#include "itemdet.h"
+#include "cart.h"
 
 namespace Ui {
 class Shop;
@@ -18,6 +20,7 @@ public:
     ~Shop();
 
 private slots:
+    void on_but_clicked();
     void on_cartButton_clicked();
 
     void on_accountButton_clicked();
@@ -30,6 +33,7 @@ private slots:
 private:
     Ui::Shop *ui;
     DataManager *dm;
+    Itemdet *item;
 };
 
 #endif // SHOP_H

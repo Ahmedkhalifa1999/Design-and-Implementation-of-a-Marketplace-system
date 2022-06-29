@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QString>
-#include <QImage>
+#include <QPixmap>
 #include <QTcpSocket>
 
 typedef struct {
@@ -96,14 +96,14 @@ typedef struct {
 typedef struct {
     unsigned int ID;
     QString name;
-    QImage icon;
+    QPixmap icon();
     MoneyAmount price;
 } Item;
 
 typedef struct {
     QString name;
     QString description;
-    std::vector<QImage> images;
+    std::vector<QPixmap> images;
     MoneyAmount price;
 } DetailedItem;
 
