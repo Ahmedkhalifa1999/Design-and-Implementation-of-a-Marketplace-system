@@ -28,7 +28,7 @@ public class DatabaseManager {
             return null;
         }
     }
-    
+
     public void addRegister(DataManager.RegistrationData data)
     {
         try{
@@ -214,8 +214,7 @@ public class DatabaseManager {
             int pou = (int)price/100;
             int pia = (int)price%100;
             DataManager.MoneyAmount f_price = new DataManager.MoneyAmount(pou, pia);
-            String desc = ""; //need to know what is the description
-            DataManager.DetailedItem res = new DataManager.DetailedItem(name, desc, images, f_price);
+            DataManager.DetailedItem res = new DataManager.DetailedItem(name, null, images, f_price);
             return res;
         } catch (Exception e) {
             e.printStackTrace();
