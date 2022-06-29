@@ -3,6 +3,10 @@ import java.awt.image.BufferedImage;
 public class DataManager {
 
     private int userID;
+    private String email;
+    private String password;
+
+
 
     public record RegistrationData(
             String firstName,
@@ -92,10 +96,10 @@ public class DataManager {
 
     public boolean register(RegistrationData data) {
 
-        UserCredentials userdata = new UserCredentials(data.email , data.password);
 
-        if(authenticate(userdata)){
-            //store registeration data in the database.
+
+        if(!DatabaseManager.checkemail(data)){
+            DatabaseManager.addRegister(data);
             return true;
         }
 
@@ -104,37 +108,53 @@ public class DataManager {
 
     public boolean authenticate(UserCredentials data) {
 
-        if(! (validate(data.email)))
+        if(DatabaseManager.validate(data))
         {
             return true;
         }
         return false;
     }
 
-    /*
+/*
+  public record CheckoutItem(
+            int ID,
+            int availableQuantity
+    ) { }
     public record CheckoutResult(
             boolean unavailableItem,
             boolean notEnoughFunds,
             CheckoutItem[] itemAvailability
     ) { }
 
-     */
+ */
     public CheckoutResult checkout(CartItem data[]) {
 
         CheckoutResult output;
+        CheckoutItem[] out= null;
+        boolean flag;
 
-        for(int i=0; i< data.length() ; i++)
-        {
-            if(/*data[i].ID exist */ /*data[i].quantity > quantity in databse*/){
+    for(int j=0; j< data.length; j++) {
+        int quan = DatabaseManager.getQuantity(data[i].ID());
+        out[j] = new CheckoutItem(data[j].ID(), quan);
+    }
+    for (int j=0; j<out.length; j++){
+        if(out[j].availableQuantity()< data[j].quantity()){
+            flag= true;
 
-                data[i].quantity = /*database quantity*/ - data[i].quantity;
-
-            }
-            else{
-                output.unavailableItem = true;
-                return output.unavailableItem;
-            }
         }
+        else {
+            flag= false;
+            break;
+
+        }
+    }
+
+    for (int j=0; j<out.length; j++){
+        if
+    }
+
+
+
         return null;
     }
 
@@ -165,21 +185,6 @@ public class DataManager {
         return orderdata;
     }
 
-    /*
-    public record DetailedOrderItem(
-            String name,
-            BufferedImage icon,
-            MoneyAmount price,
-            int quantity
-    ) { }
-    public record DetailedOrder(
-            int ID,
-            OrderState state,
-            MoneyAmount totalAmount,
-            DetailedOrderItem[] items
-    ) { }
-
-     */
     public DetailedOrder getOrderDetails(int ID) {
 
 
