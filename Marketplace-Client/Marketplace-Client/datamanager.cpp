@@ -8,7 +8,13 @@
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <QFile>
 
+//Global Variables
+QFile signInfile;
+QFile cartfile;
+QFile itemfile;
+QByteArray signInDataQByteArray; //variable to store signIn Data
 
 DataManager::DataManager(QObject *parent)
     : QObject{parent}
@@ -21,6 +27,22 @@ DataManager :: DataManager(unsigned int serverAddress, unsigned int serverPort){
     QString serverAddressString  = QString::number(serverAddress);
     socket.connectToHost(QHostAddress(serverAddressString), serverPort);
     QObject::connect(&socket, &QTcpSocket::bytesWritten, this, &DataManager::server_response);
+
+    if(!(QFile::exists("LocalData/signInData.txt")))
+    {
+     QFile signInfile("LocalData/signInData.txt");
+    }
+
+    if(!(QFile::exists("LocalData/cartData.txt")))
+    {
+     QFile cartfile("LocalData/cartData.txt");
+    }
+
+    if(!(QFile::exists("LocalData/itemData.txt")))
+    {
+     QFile itemfile("LocalData/itemData.txt");
+    }
+
 }
 bool DataManager :: validate_Email(const QString email)
 {
@@ -123,13 +145,40 @@ bool DataManager :: signIn(SignInData data, bool save){
 
     QJsonDocument signInJsonDoc(signInDataObject);
     //ToJson Compact
-    QByteArray signInDataQByteArray = signInJsonDoc.toJson(QJsonDocument::Compact);
+     signInDataQByteArray = signInJsonDoc.toJson(QJsonDocument::Compact);
 
     //Send SignInData to Server
     socket.write(signInDataQByteArray);
+
     // Save SignInData if Save = true
+    saveSignin = save;
+
     return true;
 }
+
+void addToCart(CartItem item)
+{
+    //Build JSON File
+    QJsonObject cartItemObject;
+    cartItemObject.insert("ID", QJsonValue::fromVariant(item.ID));
+    cartItemObject.insert("Quantity", QJsonValue::fromVariant(item.quantity));
+
+    QJsonDocument cartItemJsonDoc(cartItemObject);
+    //ToJson Compact
+    QByteArray cartItemQByteArray = cartItemJsonDoc.toJson(QJsonDocument::Compact);
+
+
+        if(!cartfile.open(QIODevice::ReadWrite))
+        {
+            qCritical() << "fail";
+
+        }
+        cartfile.write(cartItemQByteArray);
+        cartfile.flush();
+        cartfile.close();
+
+}
+
 void DataManager :: getAccountDetails(){
 
     //Build JSON File
@@ -312,14 +361,33 @@ void DataManager :: server_response(qint64 bytes){
     //ID for which Request
     case SIGNUP_RESPONSE:
         //Retrieve the Result from Server
+
         serverResponseResultJsonValue = serverResponseJsonObj.value("Result");
         serverbooleanResponse = serverResponseResultJsonValue.toBool();
         emit signUp_signal(serverbooleanResponse);
         break;
     case SIGNIN_RESPONSE:
         //Retrieve the Result from Server
+
+
         serverResponseResultJsonValue = serverResponseJsonObj.value("Result");
+
         serverbooleanResponse = serverResponseResultJsonValue.toBool();
+
+        //if save = true and data is valid , store in local file
+        if(saveSignin && serverbooleanResponse)
+        {
+
+            if(!signInfile.open(QIODevice::ReadWrite))
+            {
+                qCritical() << "fail";
+
+            }
+            signInfile.write(signInDataQByteArray);
+            signInfile.flush();
+            signInfile.close();
+        }
+
         emit signIn_signal(serverbooleanResponse);
         break;
     case GETACCOUNTDETAILS_RESPONSE:

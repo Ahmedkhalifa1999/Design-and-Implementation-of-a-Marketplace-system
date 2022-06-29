@@ -146,6 +146,8 @@ class DataManager : public QObject
     Q_OBJECT
     QTcpSocket socket;
 
+    bool saveSignin;
+
 public:
     explicit DataManager(QObject *parent = nullptr);
     DataManager(unsigned int serverAddress, unsigned int serverPort);
