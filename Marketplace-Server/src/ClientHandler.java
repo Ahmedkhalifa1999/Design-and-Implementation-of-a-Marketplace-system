@@ -42,6 +42,40 @@ public class ClientHandler implements Runnable
                 // Read what the client sent and then send it to every other client.
                 AsynchronousSocketChannel data = socket.get();
 
+                Gson gson = new Gson();
+
+
+                // JSON string to Java object
+                String request;
+                Object object = gson.fromJson(request, Staff.class);
+
+                int x ;
+                switch (x)
+                case 0:
+                    //sign up / register
+                case 2:
+                    //log in / authenticate request
+                case 4:
+                    //checkout
+                case 6:
+                    //get account details
+                case 8:
+                    //update account details
+                case 10:
+                    //get order history
+                case 12:
+                    //get order details
+                case 14:
+                    //wallet deposit
+                case 16:
+                    //get item list
+                case 18:
+                    //get item data
+                case 20:
+                    //get categories request
+
+
+
                 if (socket.isCancelled() || socket.isDone()) {
                     break;
                 }
