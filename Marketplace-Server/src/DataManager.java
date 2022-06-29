@@ -1,4 +1,6 @@
+import javax.xml.crypto.Data;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class DataManager {
 
@@ -62,7 +64,7 @@ public class DataManager {
 
     public record DetailedOrderItem(
             String name,
-            BufferedImage icon,
+            String icon,
             MoneyAmount price,
             int quantity
     ) { }
@@ -83,129 +85,146 @@ public class DataManager {
     public record Item(
             int ID,
             String name,
-            BufferedImage icon,
+            String icon,
             MoneyAmount price
     ) { }
 
     public record DetailedItem(
             String name,
             String description,
-            BufferedImage[] images,
+            ArrayList<String> images,
             MoneyAmount price
     ) { }
 
+
+    //Constructor of class data manager
+    public DataManager()
+    {
+        this.userID = 0;
+        this.email = null;
+        this.password = null;
+
+    }
+    public DataManager(String userEmail , String password)
+    {
+        this.email = userEmail;
+        this.password = password;
+    }
+
+
+    //Done ,, needs testing
     public boolean register(RegistrationData data) {
 
-
-
-        if(!DatabaseManager.checkemail(data)){
+        if(!DatabaseManager.checkemail(data.email)){
             DatabaseManager.addRegister(data);
+            DataManager user = new DataManager(data.email , data.password);
             return true;
         }
-
         return false;
     }
 
+
+    // Done , needs testing
     public boolean authenticate(UserCredentials data) {
 
-        if(DatabaseManager.validate(data))
-        {
-            return true;
-        }
+        
         return false;
     }
 
-/*
-  public record CheckoutItem(
-            int ID,
-            int availableQuantity
-    ) { }
-    public record CheckoutResult(
-            boolean unavailableItem,
-            boolean notEnoughFunds,
-            CheckoutItem[] itemAvailability
-    ) { }
 
- */
-    public CheckoutResult checkout(CartItem data[]) {
+    // Done , needs testing
+    public CheckoutResult checkout(CartItem data[])
+    {
 
-        CheckoutResult output;
-        CheckoutItem[] out= null;
-        boolean flag;
-
-    for(int j=0; j< data.length; j++) {
-        int quan = DatabaseManager.getQuantity(data[i].ID());
-        out[j] = new CheckoutItem(data[j].ID(), quan);
-    }
-    for (int j=0; j<out.length; j++){
-        if(out[j].availableQuantity()< data[j].quantity()){
-            flag= true;
-
-        }
-        else {
-            flag= false;
-            break;
-
-        }
-    }
-
-    for (int j=0; j<out.length; j++){
-        if
     }
 
 
+    // Done .. needs testing
+    public AccountDetails getAccountDetails()
+    {
 
-        return null;
-    }
-
-
-    public AccountDetails getAccountDetails() {
+        AccountDetails userDetails = DatabaseManager.acc_details(this.email);
 
         //call the function to get name, email , address , phone , amount of money
-
-        AccountDetails userdetails;
-
-
 
         return userdetails;
     }
 
+
+    // done .. needs testing
     public void UpdateAccountDetails(AccountDetails data) {
+
+
+        updateCustomer(data);
 
         // update the data for this user in the database.
 
     }
 
 
-    public OrderSummary getOrderHistory() {
+    // Done ,, needs testing
+    public ArrayList<OrderSummary> getOrderHistory()
+    {
 
-        // call the function and get the orderid , state of the order , the total price of the order
-        OrderSummary orderdata;
-
-        return orderdata;
+        return null;
     }
 
+
+    // Done ,, needs testing
     public DetailedOrder getOrderDetails(int ID) {
 
-
-
         return null;
     }
 
+    //
     public boolean walletDeposit(MoneyAmount amount) {
-        return true;
+
+        boolean transactionComplete = DatabaseManager.updateWallet(amount , this.email);
+
+
+
+        return transactionComplete;
     }
+
+    /*
+    public record SearchQuery(
+            String name,
+            String[] categories,
+            int maxResults
+    )
+    { }
+
+    public record Item(
+            int ID,
+            String name,
+            String icon,
+            MoneyAmount price
+    ) { }
+    */
 
     public Item[] getItemList(SearchQuery query) {
+
+
+
+
         return null;
     }
+
+
 
     public DetailedItem getItemData(int ID) {
-        return null;
+
+        DetailedItem item_data = DatabaseManager.item_details(ID);
+
+        return item_data;
     }
 
-    public String[] getCategories() {
-        return null;
+    public ArrayList<String> getCategories() {
+
+        ArrayList<String> categories = DatabaseManager.getCategory();
+
+
+        return categories;
     }
 
 }
