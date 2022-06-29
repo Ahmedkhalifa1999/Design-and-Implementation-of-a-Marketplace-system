@@ -48,6 +48,27 @@ public class DatabaseManager {
         }
     }
 
+    public void updateCustomer (DataManager.AccountDetails data)
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("UPDATE customer SET name = ?, mobile = ?, Address = ?, wallet = ?  WHERE email =?");
+            int pou = data.amount().pounds();
+            int pia= data.amount().piasters();
+            int temp = pou*100+pia;
+            statement.setString(1, data.firstName());
+            statement.setString(2, data.phone());
+            statement.setString(3, data.address());
+            statement.setInt(4,temp);
+            statement.setString(5,data.email());
+            statement.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
     public boolean checkemail(String email)
     {
         try{
