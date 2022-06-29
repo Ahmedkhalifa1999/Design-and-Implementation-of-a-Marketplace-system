@@ -73,6 +73,40 @@ public class DatabaseManager {
         }
     }
 
+    public DataManager.AccountDetails acc_details (String email)
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer WHERE email = ?");
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
+            String temp_email = "";
+            String firstName = "";
+            String mobile = "";
+            String Address = "";
+            int pou = 0;
+            int pia = 0;
+            while(rs.next()) {
+                   temp_email = rs.getString("email");
+                   firstName = rs.getString("name");
+                   mobile = rs.getString("mobile");
+                   Address = rs.getString("Address");
+                   int temp = rs.getInt("wallet");
+                   pou = (int)temp / 100;
+                   pia = (int)temp % 100;
+            }
+
+            DataManager.MoneyAmount money = new DataManager.MoneyAmount(pou, pia);
+            DataManager.AccountDetails res = new DataManager.AccountDetails(firstName, email, Address, mobile, money);
+            return res;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Boolean validate(DataManager.UserCredentials data)
     {
         try{
