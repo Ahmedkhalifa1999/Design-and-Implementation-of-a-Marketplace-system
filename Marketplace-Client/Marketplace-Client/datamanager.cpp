@@ -356,7 +356,6 @@ void DataManager :: server_response(qint64 bytes){
         QJsonArray serverResponseJsonArray;
         QJsonValue  jsonvalue ; // used inside loop
         DetailedOrderItem item;
-        QVector<DetailedOrderItem> items;
         QString encodedimage;
         QByteArray decodedimage;
         QImage image;
@@ -386,10 +385,9 @@ void DataManager :: server_response(qint64 bytes){
             image = QImage::fromData(decodedimage,"JPEG");
             item.icon = image;
 
-            items.append(item);
+             OrderDetails.items .append(item);
         }
 
-        OrderDetails.items = items;
         emit getOrderDetails_signal(OrderDetails);
 
         break;
