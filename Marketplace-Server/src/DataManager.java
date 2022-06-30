@@ -180,7 +180,7 @@ public class DataManager {
                 int newQuantity=data[i].quantity;
                 int result = quan-newQuantity;
                 synchronized (mutex) {
-                    DatabaseManager.UpdateQuantity(data[i].ID, result);
+                    DatabaseManager.updateQuantity(data[i].ID, result);
                 }
             }
         }
@@ -195,7 +195,7 @@ public class DataManager {
 
         AccountDetails userDetails = DatabaseManager.acc_details(this.email);
 
-        return userdetails;
+        return userDetails;
     }
 
 
@@ -203,7 +203,7 @@ public class DataManager {
     public void UpdateAccountDetails(AccountDetails data) {
 
 
-        updateCustomer(data);
+        DatabaseManager.updateCustomer(data);
         //can't change the email and password
 
     }
@@ -221,9 +221,9 @@ public class DataManager {
 
 
     // Done ,, needs testing
-    public DetailedOrder getOrderDetails(int ID) {
+    public DetailedOrder getOrderDetails(String email) {
 
-        DetailedOrder orderDetails =DatabaseManager.OrderDetails(ID);
+        DetailedOrder orderDetails =DatabaseManager.OrderDetails(email);
 
         return orderDetails;
     }

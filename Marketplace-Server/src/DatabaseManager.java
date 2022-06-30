@@ -29,7 +29,7 @@ public class DatabaseManager {
         }
     }
 
-    public void addRegister(DataManager.RegistrationData data)
+    public static void addRegister(DataManager.RegistrationData data)
     {
         try{
             Connection connection = start_connection();
@@ -48,7 +48,7 @@ public class DatabaseManager {
         }
     }
 
-    public void updateCustomer (DataManager.AccountDetails data)
+    public static void updateCustomer (DataManager.AccountDetails data)
     {
         try {
             Connection connection = start_connection();
@@ -69,7 +69,7 @@ public class DatabaseManager {
         }
     }
 
-    public boolean checkemail(String email)
+    public static boolean checkemail(String email)
     {
         try{
             Connection connection = start_connection();
@@ -94,7 +94,7 @@ public class DatabaseManager {
         }
     }
 
-    public ArrayList<DataManager.OrderSummary> user_purchase (String email)
+    public static ArrayList<DataManager.OrderSummary> user_purchase (String email)
     {
         try {
             Connection connection = start_connection();
@@ -122,13 +122,14 @@ public class DatabaseManager {
         }
     }
 
-    public DataManager.DetailedOrder OrderDetails (int ID)
+    public static DataManager.DetailedOrder OrderDetails (String email)
     {
         try {
             Connection connection = start_connection();
             PreparedStatement statement = connection.prepareStatement("SELECT ID, state, totalprice,  FROM orders,  WHERE customeremail = ?");
             statement.setString(1, email);
             ResultSet rs = statement.executeQuery();
+            return null;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -136,7 +137,7 @@ public class DatabaseManager {
         }
     }
 
-    public DataManager.AccountDetails acc_details (String email)
+    public static DataManager.AccountDetails acc_details (String email)
     {
         try {
             Connection connection = start_connection();
@@ -170,7 +171,7 @@ public class DatabaseManager {
         }
     }
 
-    public Boolean validate(DataManager.UserCredentials data)
+    public static Boolean validate(DataManager.UserCredentials data)
     {
         try{
             Connection connection = start_connection();
@@ -196,7 +197,7 @@ public class DatabaseManager {
         }
     }
 
-    public DataManager.DetailedItem item_details(int ID)
+    public static DataManager.DetailedItem item_details(int ID)
     {
 
         try {
@@ -222,7 +223,7 @@ public class DatabaseManager {
         }
     }
 
-    public void updateQuantity (int ID,int quantity)
+    public static void updateQuantity (int ID,int quantity)
     {
         try {
             Connection connection = start_connection();
@@ -237,7 +238,7 @@ public class DatabaseManager {
         }
     }
 
-    public int getQuantity(int ID)
+    public static int getQuantity(int ID)
     {
         try {
             Connection connection = start_connection();
@@ -257,7 +258,7 @@ public class DatabaseManager {
         }
     }
 
-    public DataManager.MoneyAmount getWallet(String email)
+    public static DataManager.MoneyAmount getWallet(String email)
     {
         try {
             Connection connection = start_connection();
@@ -280,7 +281,7 @@ public class DatabaseManager {
         }
     }
 
-    public boolean updateWallet (DataManager.MoneyAmount money, String email)
+    public static boolean updateWallet (DataManager.MoneyAmount money, String email)
     {
         try {
             Connection connection = start_connection();
@@ -297,7 +298,7 @@ public class DatabaseManager {
             return false;
         }
     }
-    public DataManager.MoneyAmount getPrice(DataManager.CartItem item)
+    public static DataManager.MoneyAmount getPrice(DataManager.CartItem item)
     {
         try{
             Connection connection = start_connection();
@@ -325,7 +326,7 @@ public class DatabaseManager {
         }
     }
 
-    public ArrayList <String> getCategory ()
+    public static ArrayList <String> getCategory ()
     {
         try {
             Connection connection = start_connection();
@@ -344,7 +345,7 @@ public class DatabaseManager {
         }
     }
 
-    public String findFilestr(String name,File file)
+    public static String findFilestr(String name,File file)
     {
         File[] list = file.listFiles();
         String out="";
@@ -364,7 +365,7 @@ public class DatabaseManager {
         return out;
     }
 
-    public ArrayList<String> findFilearr(String name,File file) {
+    public static ArrayList<String> findFilearr(String name,File file) {
         File[] list = file.listFiles();
         ArrayList<String> arr = new ArrayList<String>();
         if (list != null)
@@ -382,7 +383,7 @@ public class DatabaseManager {
             }
         return arr;
     }
-    public ArrayList<String> getImages(int ID) {
+    public static ArrayList<String> getImages(int ID) {
         //convert to string
         String s = String.valueOf(ID);
         File file = new File("Marketplace-Server/database/images");
@@ -394,7 +395,7 @@ public class DatabaseManager {
 
     }
 
-    public String getIcon(int ID) {
+    public static String getIcon(int ID) {
         //convert to string
         String s = String.valueOf(ID);
         File file = new File("Marketplace-Server/database/icons");

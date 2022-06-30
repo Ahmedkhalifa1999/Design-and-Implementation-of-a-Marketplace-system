@@ -84,14 +84,6 @@ typedef struct {
 
 typedef struct {
     unsigned int ID;
-    QString name;
-    QPixmap icon();
-    MoneyAmount price;
-    unsigned int quantity;
-} DetailedCartItem, DetailedOrderItem;
-
-typedef struct {
-    unsigned int ID;
     bool availableQuantity;
 } CheckoutItem;
 
@@ -120,13 +112,13 @@ typedef enum {
 typedef struct {
     unsigned int ID;
     QString name;
-    QImage icon;
+    QPixmap icon;
     MoneyAmount price;
 } Item;
 
 typedef struct {
     QString name;
-    QImage icon;
+    QPixmap icon;
     MoneyAmount price;
     unsigned int quantity;
 } DetailedCartItem, DetailedOrderItem;
@@ -149,13 +141,6 @@ typedef struct {
     QVector<QString> categories;
     unsigned int maxResults;
 } SearchQuery;
-
-typedef struct {
-    unsigned int ID;
-    QString name;
-    QPixmap icon();
-    MoneyAmount price;
-} Item;
 
 typedef struct {
     QString name;
@@ -222,7 +207,8 @@ signals:
 
     //Cart-related signals
     void checkout_signal(CheckoutResult detailedResult);
-    void getCart_signal(QVector <DetailedCartItem> result);
+    void getCart_signal(QVector<DetailedCartItem> result);
+
     //Account-related signals
     void getAccountDetails_signal(AccountDetails result);
     void updateAccountDetails_signal(bool result);
@@ -234,7 +220,6 @@ signals:
     void getItemList_signal(QVector<Item> result);
     void getItemData_signal(DetailedItem result);
     void getCategories_signal(QVector<QString> result);
-    void getCart_signal(QVector <DetailedCartItem> result);
 };
 
 
