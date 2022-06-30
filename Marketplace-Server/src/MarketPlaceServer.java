@@ -10,9 +10,13 @@ import javafx.event.EventHandler;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
-
-
+import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import com.opencsv.CSVReader;
 
 public class MarketplaceServer extends Application  {
 
@@ -57,16 +61,8 @@ public class MarketplaceServer extends Application  {
         layout.getChildren().addAll(path, CSVPath ,btn2 ,sd , startDate, ed, endDate , btn);
         root.getChildren().add(layout);
 
-        String sDate = startDate.getText();
-        String eDate = endDate.getText();
-        btn.setOnAction(e-> {
-            try {
-                ParseDate(startDate , endDate);
-            } catch (ParseException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
 
+        btn.setOnAction(e-> getReport (startDate , endDate) );
 
         btn2.setOnAction(e-> addItems (CSVPath ) );
 
@@ -76,27 +72,57 @@ public class MarketplaceServer extends Application  {
     }
 
     private void addItems(TextField csvPath) {
-        String path = csvPath.getText();
-        System.out.println(path);
-    }
+        String path = "\"" + csvPath.getText()+ "\"";
+        CSVReader reader = null;
 
-    public void ParseDate (TextField startDate , TextField endDate) throws ParseException {
-        try {
-            String sd = startDate.getText();
-            String ed = endDate.getText();
-            Date sdate = new SimpleDateFormat("dd/MM/yyyy").parse(sd);
-            Date edate = new SimpleDateFormat("dd/MM/yyyy").parse(ed);
-
-        }
-        catch (ParseException e)
+        try
         {
-            System.out.println("Error!");
-        }
+            reader = new CSVReader(new FileReader(path));
+            String [] nextLine;
+            //read one line at a time
 
+            while ((nextLine = reader.readNext()) != null)
+            {
+                String [] arr =  nextLine.split("[,]", 0);
+                String name = arr[0];
+                int price = Integer.parseInt(arr[1]);
+                int quantity = Integer.parseInt(arr[2]);
+                String category = arr[3];
+                DatabaseManager.item item = new DatabaseManager.item (name, price, quantity, category);
+                DatabaseManager.add_item(item);
+
+            }
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
+    public void getReport ( TextField startDate , TextField endDate)
+    {
+        string start = startDate.getText();
+        string end = endDate.getText();
+        ArrayList<DatabaseManager.dateorderitem> arr =DatabaseManager.dateorder(start,end);
+        File file = new File("report.csv");
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write("Items:");
+        bw.newLine();
+        for(int i=0;i<arr.size();i++)
+        {
+            bw.write((arr.get(i)).itemname() +"," +(arr.get(i)).quantity());
+            bw.newLine();
+        }
+        bw.close();
+        fw.close();
+
+    }
 
     public static void main(String[] args) {
         launch();
     }
+
 }
