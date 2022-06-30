@@ -5,6 +5,8 @@
 
 #include <QMainWindow>
 #include "login.h"
+#include "shop.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,6 +18,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 
 private slots:
 
@@ -29,10 +32,10 @@ public slots:
     void signIn_slot(bool result);
 
     //Cart-related signals
-    void checkout_slot(bool result, std::vector<CheckoutResult> detailedResult);
-
+    void checkout_slot(CheckoutResult result);
+    void  getCart_slot (QVector <DetailedCartItem> result);
     //Account-related signals
-    void getAccountDetails_slot(AccountDetails result);
+    void getAccountDetails_slot (AccountDetails result);
     void updateAccountDetails_slot(bool result);
     void getOrderHistory_slot(std::vector<OrderSummary> result);
     void getOrderDetails_slot(DetailedOrder result);
@@ -46,5 +49,6 @@ public slots:
 private:
     Ui::MainWindow *ui;
     Login *log;
+    Shop *shop;
 };
 #endif // MAINWINDOW_H
