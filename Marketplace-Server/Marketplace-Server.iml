@@ -13,5 +13,14 @@
     <orderEntry type="library" exported="" name="openjfx.javafx.fxml" level="project" />
     <orderEntry type="library" exported="" name="openjfx.javafx.graphics" level="project" />
     <orderEntry type="library" exported="" name="openjfx.javafx.media" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-8.0.29.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

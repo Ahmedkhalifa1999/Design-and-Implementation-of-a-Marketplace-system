@@ -157,7 +157,7 @@ public class DatabaseManager {
     {
         try{
             Connection connection = start_connection();
-            PreparedStatement statement = connection.prepareStatement("Select i.itemname , oi.quantity from orders as o , items as i , orderitem as oi where o.orderid=oi.orderid and i.itemid = oi.itemid and (o.placedate between ? and ?)");
+            PreparedStatement statement = connection.prepareStatement("Select i.itemname , sum(oi.quantity) from orders as o , items as i , orderitem as oi where o.orderid=oi.orderid and i.itemid = oi.itemid and (o.placedate between ? and ?) group by i.itemname");
             statement.setString(1,from);
             statement.setString(2,to);
             ResultSet resultSet = statement.executeQuery();
@@ -293,6 +293,62 @@ public class DatabaseManager {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static void addOrder (ArrayList<DataManager.CartItem> data, String email)
+    {
+        try
+        {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT max(orderid) FROM marketplace.orders");
+            ResultSet resultSet = statement.executeQuery();
+            int id=0;
+            while (resultSet.next())
+            {
+                id = resultSet.getInt("max(orderid)");
+            }
+            id++;
+            statement = connection.prepareStatement("SELECT address from customer where email=?");
+            statement.setString(1,email);
+            resultSet=statement.executeQuery();
+            String address="";
+            while(resultSet.next())
+            {
+                address=resultSet.getString("address");
+            }
+            DataManager.MoneyAmount money;
+            int pia=0;
+            int pou=0;
+            for (int i = 0;i<data.size();i++)
+            {
+                money = getPrice(data.get(i));
+                pou += money.pounds();
+                pia+= money.piasters();;
+            }
+            long temp = pou*100+pia;
+            statement = connection.prepareStatement("INSERT INTO orders (orderid, placedate, arrivaldate,totalprice, customeremail , address, state) VALUES (?, ?, null,?,?,?,?)");
+            statement.setInt(1,id);
+            statement.setString(2, String.valueOf(java.time.LocalDate.now()));
+            statement.setLong(3,temp);
+            statement.setString(4,email);
+            statement.setString(5,address);
+            statement.setString(6,"ACCEPTED");
+            statement.executeUpdate();
+
+            statement = connection.prepareStatement("INSERT INTO orderitem (orderid, itemid,quantity) VALUES (?,?,?)");
+            for (int i = 0;i< data.size();i++)
+            {
+                statement.setInt(1,id);
+                statement.setInt(2,data.get(i).ID());
+                statement.setInt(3,data.get(i).quantity());
+                statement.executeUpdate();
+            }
+            connection.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
         }
     }
 
