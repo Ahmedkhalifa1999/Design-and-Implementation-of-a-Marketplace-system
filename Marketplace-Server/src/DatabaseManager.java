@@ -15,6 +15,11 @@ public class DatabaseManager {
     static final String USER = "root";
     static final String PASS = "1412001BAmr";
 
+    public record datedorderitem(
+            String itemname,
+            int quantity
+    ) { }
+
     //private static String ImagesDirectory;
 
     public static Connection start_connection() {
@@ -41,6 +46,7 @@ public class DatabaseManager {
             statement.setInt(5,0);
             statement.setString(6, data.password());
             statement.executeUpdate();
+            connection.close();
         }
         catch (Exception e)
         {
@@ -62,6 +68,7 @@ public class DatabaseManager {
             statement.setInt(4,temp);
             statement.setString(5,data.email());
             statement.executeUpdate();
+            connection.close();
         }
         catch (Exception e)
         {
@@ -81,6 +88,7 @@ public class DatabaseManager {
             {
                 pass=resultSet.getString("password");
             }
+            connection.close();
             if(pass=="")
             {
                 return false;
@@ -114,6 +122,7 @@ public class DatabaseManager {
                 DataManager.OrderSummary temp = new DataManager.OrderSummary(ID, DataManager.OrderState.valueOf(state), tot_price);
                 res.set(arr_indx++, temp);
             }
+            connection.close();
             return res;
         }
         catch (Exception e) {
@@ -133,6 +142,35 @@ public class DatabaseManager {
 
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static ArrayList<datedorderitem> dateorder (String from ,String to)
+    {
+        try{
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("Select i.itemname , oi.quantity from orders as o , items as i , orderitem as oi where o.orderid=oi.orderid and i.itemid = oi.itemid and (o.placedate between ? and ?)");
+            statement.setString(1,from);
+            statement.setString(2,to);
+            ResultSet resultSet = statement.executeQuery();
+            String name="";
+            int q=0;
+            ArrayList<datedorderitem> arr = new ArrayList<datedorderitem>();
+            while (resultSet.next())
+            {
+                name = resultSet.getString("i.itemname");
+                q=resultSet.getInt("oi.quantity");
+                datedorderitem d = new datedorderitem(name,q);
+                arr.add(d);
+            }
+            connection.close();
+            return arr;
+
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
             return null;
         }
     }
@@ -162,6 +200,7 @@ public class DatabaseManager {
 
             DataManager.MoneyAmount money = new DataManager.MoneyAmount(pou, pia);
             DataManager.AccountDetails res = new DataManager.AccountDetails(firstName, email, Address, mobile, money);
+            connection.close();
             return res;
         }
         catch (Exception e)
@@ -184,6 +223,7 @@ public class DatabaseManager {
             {
                 pass=resultSet.getString("password");
             }
+            connection.close();
             if(pass=="")
             {
                 return false;
@@ -216,6 +256,7 @@ public class DatabaseManager {
             int pia = (int)price%100;
             DataManager.MoneyAmount f_price = new DataManager.MoneyAmount(pou, pia);
             DataManager.DetailedItem res = new DataManager.DetailedItem(name, null, images, f_price);
+            connection.close();
             return res;
         } catch (Exception e) {
             e.printStackTrace();
@@ -231,6 +272,7 @@ public class DatabaseManager {
             statement.setInt(1,quantity);
             statement.setInt(2,ID);
             statement.executeUpdate();
+            connection.close();
         }
         catch (Exception e)
         {
@@ -249,6 +291,7 @@ public class DatabaseManager {
             while (resultSet.next()) {
                 quantity = resultSet.getInt("quantity");
             }
+            connection.close();
             return quantity;
         }
         catch (Exception e)
@@ -272,6 +315,7 @@ public class DatabaseManager {
                 pia = (int)(resultSet.getInt("wallet")%100);
             }
             DataManager.MoneyAmount wallet = new DataManager.MoneyAmount(pou,pia);
+            connection.close();
             return wallet;
         }
         catch (Exception e)
@@ -290,6 +334,7 @@ public class DatabaseManager {
             statement.setLong(1,temp);
             statement.setString(2,email);
             statement.executeUpdate();
+            connection.close();
             return true;
         }
         catch (Exception e)
@@ -316,6 +361,7 @@ public class DatabaseManager {
             int pou = (int)temp/100;
 
             DataManager.MoneyAmount m = new DataManager.MoneyAmount(pou,pia);
+            connection.close();
             return m;
 
         }
@@ -336,6 +382,7 @@ public class DatabaseManager {
             while (resultSet.next()) {
                 arr.add(resultSet.getString("category"));
             }
+            connection.close();
             return arr;
         }
         catch (Exception e)
