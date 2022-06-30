@@ -14,6 +14,8 @@ SOURCES += \
     cart.cpp \
     datamanager.cpp \
     itemdet.cpp \
+    lineedit.cpp \
+    lineedit.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -25,6 +27,8 @@ HEADERS += \
     cart.h \
     datamanager.h \
     itemdet.h \
+    lineedit.h \
+    lineedit.h \
     login.h \
     mainwindow.h \
     shop.h

@@ -18,7 +18,8 @@ public:
 private slots:
     void on_pushButton_clicked();
     void on_Checkout_clicked();
-    void checkout_slot(bool result, std::vector<CheckoutResult> detailedResult);
+    void checkout_slot(CheckoutResult result);
+    void  getCart_slot (QVector <DetailedCartItem> result);
 
 
 private:

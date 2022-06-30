@@ -19,7 +19,6 @@ Cart::Cart(QWidget *parent) :
     dm.getCart(); //Vector of detailed cart item
 
     for(unsigned int i=0; i < dci.size();i++){
-
         img[i]=dci[i].icon();
          names[i] =dci[i].name;
          prices[i]=dci[i].price;
@@ -27,7 +26,7 @@ Cart::Cart(QWidget *parent) :
     }
     for(int i=0;i<img.size();i++){
        QLabel* pic = new QLabel(this);
-         pic->setPixmap(img[i].scaled(100,100,Qt::KeepAspectRatio));
+         pic->setPixmap(img[i].scaled(110,110,Qt::KeepAspectRatio));
          ui->gridLayout->addWidget(pic, i,0);
     }
 
@@ -45,8 +44,8 @@ Cart::Cart(QWidget *parent) :
     for(int i=0;i<qu.size();i++){
 
         LineEdit * quantity =new LineEdit();
+      /* QLineEdit* quantity = new QLineEdit(this);*/
          quantity->setText(QString::number(qu[i]));
-         quantity-> id=qu[i];
          ui->gridLayout->addWidget(quantity, i,3);
     }
 

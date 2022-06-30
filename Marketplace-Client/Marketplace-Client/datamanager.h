@@ -124,7 +124,7 @@ public:
     AutoSignInResult autoSignIn();
 
     //Cart-related functionality
-    std::vector<DetailedCartItem> getCart();
+    void getCart();
     void addToCart(CartItem item);
     void updateCart(std::vector<CartItem> updated);
     void checkout();
