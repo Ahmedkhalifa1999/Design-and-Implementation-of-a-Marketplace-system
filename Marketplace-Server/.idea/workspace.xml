@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2c774fd-3c43-4b60-88c0-95789a2f8dcf" name="Changes" comment="" />
+    <list default="true" id="f2c774fd-3c43-4b60-88c0-95789a2f8dcf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Marketplace-Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Marketplace-Server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +49,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "jdk.selected.JAVA_MODULE": "openjdk-18",
+    "last_opened_file_path": "C:/Users/HP/Documents/GitHub/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Server/lib/mysql-connector-java-8.0.29.jar",
+    "project.structure.last.edited": "Modules",
     "last_opened_file_path": "C:/Users/world/OneDrive/Documents/GitHub/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Server",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
@@ -83,5 +90,8 @@
       <updated>1655333309745</updated>
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
