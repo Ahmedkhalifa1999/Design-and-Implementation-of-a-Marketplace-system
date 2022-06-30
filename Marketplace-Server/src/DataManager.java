@@ -67,7 +67,7 @@ public class DataManager {
             int ID,
             OrderState state,
             MoneyAmount totalAmount,
-            DetailedOrderItem[] items
+            ArrayList<DetailedOrderItem> items
     ) { }
 
     public record SearchQuery(
