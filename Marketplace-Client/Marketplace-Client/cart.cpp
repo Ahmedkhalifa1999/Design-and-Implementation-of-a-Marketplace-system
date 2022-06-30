@@ -22,34 +22,48 @@ Cart::Cart(QWidget *parent) :
 
         id[i]=dci[i].ID;
         img[i]= dci[i].icon;
-         names[i] =dci[i].name;
-         prices[i]=dci[i].price;
-         qu[i]=dci[i].quantity;
+        names[i] =dci[i].name;
+        prices[i]=dci[i].price;
+        qu[i]=dci[i].quantity;
     }
     for(int i=0;i<img.size();i++){
-       QLabel* pic = new QLabel(this);
-         pic->setPixmap(img[i].scaled(100,100,Qt::KeepAspectRatio));
-         ui->gridLayout->addWidget(pic, i,0);
+        QLabel* pic = new QLabel(this);
+        pic->setPixmap(img[i].scaled(100,100,Qt::KeepAspectRatio));
+        imgl.push_back(pic);
+        ui->gridLayout->addWidget(pic, i,0);
     }
 
     for(int i=0;i<names.size();i++){
-       QLabel* nm = new QLabel(this);
-         nm->setText(names[i]);
-         ui->gridLayout->addWidget(nm, i,1);
+        QLabel* nm = new QLabel(this);
+        nm->setText(names[i]);
+        namel.push_back(nm);
+        ui->gridLayout->addWidget(nm, i,1);
     }
 
 
     for(int i=0;i<prices.size();i++){
-       QLabel* pr = new QLabel(this);
-         pr->setText(QString::number(prices[i].pounds)+"."+QString::number(prices[i].piasters));
-         ui->gridLayout->addWidget(pr, i,2);
+        QLabel* pr = new QLabel(this);
+        pr->setText(QString::number(prices[i].pounds)+"."+QString::number(prices[i].piasters));
+        pricel.push_back(pr);
+        ui->gridLayout->addWidget(pr, i,2);
     }
     for(int i=0;i<qu.size();i++){
 
-        LineEdit * quantity =new LineEdit();
-         quantity->setText(QString::number(qu[i]));
-         quantity-> id=qu[i];
-         ui->gridLayout->addWidget(quantity, i,3);
+        QLineEdit * quantity =new QLineEdit();
+        quantity->setText(QString::number(qu[i]));
+        vl.push_back(quantity);
+        ui->gridLayout->addWidget(quantity, i,3);
+
+
+    }
+    for(int i=0;i<qu.size();i++){
+
+        ButtonId *b = new ButtonId();
+        b->setText("Remove");
+        b->id = id[i];
+        ui->gridLayout->addWidget(b, i,4);
+        connect(b,SIGNAL(clicked()),this,SLOT(on_b_clicked()));
+
     }
 
 }
@@ -69,48 +83,66 @@ void Cart :: getCart_slot (QVector <DetailedCartItem> result){
 }
 void Cart::on_Checkout_clicked()
 {
-dm.checkout();
-ui->Checkout->setEnabled(false);
+    dm.checkout();
+    ui->Checkout->setEnabled(false);
 }
 
 void Cart:: checkout_slot(CheckoutResult result){
 
-         if(result.unavailableItem==true){
+    if(result.unavailableItem==true){
 
-          for(unsigned int j=0;j<result.itemAvailability.size();j++){
-              if(result.itemAvailability[j].availableQuantity==0){
-                  unavailItem= result.itemAvailability[j].ID;
-              }
-          }
-           QMessageBox:: warning(this,"Error", QString("Item of ID %1 is unavailable ") .arg(unavailItem));
+        for(unsigned int j=0;j<result.itemAvailability.size();j++){
+            if(result.itemAvailability[j].availableQuantity==0){
+                unavailItem= result.itemAvailability[j].ID;
+            }
+        }
+        QMessageBox:: warning(this,"Error", QString("Item of ID %1 is unavailable ") .arg(unavailItem));
 
-         }          else if(result.notEnoughFunds==true)
-             QMessageBox:: warning(this,"Error","There is no enough funds ");
+    }          else if(result.notEnoughFunds==true)
+        QMessageBox:: warning(this,"Error","There is no enough funds ");
 
-  else{
-      QMessageBox ::information(this,"Checkout is successful"," Your order is placed successfully");
-  }
-}
-void Cart ::on_quantity_editingFinished()
-{
-    quant = qobject_cast<LineEdit* >(QObject::sender()); //quant acts as the object that sent the signal
- // sender send a pointer to the object causing the change
-   upd[index].ID = quant->id;
- //  upd[index].quantity=this->ui->gridLayout->;
-   index++;
-
+    else{
+        QMessageBox ::information(this,"Checkout is successful"," Your order is placed successfully");
+    }
 }
 
+
+void Cart::on_b_clicked(){
+    ButtonId* button = qobject_cast<ButtonId *>(QObject::sender());
+    for(int i =0;i<img.size();i++){
+        if(button->id==id[i]){
+            imgl[i]->hide();
+            ui->gridLayout->removeWidget(imgl[i]);
+            imgl.remove(i);
+            namel[i]->hide();
+            ui->gridLayout->removeWidget(namel[i]);
+            namel.remove(i);
+            pricel[i]->hide();
+            ui->gridLayout->removeWidget(pricel[i]);
+            pricel.remove(i);
+            vl[i]->hide();
+            ui->gridLayout->removeWidget(vl[i]);
+            vl.remove(i);
+
+        }
+    }
+}
 void Cart::on_pushButton_clicked()
-{
-    dm.updateCart(upd);
+
+{    for(int i=0;i<qu.size();i++){
+
+        upd[i].ID=dci[i].ID;
+        upd[i].quantity= (vl[i]->text()).toUInt();
+    }
+
+     dm.updateCart(upd);
 }
 
 void updateCart(std::vector<CartItem> updated){
     for(unsigned int i =0;i < dci.size();i++){
-        if(updated[i].ID == dci[i].ID){
-            dci[i].quantity=updated[i].quantity;
-        }
+
+        dci[i].quantity=updated[i].quantity;
+
     }
 
 }
