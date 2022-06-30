@@ -1,7 +1,6 @@
 #include "cart.h"
 #include "ui_cart.h"
 #include "datamanager.h"
-#include <vector>
 #include"lineedit.h"
 #include<QMessageBox>
 DataManager dm;
@@ -71,6 +70,7 @@ void Cart :: getCart_slot (QVector <DetailedCartItem> result){
 void Cart::on_Checkout_clicked()
 {
 dm.checkout();
+ui->Checkout->setEnabled(false);
 }
 
 void Cart:: checkout_slot(CheckoutResult result){
