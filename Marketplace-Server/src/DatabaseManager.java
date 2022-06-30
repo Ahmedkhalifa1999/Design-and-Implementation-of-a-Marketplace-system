@@ -122,15 +122,80 @@ public class DatabaseManager {
         }
     }
 
-    public static DataManager.DetailedOrder OrderDetails (String email)
+    public ArrayList<DataManager.Item> item_list(DataManager.SearchQuery query) {
+        try {
+            ArrayList<DataManager.Item> res = new ArrayList<DataManager.Item>();
+            int res_indx = 0;
+            for (int i = 0; i < query.categories().size(); i++) {
+                Connection connection = start_connection();
+                PreparedStatement statement = connection.prepareStatement("SELECT itemid, itemname, itemprice FROM items WHERE itemname = ? AND Category = ? LIMIT ?");
+                statement.setString(1, query.name());
+                statement.setString(2, query.categories().get(i));
+                statement.setInt(3, query.maxResults());
+                ResultSet rs = statement.executeQuery();
+                String name = "", icon = "";
+                int ID = 0, t_price = 0, pou = 0, pia = 0;
+                DataManager.MoneyAmount price;
+                while (rs.next()) {
+                    ID = rs.getInt("itemid");
+                    t_price = rs.getInt("itemprice");
+                    name = rs.getString("itemname");
+                    pou = (int)t_price/100;
+                    pia = (int)t_price%100;
+                    icon = getIcon(ID);
+                }
+                price = new DataManager.MoneyAmount(pou, pia);
+                if (ID != 0) {
+                    DataManager.Item ss = new DataManager.Item(ID, name, icon, price);
+                    res.add(res_indx++, ss);
+                }
+            }
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static DataManager.DetailedOrder OrderDetails (int ID)
+
     {
         try {
             Connection connection = start_connection();
-            PreparedStatement statement = connection.prepareStatement("SELECT ID, state, totalprice,  FROM orders,  WHERE customeremail = ?");
-            statement.setString(1, email);
+            PreparedStatement statement = connection.prepareStatement("SELECT o.orderid, o.state, o.totalprice, i.itemname, i.itemprice, oi.quantity FROM orders as o, orderitem as oi, items as i WHERE o.orderid = ? AND o.orderid = oi.orderid AND oi.itemid = i.itemid");
+            statement.setInt(1, ID);
             ResultSet rs = statement.executeQuery();
-            return null;
 
+            int o_price = 0, o_id = 0, o_pou = 0, o_pia = 0;
+            ArrayList<Integer> i_price = new ArrayList<Integer>() , i_id = new ArrayList<Integer>(), i_quant = new ArrayList<Integer>();
+            String state = "";
+            ArrayList<String> i_name = new ArrayList<String>();
+            ArrayList<DataManager.DetailedOrderItem> items = new ArrayList<DataManager.DetailedOrderItem>();
+            while (rs.next()) {
+                o_price = rs.getInt("o.totalprice");
+                o_id = rs.getInt("o.orderid");
+                state = rs.getString("o.state");
+                i_id.add(rs.getInt("oi.itemid"));
+                i_name.add(rs.getString("i.itemname"));
+                i_price.add(rs.getInt("i.itemprice"));
+                i_quant.add(rs.getInt("oi.quantity"));
+            }
+            o_pou = (int)o_price/100;
+            o_pia = (int)o_price%100;
+
+            for (int i = 0; i < i_id.size(); i++) {
+                String i_image = getIcon(i_id.get(i));
+                int i_pou = (int)(i_price.get(i).intValue())/100;
+                int i_pia = (int)(i_price.get(i).intValue())%100;
+                DataManager.MoneyAmount temp = new DataManager.MoneyAmount(i_pou, i_pia);
+                DataManager.DetailedOrderItem di = new DataManager.DetailedOrderItem((String) i_name.get(i), i_image, temp, i_quant.get(i).intValue());
+                items.add(i, di);
+            }
+
+
+            DataManager.MoneyAmount totalAmount = new DataManager.MoneyAmount(o_pou, o_pia);
+            DataManager.DetailedOrder res = new DataManager.DetailedOrder(o_id, DataManager.OrderState.valueOf(state), totalAmount, items);
+            return res;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
