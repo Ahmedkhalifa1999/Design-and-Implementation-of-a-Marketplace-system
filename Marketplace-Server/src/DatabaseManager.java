@@ -21,7 +21,6 @@ public class DatabaseManager {
     ) { }
 
     public record item(
-            int itemid,
             String itemname,
             int itemprice,
             int quantity,
