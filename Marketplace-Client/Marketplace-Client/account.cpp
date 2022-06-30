@@ -56,6 +56,15 @@ Account::Account(QWidget *parent) :
          ui->gridLayout_3->addWidget(pr, i,2);
     }
 
+    for(int i=0;i<ids.size();i++){
+        ButtonId *b = new ButtonId();
+        b->setText("View Order");
+        b->id = ids[i];
+        ui->gridLayout_3->addWidget(b, i,3);
+        connect(b,SIGNAL(clicked()),this,SLOT(on_butt_clicked()));
+
+    }
+
     for(int i=0;i<itemid.size();i++){
        QLabel* it = new QLabel(this);
          it->setText(QString::number(itemid[i]));
@@ -96,7 +105,16 @@ Account::~Account()
 {
     delete ui;
 }
+void Account::on_butt_clicked()
+{
+//  QObject* obj = sender();
+//  obj = qobject_cast<QObject *>(b);
+  button = qobject_cast<ButtonId *>(QObject::sender());
+  orderid = button->id;
+  dm.getOrderDetails(orderid);
 
+
+}
 void Account::getAccountDetails_slot(AccountDetails result){
 
     ad.name=result.name;
@@ -189,11 +207,6 @@ void Account::getOrderHistory_slot(std::vector<OrderSummary> result){
 
 }
 
-void Account::on_orderDetail_clicked()
-{
-    orderid = (ui->orderIdLine->text()).toUInt();
-    dm.getOrderDetails(orderid);
-}
 
 void Account::getOrderDetails_slot(DetailedOrder result){
     for(int i=0;i<result.items.size();i++){
