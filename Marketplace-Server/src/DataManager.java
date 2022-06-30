@@ -195,7 +195,7 @@ public class DataManager {
                     DatabaseManager.updateQuantity(data[i].ID(), result);
 
                 }
-                DatabaseManager.addOrder(data,this.email)
+                DatabaseManager.addOrder(data,this.email);
 
             }
         }
@@ -222,6 +222,7 @@ public class DataManager {
 
         DatabaseManager.updateCustomer(data);
         //can't change the email and password
+        return true;
 
     }
 
