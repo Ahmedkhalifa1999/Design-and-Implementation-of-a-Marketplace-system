@@ -375,6 +375,35 @@ void DataManager::getCart(){
     // Get value from object
 
     QByteArray cartQByteArrayReq = cartJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Write to Socket
+    socket.write(cartQByteArrayReq);
+}
+
+void DataManager::checkout()
+{
+    QByteArray cartQByteArray;
+    if(!cartfile.open(QIODevice::ReadWrite))
+    {
+        qCritical() << "fail";
+
+    }
+
+    cartQByteArray = cartfile.readAll();
+    cartfile.close();
+    //convert to JsonDocument
+    QJsonDocument cartJsonDoc = QJsonDocument::fromJson(cartQByteArray);
+    // Get object from document
+    QJsonArray cartJsonArray = cartJsonDoc.array();
+    QJsonObject cartJsonObj ;
+    cartJsonObj.insert("RequestID", QJsonValue::fromVariant(CHECKOUT_REQUEST));
+    cartJsonObj.insert("Cart", cartJsonArray);
+    // Get value from object
+
+    QByteArray cartQByteArrayReq = cartJsonDoc.toJson(QJsonDocument::Compact);
+
+    //Write to Socket
+    socket.write(cartQByteArrayReq);
 }
 
 
@@ -427,6 +456,34 @@ void DataManager :: server_response(qint64 bytes){
 
         emit signIn_signal(serverbooleanResponse);
         break;
+    case CHECKOUT_RESPONSE:
+    {
+
+        CheckoutResult checkoutResult;
+        QJsonArray serverResponseJsonArray;
+        QJsonValue  jsonvalue ; // used inside loop
+        CheckoutItem checkoutitem;
+
+
+        checkoutResult.unavailableItem = (serverResponseJsonObj.value("UnavailableItem")).toBool();
+        checkoutResult.notEnoughFunds = (OrderState)((serverResponseJsonObj.value("NotEnoughFunds")).toBool());
+
+
+        serverResponseResultJsonValue = serverResponseJsonObj.value("ItemAvailability");
+        // Get array from value
+        serverResponseJsonArray = serverResponseResultJsonValue.toArray();
+        for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
+            checkoutitem.ID = (jsonvalue.toObject().value("ID")).toInt();
+            checkoutitem.availableQuantity =(jsonvalue.toObject().value("AvailableQuantity")).toBool();
+
+            checkoutResult.itemAvailability.append(checkoutitem);
+        }
+
+        emit checkout_signal(checkoutResult);
+
+
+        break;
+    }
     case GETACCOUNTDETAILS_RESPONSE:
     {
         //Retrieve from server struct member values
