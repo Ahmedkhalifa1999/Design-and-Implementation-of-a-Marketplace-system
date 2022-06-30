@@ -84,8 +84,7 @@ SignUpResult DataManager :: signUp  (SignUpData data){
     //Build JSON File
     QJsonObject signUpDataObject;
     signUpDataObject.insert("RequestID", QJsonValue::fromVariant(SIGNUP_REQUEST));
-    signUpDataObject.insert("FirstName", QJsonValue::fromVariant(data.firstName));
-    signUpDataObject.insert("LastName", QJsonValue::fromVariant(data.lastName));
+    signUpDataObject.insert("Name", QJsonValue::fromVariant(data.name));
     signUpDataObject.insert("Email", QJsonValue::fromVariant(data.email));
     signUpDataObject.insert("Password", QJsonValue::fromVariant(qStringCryptPassword));
     signUpDataObject.insert("Address", QJsonValue::fromVariant(data.address));
@@ -133,7 +132,48 @@ bool DataManager :: signIn(SignInData data, bool save){
 
     return true;
 }
+SignInData DataManager :: getSignInCredentials()
+{
 
+    SignInData signInData;
+    QByteArray signInQByteArray;
+
+    if(signInfile.size()==0)
+    {
+        signInData.email = "";
+        signInData.password = "";
+
+        return signInData;
+
+    }
+
+    if(!signInfile.open(QIODevice::ReadOnly))
+    {
+        qCritical() << "fail";
+
+    }
+    signInQByteArray = signInfile.readAll();
+
+    //convert to JsonDocument
+    QJsonDocument signInJsonDoc = QJsonDocument::fromJson(signInQByteArray);
+    // Get object from document
+    QJsonObject signInJsonObj = signInJsonDoc.object();
+    // Get value from object
+    signInData.email = signInJsonObj.value("Email").toString();
+
+    //Password is Hashed
+    signInData.email = signInJsonObj.value("Password").toString();
+
+    return signInData;
+
+
+
+
+
+
+
+
+}
 
 
 void DataManager :: getAccountDetails(){
@@ -150,12 +190,6 @@ void DataManager :: getAccountDetails(){
     socket.write(accountDetailsQByteArray);
 
 }
-
-//mehtaga hagat mn el cart fa hasebha dlw2ty
-/*void DataManager :: checkout(){
-// Send checkout Request
- //Check available fund
-}*/
 
 UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
     // Validate phone and email
@@ -186,8 +220,7 @@ UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
     // Build JSON file
     QJsonObject accountDetailsObject;
     accountDetailsObject.insert("RequestID", QJsonValue::fromVariant(UPDATEACCOUNTDETAILS_REQUEST));
-    accountDetailsObject.insert("FirstName", QJsonValue::fromVariant(details.firstName));
-    accountDetailsObject.insert("LastName", QJsonValue::fromVariant(details.lastName));
+    accountDetailsObject.insert("Name", QJsonValue::fromVariant(details.name));
     accountDetailsObject.insert("Email", QJsonValue::fromVariant(details.email));
     accountDetailsObject.insert("Address", QJsonValue::fromVariant(details.address));
     accountDetailsObject.insert("Phone", QJsonValue::fromVariant(details.phone));
@@ -491,8 +524,7 @@ void DataManager :: server_response(qint64 bytes){
 
         AccountDetails accountDetails;
 
-        accountDetails.firstName = (serverResponseJsonObj.value("FirstName")).toString();
-        accountDetails.lastName = (serverResponseJsonObj.value("LastName")).toString();
+        accountDetails.name = (serverResponseJsonObj.value("Name")).toString();
         accountDetails.email =  (serverResponseJsonObj.value("Email")).toString();
         accountDetails.address =  (serverResponseJsonObj.value("Address")).toString();
         accountDetails.phone =  (serverResponseJsonObj.value("Phone")).toString();
@@ -587,6 +619,7 @@ void DataManager :: server_response(qint64 bytes){
         QString encodedimage;
         QByteArray decodedimage;
         QImage image;
+        QPixmap pixmap;
 
         // Get value from object
         serverResponseResultJsonValue = serverResponseJsonObj.value("Items");
@@ -606,7 +639,11 @@ void DataManager :: server_response(qint64 bytes){
 
             // convert to QImage
             image = QImage::fromData(decodedimage,"JPEG");
-            item.icon = image;
+
+            //convert QImage to QPixmap
+            pixmap = QPixmap::fromImage(image);
+            item.icon = pixmap;
+
             ItemList.append(item);
         }
         emit getItemList_signal(ItemList);
