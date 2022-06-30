@@ -195,7 +195,7 @@ public class DataManager {
                     DatabaseManager.updateQuantity(data[i].ID(), result);
 
                 }
-                DatabaseManager.addOrder(data)
+                DatabaseManager.addOrder(data,this.email)
 
             }
         }
