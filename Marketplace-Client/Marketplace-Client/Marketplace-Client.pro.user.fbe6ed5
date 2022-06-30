@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 6.0.0, 2022-06-30T19:09:55. -->
+<!-- Written by QtCreator 7.0.2, 2022-06-30T05:49:36. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{cda4f373-4e5f-4ec2-bd15-4b8bcd0db86e}</value>
+  <value type="QByteArray">{42c75dfc-3e7b-4dd9-9054-b3d05e2f09f6}</value>
+=======
+<!-- Written by QtCreator 7.0.2, 2022-06-30T05:11:10. -->
+<qtcreator>
+ <data>
+  <variable>EnvironmentId</variable>
+  <value type="QByteArray">{fbe6ed58-f520-4953-82a3-d4d71a189038}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -91,16 +97,16 @@
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 6.2.2 MinGW 64-bit</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 6.2.2 MinGW 64-bit</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt6.622.win64_mingw_kit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 6.3.1 MinGW 64-bit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 6.3.1 MinGW 64-bit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt6.631.win64_mingw_kit</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\Dell\Desktop\project\Design-and-Implementation-of-a-Marketplace-system\Marketplace-Client\build-C:UsersDellDesktopprojectDesign-and-Implementation-of-a-Marketplace-systemMarketplace-ClientMarketplace-ClientMarketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/Dell/Desktop/project/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/build-C:UsersDellDesktopprojectDesign-and-Implementation-of-a-Marketplace-systemMarketplace-ClientMarketplace-ClientMarketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\Senior-1-Semster-2\SEMSTER 2\Parallel and distributed\NEW REPO\Design-and-Implementation-of-a-Marketplace-system\Marketplace-Client\build-Marketplace-Client-Desktop_Qt_6_3_1_MinGW_64_bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">D:/Senior-1-Semster-2/SEMSTER 2/Parallel and distributed/NEW REPO/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_3_1_MinGW_64_bit-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -138,8 +144,8 @@
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\Dell\Desktop\project\Design-and-Implementation-of-a-Marketplace-system\Marketplace-Client\build-C:UsersDellDesktopprojectDesign-and-Implementation-of-a-Marketplace-systemMarketplace-ClientMarketplace-ClientMarketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Release</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/Dell/Desktop/project/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/build-C:UsersDellDesktopprojectDesign-and-Implementation-of-a-Marketplace-systemMarketplace-ClientMarketplace-ClientMarketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\Senior-1-Semster-2\SEMSTER 2\Parallel and distributed\NEW REPO\Design-and-Implementation-of-a-Marketplace-system\Marketplace-Client\build-Marketplace-Client-Desktop_Qt_6_3_1_MinGW_64_bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">D:/Senior-1-Semster-2/SEMSTER 2/Parallel and distributed/NEW REPO/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_3_1_MinGW_64_bit-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -179,8 +185,8 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\Dell\Desktop\project\Design-and-Implementation-of-a-Marketplace-system\Marketplace-Client\build-C:UsersDellDesktopprojectDesign-and-Implementation-of-a-Marketplace-systemMarketplace-ClientMarketplace-ClientMarketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Profile</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/Dell/Desktop/project/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/build-C:UsersDellDesktopprojectDesign-and-Implementation-of-a-Marketplace-systemMarketplace-ClientMarketplace-ClientMarketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\Senior-1-Semster-2\SEMSTER 2\Parallel and distributed\NEW REPO\Design-and-Implementation-of-a-Marketplace-system\Marketplace-Client\build-Marketplace-Client-Desktop_Qt_6_3_1_MinGW_64_bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">D:/Senior-1-Semster-2/SEMSTER 2/Parallel and distributed/NEW REPO/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_3_1_MinGW_64_bit-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -240,14 +246,14 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Dell/Desktop/project/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/Marketplace-Client/Marketplace-Client.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Dell/Desktop/project/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/Marketplace-Client/Marketplace-Client.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/DELL/Desktop/Repo Parallel/Marketplace-Client/Marketplace-Client/Marketplace-Client.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/DELL/Desktop/Repo Parallel/Marketplace-Client/Marketplace-Client/Marketplace-Client.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Dell/Desktop/project/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/build-C:UsersDellDesktopprojectDesign-and-Implementation-of-a-Marketplace-systemMarketplace-ClientMarketplace-ClientMarketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/Senior-1-Semster-2/SEMSTER 2/Parallel and distributed/NEW REPO/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_3_1_MinGW_64_bit-Debug</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
