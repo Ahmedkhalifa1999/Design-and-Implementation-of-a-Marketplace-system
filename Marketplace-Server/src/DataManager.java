@@ -7,8 +7,7 @@ public class DataManager {
     private int userID;
     private String email;
     private String password;
-    private Object mutex= new Object();
-
+    private static Object mutex = new Object();
 
 
     public record RegistrationData(
@@ -17,97 +16,112 @@ public class DataManager {
             String password,
             String address,
             String phone
-    ) { }
+    ) {
+    }
 
     public record UserCredentials(
             String email,
             String password
-    ) { }
+    ) {
+    }
 
     public record CartItem(
             int ID,
             int quantity
-    ) { }
+    ) {
+    }
 
     public record CheckoutItem(
             int ID,
             int availableQuantity
-    ) { }
+    ) {
+    }
+
     public record CheckoutResult(
             boolean unavailableItem,
             boolean notEnoughFunds,
             CheckoutItem[] itemAvailability
-    ) { }
+    ) {
+    }
 
     public record MoneyAmount(
             int pounds,
             int piasters
-    ) { }
+    ) {
+    }
+
     public record AccountDetails(
             String firstName,
             String email,
             String address,
             String phone,
             MoneyAmount amount
-    ) { }
+    ) {
+    }
 
     public enum OrderState {
-            ACCEPTED,
-            SHIPPING,
-            SHIPPED,
-            REJECTED
+        ACCEPTED,
+        SHIPPING,
+        SHIPPED,
+        REJECTED
     }
+
     public record OrderSummary(
             int ID,
             OrderState state,
             MoneyAmount totalAmount
-    ) { }
+    ) {
+    }
 
     public record DetailedOrderItem(
             String name,
             String icon,
             MoneyAmount price,
             int quantity
-    ) { }
+    ) {
+    }
+
     public record DetailedOrder(
             int ID,
             OrderState state,
             MoneyAmount totalAmount,
             DetailedOrderItem[] items
-    ) { }
+    ) {
+    }
 
     public record SearchQuery(
             String name,
             String[] categories,
             int maxResults
-    )
-    { }
+    ) {
+    }
 
     public record Item(
             int ID,
             String name,
             String icon,
             MoneyAmount price
-    ) { }
+    ) {
+    }
 
     public record DetailedItem(
             String name,
             String description,
             ArrayList<String> images,
             MoneyAmount price
-    ) { }
+    ) {
+    }
 
 
     //Constructor of class data manager
-    public DataManager()
-    {
+    public DataManager() {
         this.userID = 0;
         this.email = null;
         this.password = null;
 
     }
-    public DataManager(String userEmail , String password)
-    {
+
+    public DataManager(String userEmail, String password) {
         this.email = userEmail;
         this.password = password;
     }
@@ -116,9 +130,10 @@ public class DataManager {
     //Done ,, needs testing
     public boolean register(RegistrationData data) {
 
-        if(!DatabaseManager.checkemail(data.email)){
+        if (!DatabaseManager.checkemail(data.email())) {
             DatabaseManager.addRegister(data);
-            DataManager user = new DataManager(data.email , data.password);
+
+            this.email = data.email();
             return true;
         }
         return false;
@@ -128,9 +143,8 @@ public class DataManager {
     // Done , needs testing
     public boolean authenticate(UserCredentials data) {
 
-        if(DatabaseManager.validate(data))
-        {
-            DataManager user = new DataManager(data.email , data.password);
+        if (DatabaseManager.validate(data)) {
+            DataManager user = new DataManager(data.email(), data.password());
             return true;
         }
         return false;
@@ -140,53 +154,53 @@ public class DataManager {
     // Done , needs testing
 
     public CheckoutResult checkout(CartItem data[]) {
+        synchronized (mutex) {
+            CheckoutResult output = null;
+            CheckoutItem[] out = null;
+            boolean flag1 = false;
+            boolean flag2 = false;
+            MoneyAmount wallet = DatabaseManager.getWallet(this.email);
+            MoneyAmount price = null;
 
-        CheckoutResult output = null;
-        CheckoutItem[] out = null;
-        boolean flag1= false;
-        boolean flag2= false;
-        MoneyAmount wallet= DatabaseManager.getWallet(this.email);
-        MoneyAmount price=null;
-
-        int pia=0;
-        int pou=0;
-        for (int j = 0; j < data.length; j++) {
-            int quan = DatabaseManager.getQuantity(data[j].ID());
-            out[j] = new CheckoutItem(data[j].ID(), quan);
-        }
-        for (int j = 0; j < out.length; j++) {
-            if (out[j].availableQuantity() >= data[j].quantity()) {
-
-                flag1 = true;
-            } else {
-                flag1 = false;
-                break;
+            int pia = 0;
+            int pou = 0;
+            for (int j = 0; j < data.length; j++) {
+                int quan = DatabaseManager.getQuantity(data[j].ID());
+                out[j] = new CheckoutItem(data[j].ID(), quan);
             }
-        }
-        for (int j=0; j<data.length;j++) {
+            for (int j = 0; j < out.length; j++) {
+                if (out[j].availableQuantity() >= data[j].quantity()) {
 
-            price =DatabaseManager.getPrice(data[j]);
-            pou+= price.pounds;
-            pia+= price.piasters;
-        }
+                    flag1 = true;
+                } else {
+                    flag1 = false;
+                    break;
+                }
+            }
+            for (int j = 0; j < data.length; j++) {
 
-        if ((pou/100)+pia>(wallet.pounds/100)+wallet.piasters) {
-            flag2 = false;
-        }
-        else flag2= true;
-        if (flag1 && flag2){
-            for(int i=0; i<data.length;i++){
-                int quan = DatabaseManager.getQuantity(data[i].ID());
-                int newQuantity=data[i].quantity;
-                int result = quan-newQuantity;
-                synchronized (mutex) {
-                    DatabaseManager.updateQuantity(data[i].ID, result);
+                price = DatabaseManager.getPrice(data[j]);
+                pou += price.pounds();
+                pia += price.piasters();
+            }
+
+            if ((pou / 100) + pia > (wallet.pounds() / 100) + wallet.piasters()) {
+                flag2 = false;
+            } else flag2 = true;
+            if (flag1 && flag2) {
+                for (int i = 0; i < data.length; i++) {
+                    int quan = DatabaseManager.getQuantity(data[i].ID());
+                    int newQuantity = data[i].quantity();
+                    int result = quan - newQuantity;
+                    DatabaseManager.updateQuantity(data[i].ID(), result);
                 }
             }
         }
-        return output= new CheckoutResult(flag1,flag2,out);
-
+        return output = new CheckoutResult(flag1, flag2, out);
     }
+
+
+
 
 
     // Done .. needs testing
@@ -221,9 +235,9 @@ public class DataManager {
 
 
     // Done ,, needs testing
-    public DetailedOrder getOrderDetails(String email) {
+    public DetailedOrder getOrderDetails(DetailedOrder order) {
 
-        DetailedOrder orderDetails =DatabaseManager.OrderDetails(email);
+        DetailedOrder orderDetails =DatabaseManager.OrderDetails(order.ID());
 
         return orderDetails;
     }
