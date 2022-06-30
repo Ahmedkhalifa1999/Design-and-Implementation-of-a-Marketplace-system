@@ -18,9 +18,10 @@ int main(int argc, char *argv[])
     QObject::connect(&dataManager, &DataManager::signUp_signal, &window, &MainWindow::signUp_slot);
     QObject::connect(&dataManager, &DataManager::signIn_signal, &window, &MainWindow::signIn_slot);
     //Cart-related connections
+     QObject::connect(&dataManager, &DataManager:: getCart_signal, &window, &MainWindow::getCart_slot);
     QObject::connect(&dataManager, &DataManager::checkout_signal, &window, &MainWindow::checkout_slot);
     //Account-related connections
-    QObject::connect(&dataManager, &DataManager::getAccountDetails_signal, &window, &MainWindow::getAccountDetails_slot);
+    QObject::connect(&dataManager, &DataManager::getAccountDetails_signal, &window, &MainWindow:: getAccountDetails_slot);
     QObject::connect(&dataManager, &DataManager::updateAccountDetails_signal, &window, &MainWindow::updateAccountDetails_slot);
     QObject::connect(&dataManager, &DataManager::getOrderHistory_signal, &window, &MainWindow::getOrderHistory_slot);
     QObject::connect(&dataManager, &DataManager::getOrderDetails_signal, &window, &MainWindow::getOrderDetails_slot);

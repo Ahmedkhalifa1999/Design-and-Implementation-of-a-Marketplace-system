@@ -3,8 +3,11 @@
 
 #include <QObject>
 #include <QString>
-#include <QImage>
+#include <QPixmap>
 #include <QTcpSocket>
+#include "buttonid.h"
+#include "lineedit.h"
+
 #include <QVector>
 #include <QFile>
 #include <QJsonArray>
@@ -45,7 +48,6 @@
 #define GETCART_REQUEST               22
 #define GETCART_RESPONSE              23
 
-
 typedef struct {
     unsigned int pounds;
     unsigned int piasters;
@@ -63,7 +65,7 @@ typedef struct {
 typedef struct {
     bool validEmail;
     bool validPhone;
-} SignUpResult , UpdateAccountResult;
+} SignUpResult, UpdateAccountResult;
 
 typedef struct {
     QString email;
@@ -80,6 +82,13 @@ typedef struct {
     unsigned int quantity;
 } CartItem;
 
+typedef struct {
+    unsigned int ID;
+    QString name;
+    QPixmap icon();
+    MoneyAmount price;
+    unsigned int quantity;
+} DetailedCartItem, DetailedOrderItem;
 
 typedef struct {
     unsigned int ID;
@@ -141,11 +150,17 @@ typedef struct {
     unsigned int maxResults;
 } SearchQuery;
 
+typedef struct {
+    unsigned int ID;
+    QString name;
+    QPixmap icon();
+    MoneyAmount price;
+} Item;
 
 typedef struct {
     QString name;
     QString description;
-    QVector<QImage> images;
+    std::vector<QPixmap> images;
     MoneyAmount price;
 } DetailedItem;
 
@@ -175,7 +190,7 @@ public:
     void addToCart(CartItem item);
     void updateCart(QVector<CartItem> updated);
     void checkout();
-
+   LineEdit *quant;
     //Account-related functionality
     void getAccountDetails();
     UpdateAccountResult updateAccountDetails(AccountDetails details);
@@ -187,6 +202,8 @@ public:
     void getItemList(SearchQuery query);
     void getItemData(unsigned int ID);
     void getCategories();
+    ButtonId *button;
+
 
     //Helper functions in SignUp and SignIn
     bool validate_Email(const QString email);
@@ -205,7 +222,7 @@ signals:
 
     //Cart-related signals
     void checkout_signal(CheckoutResult detailedResult);
-
+    void getCart_signal(QVector <DetailedCartItem> result);
     //Account-related signals
     void getAccountDetails_signal(AccountDetails result);
     void updateAccountDetails_signal(bool result);
@@ -219,5 +236,6 @@ signals:
     void getCategories_signal(QVector<QString> result);
     void getCart_signal(QVector <DetailedCartItem> result);
 };
+
 
 #endif // DATAMANAGER_H

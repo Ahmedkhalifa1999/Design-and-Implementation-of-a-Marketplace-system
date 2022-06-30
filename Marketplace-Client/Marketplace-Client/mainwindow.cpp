@@ -1,17 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "datamanager.h"
 #include <QPixmap>
+#include <QMessageBox>
+SignUpData sud;
+SignUpResult sur;
+DataManager dm;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-//    QPixmap logo(":/res/img/logo.png");
-//    int w=ui->logoLabel->width();
-//    int h=ui->logoLabel->height();
 
-    //ui->logoLabel->setPixmap(logo.scaled(w,h,Qt::KeepAspectRatio));
 }
 
 MainWindow::~MainWindow()
@@ -22,14 +23,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_registerButton_clicked()
 {
-    QString fname = ui->fname->text();
-    QString lname = ui->lname->text();
-    QString email = ui->email->text();
-    QString password = ui->password->text();
-    QString number = ui->number->text();
-    QString address = ui->address->text();
+    sud.firstName = ui->fname->text();
+    sud.lastName= ui->lname->text();
+    sud.email = ui->email->text();
+    sud.password = ui->password->text();
+    sud.phone = ui->number->text();
+    sud.address = ui->address->text();
+    sur= dm.signUp(sud);
 
-    //check the correctness if true connect to the DB and go to the home page if false show QMessageBox warning
+    if(sur.validEmail==false && sur.ValidPhone==false){
+        QMessageBox::warning(this,"Error","Incorrect Email and phone, please try Again");
+    }
+    else if (sur.validEmail==false){
+        QMessageBox::warning(this,"Error","Incorrect Email, Please try Again");
+    }else if(sur.ValidPhone==false){
+         QMessageBox::warning(this,"Error","Incorrect Phone, Please try Again");
+    }
+
 }
 
 
@@ -38,4 +48,12 @@ void MainWindow::on_loginButton_clicked()
    log = new Login(this);
    log->show();
 }
-
+void MainWindow:: signUp_slot(bool result){
+    if (result == true){ //The signup is successful the user does not exist
+        shop = new Shop(this);
+        shop->show();
+    }
+    else {
+        QMessageBox::warning(this,"Error","User already exists, Please try Again");
+    }
+}
