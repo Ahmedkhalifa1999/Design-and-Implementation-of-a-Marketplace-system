@@ -145,6 +145,7 @@ public class DatabaseManager {
             PreparedStatement statement = connection.prepareStatement("SELECT ID, state, totalprice,  FROM orders,  WHERE customeremail = ?");
             statement.setString(1, email);
             ResultSet rs = statement.executeQuery();
+            connection.close();
             return null;
 
         } catch (Exception e) {
