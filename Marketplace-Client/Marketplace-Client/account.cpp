@@ -28,12 +28,13 @@ Account::Account(QWidget *parent) :
 {
     ui->setupUi(this);
     dm.getAccountDetails();
-    ui->fname->insert(ad.firstName);
-    ui->lname->insert(ad.lastName);
+    ui->name->insert(ad.name);
     ui->email->insert(ad.email);
+    ui->email->setEnabled(false);
     ui->phone->insert(ad.phone);
     ui->address->insert(ad.address);
     ui->balance->setText((QString::number(ad.wallet.pounds)+"."+QString::number(ad.wallet.piasters)));
+
     dm.getOrderHistory();
 
     for(int i=0;i<ids.size();i++){
@@ -53,6 +54,15 @@ Account::Account(QWidget *parent) :
        QLabel* pr = new QLabel(this);
          pr->setText(QString::number(amounts[i].pounds)+"."+QString::number(amounts[i].piasters));
          ui->gridLayout_3->addWidget(pr, i,2);
+    }
+
+    for(int i=0;i<ids.size();i++){
+        ButtonId *b = new ButtonId();
+        b->setText("View Order");
+        b->id = ids[i];
+        ui->gridLayout_3->addWidget(b, i,3);
+        connect(b,SIGNAL(clicked()),this,SLOT(on_butt_clicked()));
+
     }
 
     for(int i=0;i<itemid.size();i++){
@@ -95,11 +105,20 @@ Account::~Account()
 {
     delete ui;
 }
+void Account::on_butt_clicked()
+{
+//  QObject* obj = sender();
+//  obj = qobject_cast<QObject *>(b);
+  button = qobject_cast<ButtonId *>(QObject::sender());
+  orderid = button->id;
+  dm.getOrderDetails(orderid);
 
+
+}
 void Account::getAccountDetails_slot(AccountDetails result){
 
-    ad.firstName=result.firstName;
-    ad.lastName=result.lastName;
+    ad.name=result.name;
+
     ad.phone=result.phone;
     ad.email = result.email;
     ad.address= result.address;
@@ -113,37 +132,19 @@ void Account::on_save_clicked()
   if(uar.validEmail == false){
      QMessageBox::warning(this,"Error","Invalid Email so please try again");
  }
-  else if(uar.ValidPhone == false){
+  else if(uar.validPhone == false){
       QMessageBox::warning(this,"Error","Invalid Phone number so please try again");
   }
 
 
 }
 
-
-void Account::on_fname_editingFinished()
+void Account::on_name_editingFinished()
 {
-    ad.firstName = ui->fname->text();
+    ad.name= ui->name->text();
 }
 
 
-void Account::on_lname_editingFinished()
-{
-    ad.lastName=ui->lname->text();
-}
-
-
-void Account::on_email_editingFinished()
-{
-
-    ad.email = ui->email->text();
-}
-
-
-void Account::on_address_editingFinished()
-{
-    ad.address = ui->address->text();
-}
 
 
 void Account::on_phone_editingFinished()
@@ -206,17 +207,12 @@ void Account::getOrderHistory_slot(std::vector<OrderSummary> result){
 
 }
 
-void Account::on_orderDetail_clicked()
-{
-    orderid = (ui->orderIdLine->text()).toUInt();
-    dm.getOrderDetails(orderid);
-}
 
 void Account::getOrderDetails_slot(DetailedOrder result){
     for(int i=0;i<result.items.size();i++){
 
         itemid[i]=result.items[i].ID;
-        itempic[i]=result.items[i].icon();
+        itempic[i]=result.items[i].icon;
         itemname[i]=result.items[i].name;
         itemprice[i]=result.items[i].price;
         itemquant[i]=result.items[i].quantity;
@@ -233,4 +229,7 @@ QString enumtostring(OrderState os){
     else if(os==OrderState::SHIPPING)
         return "SHIPPING";
 }
+
+
+
 

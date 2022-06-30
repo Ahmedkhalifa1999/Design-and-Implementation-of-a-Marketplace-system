@@ -110,6 +110,7 @@ typedef struct {
 } Item;
 
 typedef struct {
+    unsigned int ID;
     QString name;
     QPixmap icon;
     MoneyAmount price;
@@ -138,7 +139,7 @@ typedef struct {
 typedef struct {
     QString name;
     QString description;
-    std::vector<QPixmap> images;
+    QVector<QPixmap> images;
     MoneyAmount price;
 } DetailedItem;
 
