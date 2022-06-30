@@ -124,13 +124,14 @@ public class DatabaseManager {
 
     public ArrayList<DataManager.Item> item_list(DataManager.SearchQuery query) {
         try {
-            Connection connection = start_connection();
             ArrayList<DataManager.Item> res = new ArrayList<DataManager.Item>();
             int res_indx = 0;
             for (int i = 0; i < query.categories().size(); i++) {
-                PreparedStatement statement = connection.prepareStatement("SELECT itemid, itemname, itemprice FROM items WHERE itemname = ? AND Category = ?");
+                Connection connection = start_connection();
+                PreparedStatement statement = connection.prepareStatement("SELECT itemid, itemname, itemprice FROM items WHERE itemname = ? AND Category = ? LIMIT ?");
                 statement.setString(1, query.name());
                 statement.setString(2, query.categories().get(i));
+                statement.setInt(3, query.maxResults());
                 ResultSet rs = statement.executeQuery();
                 String name = "", icon = "";
                 int ID = 0, t_price = 0, pou = 0, pia = 0;
