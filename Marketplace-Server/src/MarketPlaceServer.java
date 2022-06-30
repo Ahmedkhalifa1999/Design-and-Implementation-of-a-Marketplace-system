@@ -7,15 +7,13 @@ import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+
 import com.opencsv.CSVReader;
 
 public class MarketplaceServer extends Application  {
@@ -73,26 +71,23 @@ public class MarketplaceServer extends Application  {
 
     private void addItems(TextField csvPath) {
         String path = "\"" + csvPath.getText()+ "\"";
-        CSVReader reader = null;
+
 
         try
         {
-            reader = new CSVReader(new FileReader(path));
-            String [] nextLine;
-            //read one line at a time
-
-            while ((nextLine = reader.readNext()) != null)
-            {
-                String [] arr =  nextLine.split("[,]", 0);
-                String name = arr[0];
-                int price = Integer.parseInt(arr[1]);
-                int quantity = Integer.parseInt(arr[2]);
-                String category = arr[3];
-                DatabaseManager.item item = new DatabaseManager.item (name, price, quantity, category);
+            File file = new File(path);
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line ="";
+            while((line = br.readLine()) != null) {
+                String [] l= line.split(",",0);
+                String name = l[0];
+                int price = Integer.parseInt(l[1]);
+                int quantity = Integer.parseInt(l[2]);
+                String category = l[3];
+                DatabaseManager.item item = new DatabaseManager.item (name , price , quantity, category);
                 DatabaseManager.add_item(item);
-
             }
-
 
         }
         catch (Exception e)
@@ -103,25 +98,29 @@ public class MarketplaceServer extends Application  {
 
     public void getReport ( TextField startDate , TextField endDate)
     {
-        string start = startDate.getText();
-        string end = endDate.getText();
-        ArrayList<DatabaseManager.dateorderitem> arr =DatabaseManager.dateorder(start,end);
-        File file = new File("report.csv");
-        FileWriter fw = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write("Items:");
-        bw.newLine();
-        for(int i=0;i<arr.size();i++)
-        {
-            bw.write((arr.get(i)).itemname() +"," +(arr.get(i)).quantity());
+        try {
+            String start = startDate.getText();
+            String end = endDate.getText();
+            ArrayList<DatabaseManager.datedorderitem> arr = DatabaseManager.dateorder(start, end);
+            File file = new File("report.csv");
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("Items:");
             bw.newLine();
+            for (int i = 0; i < arr.size(); i++) {
+                bw.write((arr.get(i)).itemname() + "," + (arr.get(i)).quantity());
+                bw.newLine();
+            }
+            bw.close();
+            fw.close();
         }
-        bw.close();
-        fw.close();
-
+        catch (Exception e){}
     }
 
     public static void main(String[] args) {
+        Server marketplace = new Server();
+        Thread serverThread = new Thread(marketplace);
+        serverThread.start();
         launch();
     }
 

@@ -138,7 +138,7 @@ public class DatabaseManager {
         }
     }
 
-    public ArrayList<DataManager.Item> item_list(DataManager.SearchQuery query) {
+    public static ArrayList<DataManager.Item> item_list(DataManager.SearchQuery query) {
         try {
             ArrayList<DataManager.Item> res = new ArrayList<DataManager.Item>();
             int res_indx = 0;
@@ -181,8 +181,6 @@ public class DatabaseManager {
             PreparedStatement statement = connection.prepareStatement("SELECT o.orderid, o.state, o.totalprice, i.itemname, i.itemprice, oi.quantity FROM orders as o, orderitem as oi, items as i WHERE o.orderid = ? AND o.orderid = oi.orderid AND oi.itemid = i.itemid");
             statement.setInt(1, ID);
             ResultSet rs = statement.executeQuery();
-            connection.close();
-            return null;
 
             int o_price = 0, o_id = 0, o_pou = 0, o_pia = 0;
             ArrayList<Integer> i_price = new ArrayList<Integer>() , i_id = new ArrayList<Integer>(), i_quant = new ArrayList<Integer>();
@@ -213,6 +211,7 @@ public class DatabaseManager {
 
             DataManager.MoneyAmount totalAmount = new DataManager.MoneyAmount(o_pou, o_pia);
             DataManager.DetailedOrder res = new DataManager.DetailedOrder(o_id, DataManager.OrderState.valueOf(state), totalAmount, items);
+            connection.close();
             return res;
         } catch (Exception e) {
             e.printStackTrace();

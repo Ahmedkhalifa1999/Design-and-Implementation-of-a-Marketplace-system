@@ -570,6 +570,7 @@ void DataManager :: server_response(qint64 bytes){
         QString encodedimage;
         QByteArray decodedimage;
         QImage image;
+        QPixmap pixmap;
 
 
 
@@ -594,7 +595,8 @@ void DataManager :: server_response(qint64 bytes){
 
             // convert to QImage
             image = QImage::fromData(decodedimage,"JPEG");
-            item.icon = image;
+            pixmap = QPixmap::fromImage(image);
+            item.icon = pixmap;
 
             OrderDetails.items .append(item);
         }
@@ -657,6 +659,7 @@ void DataManager :: server_response(qint64 bytes){
         QByteArray decodedimage;
         QImage image; //
         QJsonValue  jsonvalue ; // used inside loop
+        QPixmap pixmap;
 
 
         detailedItem.name = (serverResponseJsonObj.value("Name")).toString();
@@ -677,7 +680,11 @@ void DataManager :: server_response(qint64 bytes){
 
             // convert to QImage
             image = QImage::fromData(decodedimage,"JPEG");
-            (detailedItem.images).append(image);
+
+            pixmap = QPixmap::fromImage(image);
+
+
+            (detailedItem.images).append(pixmap);
         }
         emit getItemData_signal( detailedItem );
         break;
@@ -705,6 +712,7 @@ void DataManager :: server_response(qint64 bytes){
         QString encodedimage;
         QByteArray decodedimage;
         QImage image;
+        QPixmap pixmap;
 
         // Get value from object
         serverResponseResultJsonValue = serverResponseJsonObj.value("Items");
@@ -724,7 +732,8 @@ void DataManager :: server_response(qint64 bytes){
 
             // convert to QImage
             image = QImage::fromData(decodedimage,"JPEG");
-            cartitem.icon = image;
+            pixmap = QPixmap::fromImage(image);
+            cartitem.icon = pixmap;
             cartItemList.append(cartitem);
         }
         emit getCart_signal(cartItemList);

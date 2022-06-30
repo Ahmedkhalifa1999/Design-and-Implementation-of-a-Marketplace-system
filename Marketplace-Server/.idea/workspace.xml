@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2c774fd-3c43-4b60-88c0-95789a2f8dcf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Marketplace-Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Marketplace-Server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseManager.java" afterDir="false" />
-    </list>
+    <list default="true" id="f2c774fd-3c43-4b60-88c0-95789a2f8dcf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,13 +44,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "jdk.selected.JAVA_MODULE": "openjdk-18",
-    "last_opened_file_path": "C:/Users/HP/Documents/GitHub/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Server/lib/mysql-connector-java-8.0.29.jar",
+    "last_opened_file_path": "C:/Users/ahmed/Desktop/Parallel and Distributed Systems/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Server/JavaFX/openjfx-11_windows-x64_bin-sdk.zip",
     "project.structure.last.edited": "Modules",
-    "last_opened_file_path": "C:/Users/world/OneDrive/Documents/GitHub/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Server",
-    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -70,6 +63,7 @@
     <configuration name="MarketplaceServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MarketplaceServer" />
       <module name="Marketplace-Server" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;JavaFX\javafx-sdk-11\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -93,5 +87,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

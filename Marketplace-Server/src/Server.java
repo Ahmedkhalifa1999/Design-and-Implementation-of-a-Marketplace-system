@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.nio.channels.AsynchronousServerSocketChannel;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.util.concurrent.ExecutorService;
@@ -15,18 +16,20 @@ public class Server implements Runnable{
     5- After finishing the connection go to closeServerSocket.
     */
     private final AsynchronousServerSocketChannel serverSocket;
-
-
     ExecutorService Thread = Executors.newFixedThreadPool(8);
 
 
 
 
 
-    public Server(AsynchronousServerSocketChannel RequestSocket)
+    public Server()
     {
-        this.serverSocket = OpenConnection(RequestSocket);
-
+        try {
+            this.serverSocket = AsynchronousServerSocketChannel.open();
+            serverSocket.bind(new InetSocketAddress(8080));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public AsynchronousServerSocketChannel OpenConnection(AsynchronousServerSocketChannel RequestSocket)
@@ -51,6 +54,7 @@ public class Server implements Runnable{
         {
 
             Future<AsynchronousSocketChannel> socket =  serverSocket.accept();
+            System.out.println("Connection Accepted");
             //AsynchronousSocketChannel connection = socket.get();
 
             Thread.execute(new ClientHandler(socket));
@@ -71,9 +75,7 @@ public class Server implements Runnable{
 
     @Override
     public void run() {
-
-
-
+        this.StartServer();
 
     }
 

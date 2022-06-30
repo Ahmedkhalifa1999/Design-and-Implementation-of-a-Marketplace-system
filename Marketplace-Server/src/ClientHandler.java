@@ -97,7 +97,7 @@ public class ClientHandler implements Runnable
                             ));
                         }
                         DataManager.CheckoutResult checkoutResult =
-                                dataManager.checkout((DataManager.CartItem[]) Data_cart.toArray());
+                                dataManager.checkout(Data_cart);
                         responseObject.addProperty("Unavailable", checkoutResult.unavailableItem());
                         responseObject.addProperty("Funds", checkoutResult.notEnoughFunds());
                         JsonArray JSON_availability = new JsonArray();

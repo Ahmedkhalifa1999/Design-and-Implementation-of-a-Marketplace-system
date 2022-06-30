@@ -156,7 +156,7 @@ public class DataManager {
     public CheckoutResult checkout(ArrayList<CartItem> data) {
         synchronized (mutex) {
             CheckoutResult output = null;
-            ArrayList<CheckoutItem> out = null;
+            ArrayList<CheckoutItem> out = new ArrayList<CheckoutItem>();
             boolean flag1 = false;
             boolean flag2 = false;
             MoneyAmount wallet = DatabaseManager.getWallet(this.email);
@@ -164,12 +164,12 @@ public class DataManager {
 
             int pia = 0;
             int pou = 0;
-            for (int j = 0; j < data.length; j++) {
-                int quan = DatabaseManager.getQuantity(data[j].ID());
-                out[j] = new CheckoutItem(data[j].ID(), quan);
+            for (int j = 0; j < data.size(); j++) {
+                int quan = DatabaseManager.getQuantity(data.get(j).ID());
+                out.add(new CheckoutItem(data.get(j).ID(), quan));
             }
-            for (int j = 0; j < out.length; j++) {
-                if (out[j].availableQuantity() >= data[j].quantity()) {
+            for (int j = 0; j < out.size(); j++) {
+                if (out.get(j).availableQuantity() >= data.get(j).quantity()) {
 
                     flag1 = true;
                 } else {
@@ -177,9 +177,9 @@ public class DataManager {
                     break;
                 }
             }
-            for (int j = 0; j < data.length; j++) {
+            for (int j = 0; j < data.size(); j++) {
 
-                price = DatabaseManager.getPrice(data[j]);
+                price = DatabaseManager.getPrice(data.get(j));
                 pou += price.pounds();
                 pia += price.piasters();
             }
@@ -188,18 +188,19 @@ public class DataManager {
                 flag2 = false;
             } else flag2 = true;
             if (flag1 && flag2) {
-                for (int i = 0; i < data.length; i++) {
-                    int quan = DatabaseManager.getQuantity(data[i].ID());
-                    int newQuantity = data[i].quantity();
+                for (int i = 0; i < data.size(); i++) {
+                    int quan = DatabaseManager.getQuantity(data.get(i).ID());
+                    int newQuantity = data.get(i).quantity();
                     int result = quan - newQuantity;
-                    DatabaseManager.updateQuantity(data[i].ID(), result);
+                    DatabaseManager.updateQuantity(data.get(i).ID(), result);
 
                 }
                 DatabaseManager.addOrder(data,this.email);
 
             }
+            output = new CheckoutResult(flag1, flag2, out);
+            return output;
         }
-        return output = new CheckoutResult(flag1, flag2, out);
     }
 
 
@@ -258,7 +259,10 @@ public class DataManager {
 
       public ArrayList<Item> getItemList(SearchQuery query) {
 
-        return null;
+        ArrayList<Item> item= DatabaseManager.item_list(query);
+
+
+        return item;
     }
 
 
