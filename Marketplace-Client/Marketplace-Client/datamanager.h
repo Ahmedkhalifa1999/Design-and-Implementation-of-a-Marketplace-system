@@ -131,7 +131,7 @@ public:
 
     //Account-related functionality
     void getAccountDetails();
-    bool updateAccountDetails(AccountDetails details);
+    UpdateAccountResult updateAccountDetails(AccountDetails details);
     void getOrderHistory();
     void getOrderDetails(unsigned int ID);
     void walletDeposit(MoneyAmount amount);

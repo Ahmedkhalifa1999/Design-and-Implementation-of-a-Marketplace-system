@@ -74,6 +74,6 @@ void getItemData_slot(DetailedItem result){
 
 void Itemdet::on_comboBox_currentTextChanged(const QString &arg1)
 {
-    quant = arg1.toInt();
+    quant = arg1.toUInt();
 }
 

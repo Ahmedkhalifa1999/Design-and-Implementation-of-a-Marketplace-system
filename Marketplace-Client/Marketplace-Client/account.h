@@ -39,9 +39,20 @@ private slots:
 
     void updateAccountDetails_slot(bool result);
 
+    void on_deposit_clicked();
+
+    void walletDeposit_slot(bool result);
+
+    void getOrderHistory_slot(std::vector<OrderSummary> result);
+
+    void on_orderDetail_clicked();
+
+    void getOrderDetails_slot(DetailedOrder result);
+
 private:
     Ui::Account *ui;
     Cart *cart ;
+    QString enumtostring(OrderState os);
 };
 
 #endif // ACCOUNT_H
