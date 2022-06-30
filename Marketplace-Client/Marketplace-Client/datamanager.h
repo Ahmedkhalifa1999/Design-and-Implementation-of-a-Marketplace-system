@@ -6,6 +6,7 @@
 #include <QImage>
 #include <QTcpSocket>
 #include <QVector>
+#include <QFile>
 
 #define SIGNUP_REQUEST                0
 #define SIGNUP_RESPONSE               1
@@ -145,6 +146,11 @@ class DataManager : public QObject
 {
     Q_OBJECT
     QTcpSocket socket;
+    //Global Variables
+    QFile signInfile;
+    QFile cartfile;
+    QFile itemfile;
+    QByteArray signInDataQByteArray; //variable to store signIn Data
 
     bool saveSignin;
 
