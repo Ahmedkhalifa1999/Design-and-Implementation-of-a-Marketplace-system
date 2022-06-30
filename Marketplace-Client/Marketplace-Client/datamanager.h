@@ -7,6 +7,7 @@
 #include <QTcpSocket>
 #include <QVector>
 #include <QFile>
+#include <QJsonArray>
 
 #define SIGNUP_REQUEST                0
 #define SIGNUP_RESPONSE               1
@@ -151,7 +152,7 @@ class DataManager : public QObject
     QFile cartfile;
     QFile itemfile;
     QByteArray signInDataQByteArray; //variable to store signIn Data
-
+    QJsonArray cartItemQJsonArray;   //
     bool saveSignin;
 
 public:

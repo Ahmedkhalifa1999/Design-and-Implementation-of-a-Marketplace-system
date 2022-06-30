@@ -134,30 +134,7 @@ bool DataManager :: signIn(SignInData data, bool save){
     return true;
 }
 
-void DataManager :: addToCart(CartItem item)
-{
-    //Build JSON File
-    QJsonObject cartItemObject;
-    cartItemObject.insert("ID", QJsonValue::fromVariant(item.ID));
-    cartItemObject.insert("Quantity", QJsonValue::fromVariant(item.quantity));
-    //Used to append to it many cartItemObjects
-    QJsonArray cartItemQJsonArray;
-    cartItemQJsonArray.push_back(cartItemObject);
-    QJsonDocument cartItemJsonDoc(cartItemQJsonArray);
-    //ToJson Compact
-    QByteArray cartItemQByteArray = cartItemJsonDoc.toJson(QJsonDocument::Compact);
 
-    if(!cartfile.open(QIODevice::ReadWrite))
-    {
-        qCritical() << "fail";
-
-    }
-
-    cartfile.write(cartItemQByteArray);
-    cartfile.flush();
-    cartfile.close();
-
-}
 
 void DataManager :: getAccountDetails(){
 
@@ -321,6 +298,63 @@ void DataManager :: getCategories(){
     //Write to Socket
     socket.write(categoriesQByteArray);
 }
+void DataManager :: addToCart(CartItem item)
+{
+    //Build JSON File
+    QJsonObject cartItemObject;
+    cartItemObject.insert("ID", QJsonValue::fromVariant(item.ID));
+    cartItemObject.insert("Quantity", QJsonValue::fromVariant(item.quantity));
+    //Used to append to it many cartItemObjects
+    cartItemQJsonArray.push_back(cartItemObject);
+    QJsonDocument cartItemJsonDoc(cartItemQJsonArray);
+    //ToJson Compact
+    QByteArray cartItemQByteArray = cartItemJsonDoc.toJson(QJsonDocument::Compact);
+
+    if(!cartfile.open(QIODevice::ReadWrite))
+    {
+        qCritical() << "fail";
+
+    }
+
+    cartfile.write(cartItemQByteArray);
+    cartfile.flush();
+    cartfile.close();
+
+}
+void DataManager :: updateCart(QVector<CartItem> updated){
+    //Clear File Content
+    cartfile.resize(0);
+    //Build JSON File
+    QJsonObject cartItemObject;
+    unsigned i ;
+    for( i = 0; i < cartItemQJsonArray.size() ; i++){
+        cartItemObject.insert("ID", QJsonValue::fromVariant(updated[i].ID));
+        cartItemObject.insert("Quantity", QJsonValue::fromVariant(updated[i].quantity));
+        //Used to append to it many cartItemObjects
+        cartItemQJsonArray[i] = cartItemObject;
+    }
+    for(unsigned j = i ; j < updated.size() ; j++){
+        cartItemObject.insert("ID", QJsonValue::fromVariant(updated[j].ID));
+        cartItemObject.insert("Quantity", QJsonValue::fromVariant(updated[j].quantity));
+        //Used to append to it many cartItemObjects
+        cartItemQJsonArray.push_back(cartItemObject);
+    }
+    QJsonDocument cartItemJsonDoc(cartItemQJsonArray);
+    //ToJson Compact
+    QByteArray cartItemQByteArray = cartItemJsonDoc.toJson(QJsonDocument::Compact);
+
+    if(!cartfile.open(QIODevice::ReadWrite))
+    {
+        qCritical() << "fail";
+
+    }
+
+    cartfile.write(cartItemQByteArray);
+    cartfile.flush();
+    cartfile.close();
+}
+
+
 
 void DataManager :: server_response(qint64 bytes){
     //Read Socket
