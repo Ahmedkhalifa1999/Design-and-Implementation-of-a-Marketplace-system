@@ -33,7 +33,7 @@ public slots:
 
     //Cart-related signals
     void checkout_slot(bool result, std::vector<CheckoutResult> detailedResult);
-
+    void  getCart_slot (QVector <DetailedCartItem> result)
     //Account-related signals
     void getAccountDetails_slot(AccountDetails result);
     void updateAccountDetails_slot(bool result);

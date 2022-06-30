@@ -2,6 +2,8 @@
 #include "ui_cart.h"
 #include "datamanager.h"
 #include <vector>
+#include<QMessageBox>
+#include <QLineEdit>
 DataManager dm;
 std::vector <DetailedCartItem> dci;
 QVector< unsigned int>qu;
@@ -14,6 +16,7 @@ Cart::Cart(QWidget *parent) :
 {
     ui->setupUi(this);
     dci= dm.getCart(); //Vector of detailed cart item
+
     for(unsigned int i=0; i < dci.size();i++){
         img[i]=dci[i].icon();
          names[i] =dci[i].name;
@@ -41,9 +44,9 @@ Cart::Cart(QWidget *parent) :
         if(qu[i]==0){
             continue;
         }
-       QLabel* quantity = new QLabel(this);
+       QLineEdit* quantity = new QLineEdit(this);
          quantity->setText(QString::number(qu[i]));
-         ui->gridLayout->addWidget(quantity, i,2);
+         ui->gridLayout->addWidget(quantity, i,3);
     }
 
 }
@@ -58,10 +61,18 @@ void Cart::on_Checkout_clicked()
 dm.checkout();
 }
 
+void Cart:: checkout_slot(bool result, std::vector<CheckoutResult> detailedResult){
+  if(result==false){
+      for(unsigned int i=0;i<detailedResult.size();i++){
+          if(detailedResult[i].unavailableItem==true)
+               QMessageBox:: warning(this,"Error","Item is unavailable");
+          else if(detailedResult[i].unavailableItem==true)
+              QMessageBox:: warning(this,"Error","There is no enough funds ");
 
-void Cart::on_pushButton_clicked() //update cart
-{
-dm.updateCart();
+      }
+  }else{
+      QMessageBox ::information(this,"Checkout is successful"," Your order is placed successfully");
+  }
 }
 
 void updateCart(std::vector<CartItem> updated){

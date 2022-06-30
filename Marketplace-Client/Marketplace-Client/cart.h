@@ -2,7 +2,7 @@
 #define CART_H
 
 #include <QDialog>
-
+#include"datamanager.h"
 namespace Ui {
 class Cart;
 }
@@ -17,8 +17,8 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
     void on_Checkout_clicked();
+    void checkout_slot(bool result, std::vector<CheckoutResult> detailedResult);
 
 
 private:

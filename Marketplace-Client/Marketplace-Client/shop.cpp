@@ -70,7 +70,7 @@ void Shop::on_but_clicked()
   button = qobject_cast<ButtonId *>(QObject::sender());
 
   itemd = new Itemdet(this);
-  itemd->show();
+  itemd -> show();
 
 }
 
