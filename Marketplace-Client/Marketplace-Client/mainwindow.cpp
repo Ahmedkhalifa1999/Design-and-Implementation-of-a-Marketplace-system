@@ -32,12 +32,12 @@ void MainWindow::on_registerButton_clicked()
     sur= dm.signUp(sud);
 
     if(sur.validEmail==false && sur.ValidPhone==false){
-        QMessageBox::warning(this,"Incorrect Email and Phone","Please try Again");
+        QMessageBox::warning(this,"Error","Incorrect Email and phone, please try Again");
     }
     else if (sur.validEmail==false){
-        QMessageBox::warning(this,"Incorrect Email","Please try Again");
+        QMessageBox::warning(this,"Error","Incorrect Email, Please try Again");
     }else if(sur.ValidPhone==false){
-         QMessageBox::warning(this,"Incorrect Phone","Please try Again");
+         QMessageBox::warning(this,"Error","Incorrect Phone, Please try Again");
     }
 
 }
@@ -49,11 +49,11 @@ void MainWindow::on_loginButton_clicked()
    log->show();
 }
 void MainWindow:: signUp_slot(bool result){
-    if (result==true){ //The signup is successful the user does not exist
+    if (result == true){ //The signup is successful the user does not exist
         shop = new Shop(this);
         shop->show();
     }
     else {
-        QMessageBox::warning(this,"User already exists","Please try Again");
+        QMessageBox::warning(this,"Error","User already exists, Please try Again");
     }
 }

@@ -4,10 +4,11 @@
 #include <QPixmap>
 #include <QMessageBox>
 #include "shop.h"
+
 AutoSignInResult asir;
 SignInData sid;
 DataManager dm;
-bool log,save;
+bool flag,save;
 Login::Login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login)
@@ -24,15 +25,12 @@ void Login::on_logButton_clicked()
 {
  sid.email = ui->emailLog->text();
  sid.password = ui->passLog->text();
- save= ui->checkBox->isChecked(); //if the user want to be rememberd or not
- log=dm.signIn(sid,save);
+ save = ui->checkBox->isChecked(); //if the user want to be rememberd or not
+ flag = dm.signIn(sid,save);
 
-  if(log==false){
-   QMessageBox::warning(this,"Invalid Email ","Please try Again");
+  if(flag==false){
+   QMessageBox::warning(this,"Error ","Invalid Email, Please try Again");
   }
- //check from the DB if correct go to home if not QMessageBox warning
- //
-
 
 }
 
@@ -48,11 +46,11 @@ AutoSignInResult autoSignIn(){
 }
 
 
-void signIn_slot(bool result){
+void Login::signIn_slot(bool result){
 
     if (result == true){  //The signin is successful the user put right credentials
         shop = new Shop(this);
-        shop ->show();
+        shop->show();
     }
     else {
         QMessageBox::warning(this,"Ivalid Email or Password","Please try Again");

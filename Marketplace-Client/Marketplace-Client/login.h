@@ -16,6 +16,8 @@ public:
     ~Login();
 
 private slots:
+    void signIn_slot(bool result);
+
     void on_logButton_clicked();
 
     void on_regButton_clicked();

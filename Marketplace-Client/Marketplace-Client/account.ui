@@ -39,7 +39,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
     <rect>
      <x>360</x>
      <y>110</y>
-     <width>161</width>
+     <width>171</width>
      <height>20</height>
     </rect>
    </property>
@@ -64,7 +64,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
      <x>170</x>
      <y>150</y>
      <width>521</width>
-     <height>390</height>
+     <height>437</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
