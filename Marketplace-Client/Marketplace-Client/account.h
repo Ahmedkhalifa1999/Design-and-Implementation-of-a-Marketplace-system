@@ -2,12 +2,8 @@
 #define ACCOUNT_H
 
 #include <QDialog>
-<<<<<<< Updated upstream
-#include<shop.h>
-#include <cart.h>
-=======
 #include "cart.h"
->>>>>>> Stashed changes
+#include "datamanager.h"
 namespace Ui {
 class Account;
 }

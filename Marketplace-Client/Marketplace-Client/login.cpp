@@ -53,7 +53,7 @@ void Login::signIn_slot(bool result){
         shop->show();
     }
     else {
-        QMessageBox::warning(this,"Ivalid Email or Password","Please try Again");
+        QMessageBox::warning(this,"Error","Ivalid Email or Password,Please try Again");
     }
 }
 
