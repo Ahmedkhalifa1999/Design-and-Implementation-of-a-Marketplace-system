@@ -54,8 +54,8 @@ typedef struct {
 } MoneyAmount;
 
 typedef struct {
-    QString firstName;
-    QString lastName;
+    QString name;
+
     QString email;
     QString password;
     QString address;
@@ -94,8 +94,8 @@ typedef struct {
 } CheckoutResult;
 
 typedef struct {
-    QString firstName;
-    QString lastName;
+    QString name;
+
     QString email;
     QString address;
     QString phone;

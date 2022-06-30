@@ -28,12 +28,13 @@ Account::Account(QWidget *parent) :
 {
     ui->setupUi(this);
     dm.getAccountDetails();
-    ui->fname->insert(ad.firstName);
-    ui->lname->insert(ad.lastName);
+    ui->name->insert(ad.name);
     ui->email->insert(ad.email);
+    ui->email->setEnabled(false);
     ui->phone->insert(ad.phone);
     ui->address->insert(ad.address);
     ui->balance->setText((QString::number(ad.wallet.pounds)+"."+QString::number(ad.wallet.piasters)));
+
     dm.getOrderHistory();
 
     for(int i=0;i<ids.size();i++){
@@ -98,8 +99,8 @@ Account::~Account()
 
 void Account::getAccountDetails_slot(AccountDetails result){
 
-    ad.firstName=result.firstName;
-    ad.lastName=result.lastName;
+    ad.name=result.name;
+
     ad.phone=result.phone;
     ad.email = result.email;
     ad.address= result.address;
@@ -120,30 +121,12 @@ void Account::on_save_clicked()
 
 }
 
-
-void Account::on_fname_editingFinished()
+void Account::on_name_editingFinished()
 {
-    ad.firstName = ui->fname->text();
+    ad.name= ui->name->text();
 }
 
 
-void Account::on_lname_editingFinished()
-{
-    ad.lastName=ui->lname->text();
-}
-
-
-void Account::on_email_editingFinished()
-{
-
-    ad.email = ui->email->text();
-}
-
-
-void Account::on_address_editingFinished()
-{
-    ad.address = ui->address->text();
-}
 
 
 void Account::on_phone_editingFinished()
@@ -233,4 +216,7 @@ QString enumtostring(OrderState os){
     else if(os==OrderState::SHIPPING)
         return "SHIPPING";
 }
+
+
+
 
