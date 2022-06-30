@@ -72,7 +72,7 @@ public class DataManager {
 
     public record SearchQuery(
             String name,
-            String[] categories,
+            ArrayList<String> categories,
             int maxResults
     )
     { }
@@ -80,7 +80,7 @@ public class DataManager {
     public record Item(
             int ID,
             String name,
-            BufferedImage icon,
+            String icon,
             MoneyAmount price
     ) { }
 
