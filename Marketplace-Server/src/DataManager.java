@@ -40,7 +40,7 @@ public class DataManager {
     public record CheckoutResult(
             boolean unavailableItem,
             boolean notEnoughFunds,
-            CheckoutItem[] itemAvailability
+            ArrayList<CheckoutItem> itemAvailability
     ) {
     }
 
@@ -85,13 +85,13 @@ public class DataManager {
             int ID,
             OrderState state,
             MoneyAmount totalAmount,
-            DetailedOrderItem[] items
+            ArrayList<DetailedOrderItem> items
     ) {
     }
 
     public record SearchQuery(
             String name,
-            String[] categories,
+            ArrayList <String> categories,
             int maxResults
     ) {
     }
@@ -107,7 +107,7 @@ public class DataManager {
     public record DetailedItem(
             String name,
             String description,
-            ArrayList<String> images,
+            ArrayList <String> images,
             MoneyAmount price
     ) {
     }
@@ -153,10 +153,10 @@ public class DataManager {
 
     // Done , needs testing
 
-    public CheckoutResult checkout(CartItem data[]) {
+    public CheckoutResult checkout(ArrayList<CartItem> data) {
         synchronized (mutex) {
             CheckoutResult output = null;
-            CheckoutItem[] out = null;
+            ArrayList<CheckoutItem> out = null;
             boolean flag1 = false;
             boolean flag2 = false;
             MoneyAmount wallet = DatabaseManager.getWallet(this.email);
@@ -193,7 +193,10 @@ public class DataManager {
                     int newQuantity = data[i].quantity();
                     int result = quan - newQuantity;
                     DatabaseManager.updateQuantity(data[i].ID(), result);
+
                 }
+                DatabaseManager.addOrder(data)
+
             }
         }
         return output = new CheckoutResult(flag1, flag2, out);
@@ -252,7 +255,7 @@ public class DataManager {
 
 
 
-      public Item[] getItemList(SearchQuery query) {
+      public ArrayList<Item> getItemList(SearchQuery query) {
 
         return null;
     }
