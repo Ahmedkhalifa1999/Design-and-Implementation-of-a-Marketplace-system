@@ -2,8 +2,11 @@
 #include"cart.h"
 #include"datamanager.h"
 #include "ui_account.h"
+<<<<<<< Updated upstream
 #include  "shop.h"
 #include<QMessageBox>
+=======
+>>>>>>> Stashed changes
 DataManager dm;
 AccountDetails ad,details;
 MoneyAmount wal;
@@ -14,6 +17,7 @@ Account::Account(QWidget *parent) :
 {
     ui->setupUi(this);
     dm.getAccountDetails();
+<<<<<<< Updated upstream
     ui->fname->insert(ad.firstName);
     ui->lname->insert(ad.lastName);
     ui->email->insert(ad.email);
@@ -21,6 +25,14 @@ Account::Account(QWidget *parent) :
     ui->address->insert(ad.address);
     ui->balance->insert(QString::number(ad.wallet.pounds)+"."+QString::number(ad.wallet.piasters));
 
+=======
+    ui->fname->insert( ad.firstName) ;
+    ui->lname->insert(ad.lastName);
+    ui->email->insert(ad.email) ;
+    ui->phone->insert(ad.phone) ;
+    ui->address->insert(ad.address) ;
+    ui->balance->setText((QString::number(ad.wallet.pounds)+"."+QString::number(ad.wallet.piasters)));
+>>>>>>> Stashed changes
 }
 
 Account::~Account()
@@ -28,6 +40,7 @@ Account::~Account()
     delete ui;
 }
 
+<<<<<<< Updated upstream
 void Account::getAccountDetails_slot(AccountDetails result){
 
     ad.firstName=result.firstName;
@@ -36,6 +49,15 @@ void Account::getAccountDetails_slot(AccountDetails result){
     ad.email = result.email;
     ad.address= result.address;
     ad.wallet = result.wallet;
+=======
+void getAccountDetails_slot(AccountDetails result){
+    ad.firstName=result.firstName;
+    ad.lastName=result.lastName;
+    ad.address=result.address;
+    ad.email=result.email;
+    ad.phone=result.phone;
+    ad.wallet=result.wallet;
+>>>>>>> Stashed changes
 
 }
 
@@ -81,6 +103,7 @@ void Account::on_phone_editingFinished()
 void updateAccountDetails_slot(bool result){
     if(result){
 
+<<<<<<< Updated upstream
     }
 }
 
@@ -88,6 +111,19 @@ void Account::on_pushButton_clicked() //go to home page
 {
     shop = new Shop(this);
     shop->show();
+=======
+
+void walletDeposit(MoneyAmount amount){
+    ad.wallet.pounds =amount.pounds;
+    ad.wallet.piasters=amount.piasters;
+}
+
+
+
+void Account::on_pushButton_clicked() //go to home page
+{
+    hide();
+>>>>>>> Stashed changes
 }
 
 

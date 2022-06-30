@@ -2,8 +2,12 @@
 #define ACCOUNT_H
 
 #include <QDialog>
+<<<<<<< Updated upstream
 #include<shop.h>
 #include <cart.h>
+=======
+#include "cart.h"
+>>>>>>> Stashed changes
 namespace Ui {
 class Account;
 }
@@ -29,7 +33,7 @@ private slots:
 
     void on_phone_editingFinished();
 
-    void on_balance_editingFinished();
+    void walletDeposit(MoneyAmount amount);
 
     void on_pushButton_clicked();
 
@@ -41,8 +45,7 @@ private slots:
 
 private:
     Ui::Account *ui;
-    Shop *shop;
-    Cart *cart;
+    Cart *cart ;
 };
 
 #endif // ACCOUNT_H

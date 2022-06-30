@@ -235,9 +235,12 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
      </widget>
     </item>
     <item row="11" column="0">
-     <widget class="QLineEdit" name="balance">
+     <widget class="QLabel" name="balance">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </item>
