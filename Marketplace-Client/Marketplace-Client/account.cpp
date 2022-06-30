@@ -113,7 +113,7 @@ void Account::on_save_clicked()
   if(uar.validEmail == false){
      QMessageBox::warning(this,"Error","Invalid Email so please try again");
  }
-  else if(uar.ValidPhone == false){
+  else if(uar.validPhone == false){
       QMessageBox::warning(this,"Error","Invalid Phone number so please try again");
   }
 
@@ -216,7 +216,7 @@ void Account::getOrderDetails_slot(DetailedOrder result){
     for(int i=0;i<result.items.size();i++){
 
         itemid[i]=result.items[i].ID;
-        itempic[i]=result.items[i].icon();
+        itempic[i]=result.items[i].icon;
         itemname[i]=result.items[i].name;
         itemprice[i]=result.items[i].price;
         itemquant[i]=result.items[i].quantity;

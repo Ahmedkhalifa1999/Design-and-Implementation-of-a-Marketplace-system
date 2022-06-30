@@ -117,6 +117,7 @@ typedef struct {
 } Item;
 
 typedef struct {
+    unsigned int ID;
     QString name;
     QPixmap icon;
     MoneyAmount price;

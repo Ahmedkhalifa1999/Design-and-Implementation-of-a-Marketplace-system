@@ -49,7 +49,7 @@ Shop::Shop(QWidget *parent) :
         b->setText("View an item");
         b->id = ids[i];
         ui->gridLayout->addWidget(b, i,3);
-
+        connect(b,SIGNAL(clicked()),this,SLOT(on_b_clicked()));
          //QPushButton* but = new QPushButton("view an item");
 
 
@@ -105,7 +105,7 @@ void Shop::getCategories_slot(std::vector<QString> result){
 
 void getItemList_slot(std::vector<Item> result){
     for(int i=0; i < result.size();i++){
-        img[i]=result[i].icon();
+        img[i]=result[i].icon;
          names[i] =result[i].name;
          prices[i]=result[i].price;
          ids[i]=result[i].ID;
