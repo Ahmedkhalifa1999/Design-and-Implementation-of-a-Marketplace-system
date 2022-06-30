@@ -15,6 +15,19 @@ public class DatabaseManager {
     static final String USER = "root";
     static final String PASS = "1412001BAmr";
 
+
+    public record datedorderitem(
+            String itemname,
+            int quantity
+    ) { }
+
+    public record item(
+            String itemname,
+            int itemprice,
+            int quantity,
+            String Category
+    ) { }
+    
     //private static String ImagesDirectory;
 
     public static Connection start_connection() {
