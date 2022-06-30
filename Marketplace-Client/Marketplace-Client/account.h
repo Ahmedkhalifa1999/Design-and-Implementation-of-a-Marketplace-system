@@ -2,7 +2,8 @@
 #define ACCOUNT_H
 
 #include <QDialog>
-
+#include<shop.h>
+#iclude <cart.h>
 namespace Ui {
 class Account;
 }
@@ -32,8 +33,12 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::Account *ui;
+    Shop *shop;
+    Cart *cart;
 };
 
 #endif // ACCOUNT_H

@@ -1,8 +1,8 @@
 #include "account.h"
+#include"cart.h"
 #include"datamanager.h"
 #include "ui_account.h"
-#include"shop.h"
-#include"ui_shop.h"
+#include  "shop.h"
 DataManager dm;
 AccountDetails ad,details;
 MoneyAmount wal;
@@ -13,6 +13,7 @@ Account::Account(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    dm.getAccountDetails();
     ad.firstName = ui->fname->text();
     ad.lastName= ui->lname->text();
     ad.email = ui->email->text();
@@ -24,6 +25,10 @@ Account::Account(QWidget *parent) :
 Account::~Account()
 {
     delete ui;
+}
+
+void getAccountDetails_slot(AccountDetails result){
+    ad=result;
 }
 
 void Account::on_save_clicked()
@@ -70,9 +75,16 @@ void Account::on_balance_editingFinished()
 }
 
 */
-void Account::on_pushButton_clicked()
+void Account::on_pushButton_clicked() //go to home page
 {
-    shop = new Shop;
-    shop-> show();
+    shop = new Shop(this);
+    shop -> show();
+}
+
+
+void Account::on_pushButton_2_clicked() //go to cart page
+{
+    cart = new Cart(this);
+    cart -> show();
 }
 

@@ -58,6 +58,12 @@ void Cart::on_Checkout_clicked()
 dm.checkout();
 }
 
+
+void Cart::on_pushButton_clicked() //update cart
+{
+dm.updateCart();
+}
+
 void updateCart(std::vector<CartItem> updated){
     for(unsigned int i =0;i < dci.size();i++){
         if(updated[i].ID == dci[i].ID){
@@ -65,10 +71,5 @@ void updateCart(std::vector<CartItem> updated){
         }
     }
 
-}
-
-void Cart::on_pushButton_clicked()
-{
-dm.updateCart();
 }
 
