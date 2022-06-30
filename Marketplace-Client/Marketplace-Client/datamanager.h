@@ -6,6 +6,7 @@
 #include <QPixmap>
 #include <QTcpSocket>
 #include "buttonid.h"
+#include "lineedit.h"
 
 typedef struct {
     unsigned int pounds;
@@ -128,7 +129,7 @@ public:
     void addToCart(CartItem item);
     void updateCart(std::vector<CartItem> updated);
     void checkout();
-
+   LineEdit *quant;
     //Account-related functionality
     void getAccountDetails();
     UpdateAccountResult updateAccountDetails(AccountDetails details);

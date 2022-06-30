@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include"datamanager.h"
+LineEdit* quant;
 namespace Ui {
 class Cart;
 }
@@ -20,6 +21,7 @@ private slots:
     void on_Checkout_clicked();
     void checkout_slot(CheckoutResult result);
     void  getCart_slot (QVector <DetailedCartItem> result);
+    void on_quantity_editingFinished();
 
 
 private:
