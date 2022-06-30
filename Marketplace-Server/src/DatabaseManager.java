@@ -20,6 +20,14 @@ public class DatabaseManager {
             int quantity
     ) { }
 
+    public record item(
+            int itemid,
+            String itemname,
+            int itemprice,
+            int quantity,
+            String Category
+    ) { }
+
     //private static String ImagesDirectory;
 
     public static Connection start_connection() {
@@ -236,6 +244,31 @@ public class DatabaseManager {
             return false;
         }
     }
+
+    public static void add_item (item item)
+    {
+        try {
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("select max(itemid) from items");
+            ResultSet rs = statement.executeQuery();
+            int no = 0;
+            while (rs.next()) {
+                no = rs.getInt("max(itemid)");
+            }
+            statement = connection.prepareStatement("INSERT INTO items VALUES (?, ?, ?, ?, ?)");
+            statement.setInt(1, ++no);
+            statement.setString(2, item.itemname());
+            statement.setInt(3, item.itemprice());
+            statement.setInt(4, item.quantity());
+            statement.setString(5, item.Category());
+            rs = statement.executeQuery();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public static DataManager.DetailedItem item_details(int ID)
     {
