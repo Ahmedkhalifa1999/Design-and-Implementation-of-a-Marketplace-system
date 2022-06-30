@@ -200,7 +200,7 @@ public class DataManager {
 
 
     // done .. needs testing
-    public void UpdateAccountDetails(AccountDetails data) {
+    public boolean UpdateAccountDetails(AccountDetails data) {
 
 
         DatabaseManager.updateCustomer(data);
@@ -221,9 +221,9 @@ public class DataManager {
 
 
     // Done ,, needs testing
-    public DetailedOrder getOrderDetails(String email) {
+    public DetailedOrder getOrderDetails(int ID) {
 
-        DetailedOrder orderDetails =DatabaseManager.OrderDetails(email);
+        DetailedOrder orderDetails =DatabaseManager.OrderDetails(ID);
 
         return orderDetails;
     }
@@ -238,7 +238,7 @@ public class DataManager {
 
 
 
-      public Item[] getItemList(SearchQuery query) {
+      public ArrayList<Item> getItemList(SearchQuery query) {
 
         return null;
     }

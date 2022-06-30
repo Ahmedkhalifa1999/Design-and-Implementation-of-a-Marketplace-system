@@ -127,6 +127,7 @@ public class DatabaseManager {
                 DataManager.OrderSummary temp = new DataManager.OrderSummary(ID, DataManager.OrderState.valueOf(state), tot_price);
                 res.set(arr_indx++, temp);
             }
+            connection.close();
             return res;
         }
         catch (Exception e) {
