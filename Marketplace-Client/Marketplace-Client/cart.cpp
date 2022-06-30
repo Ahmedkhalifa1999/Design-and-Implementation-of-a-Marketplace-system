@@ -5,10 +5,9 @@
 #include"lineedit.h"
 #include<QMessageBox>
 DataManager dm;
-std::vector <DetailedCartItem> dci;
-std:: vector <CartItem> upd;
-QVector< unsigned int>qu;
-QVector< unsigned int>id;
+QVector <DetailedCartItem> dci;
+QVector <CartItem> upd;
+QVector< unsigned int>id,qu;
 QVector <QPixmap> img;
 QVector <QString> names;
 QVector <MoneyAmount> prices;
@@ -23,7 +22,7 @@ Cart::Cart(QWidget *parent) :
     for(unsigned int i=0; i < dci.size();i++){
 
         id[i]=dci[i].ID;
-        img[i]=dci[i].icon();
+        img[i]= dci[i].icon;
          names[i] =dci[i].name;
          prices[i]=dci[i].price;
          qu[i]=dci[i].quantity;
@@ -40,22 +39,18 @@ Cart::Cart(QWidget *parent) :
          ui->gridLayout->addWidget(nm, i,1);
     }
 
-    for(int i=0;i<id.size();i++){
-       QLabel* idd = new QLabel(this);
-         idd->setText(QString::number(id[i]));
-         ui->gridLayout->addWidget(idd, i,2);
-    }
+
     for(int i=0;i<prices.size();i++){
        QLabel* pr = new QLabel(this);
          pr->setText(QString::number(prices[i].pounds)+"."+QString::number(prices[i].piasters));
-         ui->gridLayout->addWidget(pr, i,3);
+         ui->gridLayout->addWidget(pr, i,2);
     }
     for(int i=0;i<qu.size();i++){
 
         LineEdit * quantity =new LineEdit();
          quantity->setText(QString::number(qu[i]));
          quantity-> id=qu[i];
-         ui->gridLayout->addWidget(quantity, i,4);
+         ui->gridLayout->addWidget(quantity, i,3);
     }
 
 }
@@ -66,7 +61,7 @@ Cart::~Cart()
 }
 void Cart :: getCart_slot (QVector <DetailedCartItem> result){
     for(int i =0;i<result.size();i++){
-        dci[i].icon()=result[i].icon();
+        dci[i].icon=result[i].icon;
         dci[i].ID=result[i].ID;
         dci[i].name=result[i].name;
         dci[i].price=result[i].price;
