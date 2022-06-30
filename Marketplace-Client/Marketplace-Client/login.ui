@@ -60,7 +60,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
    <property name="geometry">
     <rect>
      <x>610</x>
-     <y>350</y>
+     <y>400</y>
      <width>121</width>
      <height>61</height>
     </rect>
@@ -164,7 +164,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>360</x>
      <y>450</y>
      <width>221</width>
      <height>31</height>
@@ -180,6 +180,28 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
    </property>
    <property name="text">
     <string>Don't have an account ?</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>360</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
+   </property>
+   <property name="text">
+    <string>Remember me</string>
    </property>
   </widget>
  </widget>

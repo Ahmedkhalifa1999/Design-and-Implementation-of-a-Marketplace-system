@@ -26,16 +26,13 @@ CREATE TABLE `orders` (
   `orderid` int NOT NULL,
   `placedate` date NOT NULL,
   `arrivaldate` date DEFAULT NULL,
-  `itemid` int NOT NULL,
   `quantity` int NOT NULL,
   `totalprice` int NOT NULL,
   `customeremail` varchar(50) NOT NULL,
   `address` varchar(50) NOT NULL,
   `state` varchar(45) NOT NULL,
   PRIMARY KEY (`orderid`),
-  KEY `itemid` (`itemid`),
   KEY `customeremail` (`customeremail`),
-  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`itemid`) REFERENCES `items` (`itemid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`customeremail`) REFERENCES `customer` (`email`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -58,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-22 22:21:33
+-- Dump completed on 2022-06-29 19:30:23
