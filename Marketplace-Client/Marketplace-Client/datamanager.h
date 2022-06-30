@@ -72,11 +72,6 @@ typedef struct {
 } SignInData;
 
 typedef struct {
-    bool result;
-    QString email;
-} AutoSignInResult;
-
-typedef struct {
     unsigned int ID;
     unsigned int quantity;
 } CartItem;
@@ -166,14 +161,13 @@ public:
     //Sign-in & sign-up methods
     SignUpResult signUp(SignUpData data);
     bool signIn(SignInData data, bool save);
-    AutoSignInResult autoSignIn();
-
+    SignInData getSignInCredentials();
     //Cart-related functionality
     void getCart();
     void addToCart(CartItem item);
     void updateCart(QVector<CartItem> updated);
     void checkout();
-   LineEdit *quant;
+    LineEdit *quant;
     //Account-related functionality
     void getAccountDetails();
     UpdateAccountResult updateAccountDetails(AccountDetails details);

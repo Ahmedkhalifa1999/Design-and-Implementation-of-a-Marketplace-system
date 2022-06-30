@@ -132,7 +132,48 @@ bool DataManager :: signIn(SignInData data, bool save){
 
     return true;
 }
+SignInData DataManager :: getSignInCredentials()
+{
 
+    SignInData signInData;
+    QByteArray signInQByteArray;
+
+    if(signInfile.size()==0)
+    {
+        signInData.email = "";
+        signInData.password = "";
+
+        return signInData;
+
+    }
+
+    if(!signInfile.open(QIODevice::ReadOnly))
+    {
+        qCritical() << "fail";
+
+    }
+    signInQByteArray = signInfile.readAll();
+
+    //convert to JsonDocument
+    QJsonDocument signInJsonDoc = QJsonDocument::fromJson(signInQByteArray);
+    // Get object from document
+    QJsonObject signInJsonObj = signInJsonDoc.object();
+    // Get value from object
+    signInData.email = signInJsonObj.value("Email").toString();
+
+    //Password is Hashed
+    signInData.email = signInJsonObj.value("Password").toString();
+
+    return signInData;
+
+
+
+
+
+
+
+
+}
 
 
 void DataManager :: getAccountDetails(){
@@ -149,12 +190,6 @@ void DataManager :: getAccountDetails(){
     socket.write(accountDetailsQByteArray);
 
 }
-
-//mehtaga hagat mn el cart fa hasebha dlw2ty
-/*void DataManager :: checkout(){
-// Send checkout Request
- //Check available fund
-}*/
 
 UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
     // Validate phone and email
