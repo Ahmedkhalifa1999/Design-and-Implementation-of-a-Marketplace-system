@@ -1,0 +1,17 @@
+release/account.o
+release/buttonid.o
+release/cart.o
+release/datamanager.o
+release/itemdet.o
+release/login.o
+release/main.o
+release/mainwindow.o
+release/shop.o
+release/qrc_Resource.o
+release/moc_account.o
+release/moc_cart.o
+release/moc_datamanager.o
+release/moc_itemdet.o
+release/moc_login.o
+release/moc_mainwindow.o
+release/moc_shop.o

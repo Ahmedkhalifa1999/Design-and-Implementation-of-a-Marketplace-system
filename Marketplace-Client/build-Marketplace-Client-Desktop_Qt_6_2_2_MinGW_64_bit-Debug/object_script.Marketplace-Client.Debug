@@ -1,0 +1,17 @@
+debug/account.o
+debug/buttonid.o
+debug/cart.o
+debug/datamanager.o
+debug/itemdet.o
+debug/login.o
+debug/main.o
+debug/mainwindow.o
+debug/shop.o
+debug/qrc_Resource.o
+debug/moc_account.o
+debug/moc_cart.o
+debug/moc_datamanager.o
+debug/moc_itemdet.o
+debug/moc_login.o
+debug/moc_mainwindow.o
+debug/moc_shop.o
