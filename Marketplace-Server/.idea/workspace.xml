@@ -40,8 +40,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< Updated upstream
-=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "true",
@@ -53,12 +51,13 @@
     "jdk.selected.JAVA_MODULE": "openjdk-18",
     "last_opened_file_path": "C:/Users/HP/Documents/GitHub/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Server/lib/mysql-connector-java-8.0.29.jar",
     "project.structure.last.edited": "Modules",
+    "last_opened_file_path": "C:/Users/world/OneDrive/Documents/GitHub/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Server",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
->>>>>>> Stashed changes
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ahmed\Desktop\Parallel and Distributed Systems\Design-and-Implementation-of-a-Marketplace-system\Marketplace-Server\src" />

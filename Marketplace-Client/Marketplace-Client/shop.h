@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include"datamanager.h"
-#include "mainwindow.h"
-#include "itemdet.h"
+//#include "mainwindow.h"
+//#include "itemdet.h"
 #include "cart.h"
 #include "account.h"
 #include "buttonid.h"
