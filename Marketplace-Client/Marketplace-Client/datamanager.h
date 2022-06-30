@@ -42,6 +42,10 @@
 #define GETCATEGORIES_REQUEST         20
 #define GETCATEGORIES_RESPONSE        21
 
+#define GETCART_REQUEST               22
+#define GETCART_RESPONSE              23
+
+
 typedef struct {
     unsigned int pounds;
     unsigned int piasters;
@@ -165,7 +169,7 @@ public:
     AutoSignInResult autoSignIn();
 
     //Cart-related functionality
-    QVector<DetailedCartItem> getCart();
+    void getCart();
     void addToCart(CartItem item);
     void updateCart(QVector<CartItem> updated);
     void checkout();
@@ -211,6 +215,7 @@ signals:
     void getItemList_signal(QVector<Item> result);
     void getItemData_signal(DetailedItem result);
     void getCategories_signal(QVector<QString> result);
+    void getCart_signal(QVector <DetailedCartItem> result);
 };
 
 #endif // DATAMANAGER_H
