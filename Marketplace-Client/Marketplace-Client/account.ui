@@ -242,7 +242,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(207, 220, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
       </property>
       <property name="text">
        <string>Cart</string>
@@ -258,7 +258,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(207, 220, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
       </property>
       <property name="text">
        <string>Home</string>

@@ -3,7 +3,7 @@
 #include"datamanager.h"
 #include <QPixmap>
 #include <QMessageBox>
-#include "shop.h"
+//#include "shop.h"
 
 AutoSignInResult asir;
 SignInData sid;
