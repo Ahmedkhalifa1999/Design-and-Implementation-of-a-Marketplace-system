@@ -1,7 +1,7 @@
 #include "shop.h"
 #include "ui_shop.h"
 #include "datamanager.h"
-#include "itemdet.h"
+
 #include "buttonid.h"
 QList <QString> myList;
 SearchQuery sq;
@@ -63,14 +63,14 @@ Shop::~Shop()
 {
     delete ui;
 }
-void Shop::on_but_clicked()
+void Shop::on_b_clicked()
 {
 //  QObject* obj = sender();
 //  obj = qobject_cast<QObject *>(b);
   button = qobject_cast<ButtonId *>(QObject::sender());
 
   itemd = new Itemdet(this);
-  itemd -> show();
+  itemd->show();
 
 }
 

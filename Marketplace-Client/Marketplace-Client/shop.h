@@ -26,7 +26,7 @@ public:
 
 
 private slots:
-    void on_but_clicked();
+    void on_b_clicked();
     void on_cartButton_clicked();
 
     void on_accountButton_clicked();

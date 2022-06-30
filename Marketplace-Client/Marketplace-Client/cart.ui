@@ -35,14 +35,14 @@
 background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
    </property>
    <property name="text">
-    <string>TheMarket</string>
+    <string> TheMarket</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>100</y>
+     <x>300</x>
+     <y>110</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -65,7 +65,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
     <rect>
      <x>20</x>
      <y>150</y>
-     <width>561</width>
+     <width>671</width>
      <height>431</height>
     </rect>
    </property>
@@ -77,7 +77,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>559</width>
+      <width>669</width>
       <height>429</height>
      </rect>
     </property>
@@ -93,7 +93,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
     <rect>
      <x>711</x>
      <y>420</y>
-     <width>141</width>
+     <width>171</width>
      <height>151</height>
     </rect>
    </property>
