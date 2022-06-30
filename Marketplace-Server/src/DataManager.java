@@ -78,7 +78,7 @@ public class DataManager {
 
     public record SearchQuery(
             String name,
-            String[] categories,
+            ArrayList<String> categories,
             int maxResults
     )
     { }
@@ -238,7 +238,7 @@ public class DataManager {
 
 
 
-      public Item[] getItemList(SearchQuery query) {
+      public ArrayList<Item> getItemList(SearchQuery query) {
 
         return null;
     }
