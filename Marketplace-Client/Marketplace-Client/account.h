@@ -17,6 +17,8 @@ public:
     ~Account();
 
 private slots:
+    void on_butt_clicked();
+
     void on_save_clicked();
 
     void on_address_editingFinished();
@@ -38,8 +40,6 @@ private slots:
     void walletDeposit_slot(bool result);
 
     void getOrderHistory_slot(std::vector<OrderSummary> result);
-
-    void on_orderDetail_clicked();
 
     void getOrderDetails_slot(DetailedOrder result);
 
