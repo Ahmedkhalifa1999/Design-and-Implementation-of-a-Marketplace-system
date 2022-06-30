@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include<shop.h>
-#iclude <cart.h>
+#include <cart.h>
 namespace Ui {
 class Account;
 }
@@ -34,6 +34,10 @@ private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void getAccountDetails_slot(AccountDetails result);
+
+    void updateAccountDetails_slot(bool result);
 
 private:
     Ui::Account *ui;

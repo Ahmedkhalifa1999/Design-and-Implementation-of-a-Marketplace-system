@@ -3,6 +3,7 @@
 #include"datamanager.h"
 #include "ui_account.h"
 #include  "shop.h"
+#include<QMessageBox>
 DataManager dm;
 AccountDetails ad,details;
 MoneyAmount wal;
@@ -12,14 +13,14 @@ Account::Account(QWidget *parent) :
     ui(new Ui::Account)
 {
     ui->setupUi(this);
-
     dm.getAccountDetails();
-    ad.firstName = ui->fname->text();
-    ad.lastName= ui->lname->text();
-    ad.email = ui->email->text();
-    ad.phone = ui->phone->text();
-    ad.address = ui->address->text();
-  //  ad.wallet = ui->balance->text();
+    ui->fname->insert(ad.firstName);
+    ui->lname->insert(ad.lastName);
+    ui->email->insert(ad.email);
+    ui->phone->insert(ad.phone);
+    ui->address->insert(ad.address);
+    ui->balance->insert(QString::number(ad.wallet.pounds)+"."+QString::number(ad.wallet.piasters));
+
 }
 
 Account::~Account()
@@ -27,19 +28,30 @@ Account::~Account()
     delete ui;
 }
 
-void getAccountDetails_slot(AccountDetails result){
-    ad=result;
+void Account::getAccountDetails_slot(AccountDetails result){
+
+    ad.firstName=result.firstName;
+    ad.lastName=result.lastName;
+    ad.phone=result.phone;
+    ad.email = result.email;
+    ad.address= result.address;
+    ad.wallet = result.wallet;
+
 }
 
 void Account::on_save_clicked()
 {
   up= dm.updateAccountDetails(ad);
+  if(!up){
+      QMessageBox::warning(this,"Error","Invalid Email or Phone number so please try again");
+  }
+
 }
 
 
 void Account::on_fname_editingFinished()
 {
-    ad.firstName=ui->fname->text();
+    ad.firstName = ui->fname->text();
 }
 
 
@@ -66,19 +78,16 @@ void Account::on_phone_editingFinished()
 {
     ad.phone = ui->phone->text();
 }
+void updateAccountDetails_slot(bool result){
+    if(result){
 
-/*
-void Account::on_balance_editingFinished()
-{
-    details.wallet= setText(QString::number(balance.pounds));
-        details.wallet.pounds = ui->balance->text();
+    }
 }
 
-*/
 void Account::on_pushButton_clicked() //go to home page
 {
     shop = new Shop(this);
-    shop -> show();
+    shop->show();
 }
 
 

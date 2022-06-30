@@ -24,7 +24,7 @@ typedef struct {
 typedef struct {
     bool validEmail;
     bool ValidPhone;
-} SignUpResult;
+} SignUpResult,UpdateAccountResult;
 
 typedef struct {
     QString email;
