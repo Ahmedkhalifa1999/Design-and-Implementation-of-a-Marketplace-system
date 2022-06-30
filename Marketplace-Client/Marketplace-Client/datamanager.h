@@ -146,7 +146,7 @@ typedef struct {
 typedef struct {
     QString name;
     QString description;
-    std::vector<QPixmap> images;
+    QVector<QPixmap> images;
     MoneyAmount price;
 } DetailedItem;
 
