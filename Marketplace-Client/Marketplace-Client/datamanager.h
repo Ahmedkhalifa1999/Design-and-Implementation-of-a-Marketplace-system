@@ -80,12 +80,6 @@ typedef struct {
     unsigned int quantity;
 } CartItem;
 
-typedef struct {
-    QString name;
-    QImage icon;
-    MoneyAmount price;
-    unsigned int quantity;
-} DetailedCartItem, DetailedOrderItem;
 
 typedef struct {
     unsigned int ID;
@@ -116,6 +110,20 @@ typedef enum {
 
 typedef struct {
     unsigned int ID;
+    QString name;
+    QImage icon;
+    MoneyAmount price;
+} Item;
+
+typedef struct {
+    QString name;
+    QImage icon;
+    MoneyAmount price;
+    unsigned int quantity;
+} DetailedCartItem, DetailedOrderItem;
+
+typedef struct {
+    unsigned int ID;
     OrderState state;
     MoneyAmount totalAmount;
 } OrderSummary;
@@ -133,12 +141,6 @@ typedef struct {
     unsigned int maxResults;
 } SearchQuery;
 
-typedef struct {
-    unsigned int ID;
-    QString name;
-    QImage icon;
-    MoneyAmount price;
-} Item;
 
 typedef struct {
     QString name;
