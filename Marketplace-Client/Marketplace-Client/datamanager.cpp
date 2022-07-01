@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonValue>
+#define SERVER_ADDRESS "127.0.0.1"
+#define SERVER_PORT 28142
 
 
 DataManager::DataManager(QObject *parent)
@@ -15,12 +17,11 @@ DataManager::DataManager(QObject *parent)
 {
 
 }
-DataManager :: DataManager(unsigned int serverAddress, unsigned int serverPort){
-    //convert to string
-
-    QString serverAddressString  = QString::number(serverAddress);
-    socket.connectToHost(QHostAddress(serverAddressString), serverPort);
-    QObject::connect(&socket, &QTcpSocket::bytesWritten, this, &DataManager::server_response);
+DataManager :: DataManager(QTcpSocket *socket){
+    this->socket = socket;
+    socket->connectToHost(QHostAddress(SERVER_ADDRESS), SERVER_PORT);
+    socket->waitForConnected();
+    QObject::connect(this->socket, &QTcpSocket::readyRead, this, &DataManager::server_response);
 }
 bool DataManager :: validate_Email(const QString email)
 {
@@ -38,7 +39,7 @@ bool DataManager :: validate_Phone(const QString phone)
 {
 
     bool result = true;
-    QRegularExpression regex("^((\\+?(\\d{2}))\\s?)?((\\d{2})|(\\((\\d{2})\\))\\s?)?(\\d{3,15})(\\-(\\d{3,15}))?$");
+    QRegularExpression regex("^01[0125][0-9]{8}$");
     if(!regex.match(phone).hasMatch())
     {
         result = false;
@@ -47,6 +48,7 @@ bool DataManager :: validate_Phone(const QString phone)
 }
 
 SignUpResult DataManager :: signUp  (SignUpData data){
+
     SignUpResult signUpResult;
 
     if(validate_Email(data.email))
@@ -67,7 +69,7 @@ SignUpResult DataManager :: signUp  (SignUpData data){
     {
         signUpResult.validPhone = false;
     }
-    if((signUpResult.validEmail == false)||(signUpResult.validPhone = false)){
+    if((signUpResult.validEmail == false)||(signUpResult.validPhone == false)){
 
         return signUpResult;
     }
@@ -83,7 +85,7 @@ SignUpResult DataManager :: signUp  (SignUpData data){
 
     //Build JSON File
     QJsonObject signUpDataObject;
-    signUpDataObject.insert("RequestID", QJsonValue::fromVariant(SIGNUP_REQUEST));
+    signUpDataObject.insert("ID", QJsonValue::fromVariant(SIGNUP_REQUEST));
     signUpDataObject.insert("Name", QJsonValue::fromVariant(data.name));
     signUpDataObject.insert("Email", QJsonValue::fromVariant(data.email));
     signUpDataObject.insert("Password", QJsonValue::fromVariant(qStringCryptPassword));
@@ -94,8 +96,9 @@ SignUpResult DataManager :: signUp  (SignUpData data){
     //ToJson Compact
     QByteArray signUpDataQByteArray = signUpJsonDoc.toJson(QJsonDocument::Compact);
     //writeToSocket
-    socket.write(signUpDataQByteArray);
-
+    qDebug()<<signUpDataQByteArray<<Qt::endl;
+    qDebug()<<socket->write(signUpDataQByteArray);
+    socket->flush();
     //connect Signals and Slots
     return signUpResult;
 }
@@ -116,16 +119,19 @@ bool DataManager :: signIn(SignInData data, bool save){
 
     //Build JSON File
     QJsonObject signInDataObject;
-    signInDataObject.insert("RequestID", QJsonValue::fromVariant(SIGNIN_REQUEST));
+    signInDataObject.insert("ID", QJsonValue::fromVariant(SIGNIN_REQUEST));
     signInDataObject.insert("Email", QJsonValue::fromVariant(data.email));
     signInDataObject.insert("Password", QJsonValue::fromVariant(qStringCryptPassword));
 
     QJsonDocument signInJsonDoc(signInDataObject);
     //ToJson Compact
     signInDataQByteArray = signInJsonDoc.toJson(QJsonDocument::Compact);
+    qDebug()<<"signIn"<<Qt::endl;
 
     //Send SignInData to Server
-    socket.write(signInDataQByteArray);
+    socket->write(signInDataQByteArray);
+    qDebug()<<signInDataQByteArray<<Qt::endl;
+    socket->flush();
 
     // Save SignInData if Save = true
     saveSignin = save;
@@ -166,13 +172,6 @@ SignInData DataManager :: getSignInCredentials()
 
     return signInData;
 
-
-
-
-
-
-
-
 }
 
 
@@ -180,14 +179,15 @@ void DataManager :: getAccountDetails(){
 
     //Build JSON File
     QJsonObject accountDetailsObject;
-    accountDetailsObject.insert("RequestID", QJsonValue::fromVariant(GETACCOUNTDETAILS_REQUEST));
+    accountDetailsObject.insert("ID", QJsonValue::fromVariant(GETACCOUNTDETAILS_REQUEST));
 
     QJsonDocument accountDetailsJsonDoc(accountDetailsObject);
     //ToJson Compact
     QByteArray accountDetailsQByteArray = accountDetailsJsonDoc.toJson(QJsonDocument::Compact);
 
     //Send SignInData to Server
-    socket.write(accountDetailsQByteArray);
+    socket->write(accountDetailsQByteArray);
+    socket->flush();
 
 }
 
@@ -219,7 +219,7 @@ UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
 
     // Build JSON file
     QJsonObject accountDetailsObject;
-    accountDetailsObject.insert("RequestID", QJsonValue::fromVariant(UPDATEACCOUNTDETAILS_REQUEST));
+    accountDetailsObject.insert("ID", QJsonValue::fromVariant(UPDATEACCOUNTDETAILS_REQUEST));
     accountDetailsObject.insert("Name", QJsonValue::fromVariant(details.name));
     accountDetailsObject.insert("Email", QJsonValue::fromVariant(details.email));
     accountDetailsObject.insert("Address", QJsonValue::fromVariant(details.address));
@@ -231,7 +231,8 @@ UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
     //ToJson Compact
     QByteArray accountDetailsQByteArray = accountDetailsJsonDoc.toJson(QJsonDocument::Compact);
     //writeToSocket
-    socket.write(accountDetailsQByteArray);
+    socket->write(accountDetailsQByteArray);
+    socket->flush();
     return updateAccountResult;
 }
 
@@ -239,14 +240,15 @@ void DataManager :: getOrderHistory()
 {
     //Build JSON File
     QJsonObject orderHistoryObject;
-    orderHistoryObject.insert("RequestID", QJsonValue::fromVariant(GETORDERHISTORY_REQUEST));
+    orderHistoryObject.insert("ID", QJsonValue::fromVariant(GETORDERHISTORY_REQUEST));
 
     QJsonDocument orderHistoryJsonDoc(orderHistoryObject);
     //ToJson Compact
     QByteArray orderHistoryQByteArray = orderHistoryJsonDoc.toJson(QJsonDocument::Compact);
 
     //Send SignInData to Server
-    socket.write(orderHistoryQByteArray);
+    socket->write(orderHistoryQByteArray);
+    socket->flush();
 }
 
 
@@ -254,7 +256,7 @@ void DataManager :: getOrderDetails(unsigned int ID){
     //send JSON contain Request ID , orderID
     QJsonObject orderDetailsObject;
 
-    orderDetailsObject.insert("RequestID", QJsonValue::fromVariant(GETORDERDETAILS_REQUEST));
+    orderDetailsObject.insert("ID", QJsonValue::fromVariant(GETORDERDETAILS_REQUEST));
     orderDetailsObject.insert("OrderID", QJsonValue::fromVariant(ID));
 
     QJsonDocument orderDetailsJsonDoc(orderDetailsObject);
@@ -263,13 +265,15 @@ void DataManager :: getOrderDetails(unsigned int ID){
 
     //Send SignInData to Server
     //Write to Socket
-    socket.write(orderDetailsQByteArray);
+    socket->write(orderDetailsQByteArray);
+    socket->flush();
+
 }
 void DataManager :: walletDeposit(MoneyAmount amount){
     //send JSON contain Request ID , Amount
     QJsonObject walletDepositObject;
 
-    walletDepositObject.insert("RequestID", QJsonValue::fromVariant(WALLETDEPOSIT_REQUEST));
+    walletDepositObject.insert("ID", QJsonValue::fromVariant(WALLETDEPOSIT_REQUEST));
     walletDepositObject.insert("Pounds", QJsonValue::fromVariant(amount.pounds));
     walletDepositObject.insert("Piasters", QJsonValue::fromVariant(amount.piasters));
 
@@ -278,7 +282,9 @@ void DataManager :: walletDeposit(MoneyAmount amount){
     QByteArray walletDepositQByteArray = walletDepositJsonDoc.toJson(QJsonDocument::Compact);
 
     //Write to Socket
-    socket.write(walletDepositQByteArray);
+    socket->write(walletDepositQByteArray);
+    socket->flush();
+
 }
 
 //Shop-related functionality
@@ -287,7 +293,7 @@ void DataManager :: getItemList(SearchQuery query){
     QJsonObject searchQueryObject;
     QJsonArray searchQueryArray;
 
-    searchQueryObject.insert("RequestID", QJsonValue::fromVariant(GETITEMLIST_REQUEST));
+    searchQueryObject.insert("ID", QJsonValue::fromVariant(GETITEMLIST_REQUEST));
     searchQueryObject.insert("Name", QJsonValue::fromVariant(query.name));
     searchQueryObject.insert("MaxResult", QJsonValue::fromVariant(query.maxResults));
 
@@ -302,13 +308,15 @@ void DataManager :: getItemList(SearchQuery query){
     QByteArray searchQueryQByteArray = searchQueryJsonDoc.toJson(QJsonDocument::Compact);
 
     //Write to Socket
-    socket.write(searchQueryQByteArray);
+    socket->write(searchQueryQByteArray);
+    socket->flush();
+
 }
 void DataManager :: getItemData(unsigned int ID){
     //send JSON contain Request ID , Amount
     QJsonObject itemDataObject;
 
-    itemDataObject.insert("RequestID", QJsonValue::fromVariant(GETITEMDATA_REQUEST));
+    itemDataObject.insert("ID", QJsonValue::fromVariant(GETITEMDATA_REQUEST));
     itemDataObject.insert("ItemID", QJsonValue::fromVariant(ID));
 
     QJsonDocument itemDataJsonDoc(itemDataObject);
@@ -316,20 +324,24 @@ void DataManager :: getItemData(unsigned int ID){
     QByteArray itemDataQByteArray = itemDataJsonDoc.toJson(QJsonDocument::Compact);
 
     //Write to Socket
-    socket.write(itemDataQByteArray);
+    socket->write(itemDataQByteArray);
+    socket->flush();
+
 }
 void DataManager :: getCategories(){
     //send JSON contain Request ID , Amount
     QJsonObject categoriesObject;
 
-    categoriesObject.insert("RequestID", QJsonValue::fromVariant(GETCATEGORIES_REQUEST));
+    categoriesObject.insert("ID", QJsonValue::fromVariant(GETCATEGORIES_REQUEST));
 
     QJsonDocument categoriesJsonDoc(categoriesObject);
     //ToJson Compact
     QByteArray categoriesQByteArray = categoriesJsonDoc.toJson(QJsonDocument::Compact);
 
     //Write to Socket
-    socket.write(categoriesQByteArray);
+    socket->write(categoriesQByteArray);
+    socket->flush();
+
 }
 void DataManager :: addToCart(CartItem item)
 {
@@ -403,14 +415,16 @@ void DataManager::getCart(){
     // Get object from document
     QJsonArray cartJsonArray = cartJsonDoc.array();
     QJsonObject cartJsonObj ;
-    cartJsonObj.insert("RequestID", QJsonValue::fromVariant(GETCART_REQUEST));
+    cartJsonObj.insert("ID", QJsonValue::fromVariant(GETCART_REQUEST));
     cartJsonObj.insert("Cart", cartJsonArray);
     // Get value from object
 
     QByteArray cartQByteArrayReq = cartJsonDoc.toJson(QJsonDocument::Compact);
 
     //Write to Socket
-    socket.write(cartQByteArrayReq);
+    socket->write(cartQByteArrayReq);
+    socket->flush();
+
 }
 
 void DataManager::checkout()
@@ -429,22 +443,25 @@ void DataManager::checkout()
     // Get object from document
     QJsonArray cartJsonArray = cartJsonDoc.array();
     QJsonObject cartJsonObj ;
-    cartJsonObj.insert("RequestID", QJsonValue::fromVariant(CHECKOUT_REQUEST));
+    cartJsonObj.insert("ID", QJsonValue::fromVariant(CHECKOUT_REQUEST));
     cartJsonObj.insert("Cart", cartJsonArray);
     // Get value from object
 
     QByteArray cartQByteArrayReq = cartJsonDoc.toJson(QJsonDocument::Compact);
 
     //Write to Socket
-    socket.write(cartQByteArrayReq);
+    socket->write(cartQByteArrayReq);
+    socket->flush();
+
 }
 
 
 
-void DataManager :: server_response(qint64 bytes){
+void DataManager :: server_response(){
     //Read Socket
-
-    QByteArray serverResponse = socket.readAll();
+    qDebug() << socket->bytesAvailable();
+    QByteArray serverResponse = socket->readAll();
+    qDebug() << serverResponse;
     //convert to JsonDocument
     QJsonDocument serverResponseJsonDoc = QJsonDocument::fromJson(serverResponse);
     // Get object from document

@@ -9,58 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2c774fd-3c43-4b60-88c0-95789a2f8dcf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/Design-and-Implementation-of-a-Marketplace-system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/Design-and-Implementation-of-a-Marketplace-system.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/gson_2_9_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/gson_2_9_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.42c75df" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.42c75df" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.58b81a0" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.58b81a0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.cda4f37" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.cda4f37" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.e5240b8" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.e5240b8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.fbe6ed5" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.fbe6ed5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Resource.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Resource.qrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/account.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/account.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/cart.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/cart.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/datamanager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/datamanager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/itemdet.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/itemdet.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/login.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/login.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/mainwindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/mainwindow.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Marketplace_Server_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Marketplace_Server_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/opencsv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/opencsv.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_11_windows_x64_bin_sdk.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_11_windows_x64_bin_sdk.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_base.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_base.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_controls.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_controls.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_fxml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_fxml.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_graphics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_graphics.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_media.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_media.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Marketplace-Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Marketplace-Server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/marketplace_customer.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_customer.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/marketplace_items.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_items.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/marketplace_orderitem.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_orderitem.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/marketplace_orders.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_orders.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Marketplace-Server/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Marketplace-Server/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Marketplace-Server/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Marketplace-Server/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MarketPlaceServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MarketPlaceServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-    </list>
+    <list default="true" id="f2c774fd-3c43-4b60-88c0-95789a2f8dcf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

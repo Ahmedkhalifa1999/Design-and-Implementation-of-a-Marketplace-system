@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DataManager_t {
-    const uint offsetsAndSize[50];
-    char stringdata0[408];
+    const uint offsetsAndSize[48];
+    char stringdata0[402];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_DataManager_t, stringdata0) + ofs), len 
@@ -53,8 +53,7 @@ QT_MOC_LITERAL(321, 11), // "QList<Item>"
 QT_MOC_LITERAL(333, 18), // "getItemData_signal"
 QT_MOC_LITERAL(352, 12), // "DetailedItem"
 QT_MOC_LITERAL(365, 20), // "getCategories_signal"
-QT_MOC_LITERAL(386, 15), // "server_response"
-QT_MOC_LITERAL(402, 5) // "bytes"
+QT_MOC_LITERAL(386, 15) // "server_response"
 
     },
     "DataManager\0signUp_signal\0\0result\0"
@@ -68,7 +67,7 @@ QT_MOC_LITERAL(402, 5) // "bytes"
     "walletDeposit_signal\0getItemList_signal\0"
     "QList<Item>\0getItemData_signal\0"
     "DetailedItem\0getCategories_signal\0"
-    "server_response\0bytes"
+    "server_response"
 };
 #undef QT_MOC_LITERAL
 
@@ -100,7 +99,7 @@ static const uint qt_meta_data_DataManager[] = {
       22,    1,  125,    2, 0x06,   23 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      23,    1,  128,    2, 0x0a,   25 /* Public */,
+      23,    0,  128,    2, 0x0a,   25 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    3,
@@ -117,7 +116,7 @@ static const uint qt_meta_data_DataManager[] = {
     QMetaType::Void, QMetaType::QStringList,    3,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::LongLong,   24,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -140,7 +139,7 @@ void DataManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 9: _t->getItemList_signal((*reinterpret_cast< std::add_pointer_t<QList<Item>>>(_a[1]))); break;
         case 10: _t->getItemData_signal((*reinterpret_cast< std::add_pointer_t<DetailedItem>>(_a[1]))); break;
         case 11: _t->getCategories_signal((*reinterpret_cast< std::add_pointer_t<QList<QString>>>(_a[1]))); break;
-        case 12: _t->server_response((*reinterpret_cast< std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 12: _t->server_response(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -240,7 +239,7 @@ const QMetaObject DataManager::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_DataManager_t
 , QtPrivate::TypeAndForceComplete<DataManager, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<CheckoutResult, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<DetailedCartItem>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<AccountDetails, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<OrderSummary>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<DetailedOrder, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<Item>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<DetailedItem, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<QString>, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<qint64, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,

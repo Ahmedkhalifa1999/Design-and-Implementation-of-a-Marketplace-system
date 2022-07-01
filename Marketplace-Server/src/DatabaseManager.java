@@ -13,7 +13,7 @@ public class DatabaseManager {
     //to be modified
     static final String DB_URL = "jdbc:mysql://localhost:3306/marketplace";
     static final String USER = "root";
-    static final String PASS = "1412001BAmr";
+    static final String PASS = "64deadpool128";
 
     public record datedorderitem(
             String itemname,

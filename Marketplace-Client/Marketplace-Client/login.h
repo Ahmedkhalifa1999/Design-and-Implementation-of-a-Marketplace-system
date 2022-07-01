@@ -25,7 +25,7 @@ private slots:
 
     void on_regButton_clicked();
 
-    void on_checkBox_stateChanged(int arg1);
+
 
 public slots:
 

@@ -34,7 +34,7 @@ public:
 private slots:
     void on_pushButton_clicked();
     void on_Checkout_clicked();
-    void on_quantity_editingFinished();
+
     void on_b_clicked();
 
 public slots:

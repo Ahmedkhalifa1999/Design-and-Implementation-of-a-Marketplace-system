@@ -145,7 +145,7 @@ typedef struct {
 class DataManager : public QObject
 {
     Q_OBJECT
-    QTcpSocket socket;
+    QTcpSocket *socket;
     //Global Variables
     QFile signInfile;
     QFile cartfile;
@@ -156,7 +156,7 @@ class DataManager : public QObject
 
 public:
     explicit DataManager(QObject *parent = nullptr);
-    DataManager(unsigned int serverAddress, unsigned int serverPort);
+    DataManager(QTcpSocket *socket);
 
     //Sign-in & sign-up methods
     SignUpResult signUp(SignUpData data);
@@ -187,7 +187,7 @@ public:
 
 public slots:
 
-    void server_response(qint64 bytes);
+    void server_response();
     //slot process the signal emitted from server
 
 

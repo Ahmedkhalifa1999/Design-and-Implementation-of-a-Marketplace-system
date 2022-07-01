@@ -26,7 +26,7 @@ public class Server implements Runnable{
     {
         try {
             this.serverSocket = AsynchronousServerSocketChannel.open();
-            serverSocket.bind(new InetSocketAddress(8080));
+            serverSocket.bind(new InetSocketAddress(28142));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -54,7 +54,6 @@ public class Server implements Runnable{
         {
 
             Future<AsynchronousSocketChannel> socket =  serverSocket.accept();
-            System.out.println("Connection Accepted");
             //AsynchronousSocketChannel connection = socket.get();
 
             Thread.execute(new ClientHandler(socket));

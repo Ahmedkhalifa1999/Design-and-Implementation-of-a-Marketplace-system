@@ -33,13 +33,13 @@ public class ClientHandler implements Runnable
     {
         try {
             this.socket = socket.get();
+            System.out.println("Connection Accepted");
             dataManager = new DataManager();
         }
         catch(Exception e){
             closeEverything(socket);
         }
     }
-
     public void closeEverything(Future<AsynchronousSocketChannel> socket)
     {
 
@@ -56,11 +56,16 @@ public class ClientHandler implements Runnable
 
             try {
                 // Read what the client sent and then send it to every other client.
-                ByteBuffer readBuffer = ByteBuffer.allocate(20480);
+                ByteBuffer readBuffer = ByteBuffer.allocate(2048);
                 Future<Integer> dataSize = socket.read(readBuffer);
-                byte[] dataBytes = new byte[dataSize.get()];
+                System.out.println("Waiting for data");
+                int number = dataSize.get();
+                System.out.println(number);
+                byte[] dataBytes = new byte[number];
+                readBuffer.flip();
                 readBuffer.get(dataBytes);
                 String request = new String(dataBytes, StandardCharsets.UTF_8);
+                System.out.println(request);
                 //Parse Request
                 JsonObject requestObject = JsonParser.parseString(request).getAsJsonObject();
                 JsonObject responseObject = new JsonObject();
@@ -243,8 +248,10 @@ public class ClientHandler implements Runnable
 
                 Gson JSONBuilder = new Gson();
                 String response = JSONBuilder.toJson(responseObject);
+                System.out.println(response);
                 ByteBuffer writeBuffer = ByteBuffer.allocate(response.length());
                 writeBuffer.put(response.getBytes());
+                //writeBuffer.flip();
                 Future<Integer> writtenBytes = socket.write(writeBuffer);
                 writtenBytes.get();
 

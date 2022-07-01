@@ -34,8 +34,6 @@ private slots:
 
     void on_save_clicked();
 
-    void on_address_editingFinished();
-
     void on_phone_editingFinished();
 
     void on_pushButton_clicked();
