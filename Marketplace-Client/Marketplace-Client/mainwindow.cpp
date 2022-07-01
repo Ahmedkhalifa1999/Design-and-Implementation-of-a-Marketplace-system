@@ -23,20 +23,20 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_registerButton_clicked()
 {
-    sud.firstName = ui->fname->text();
-    sud.lastName= ui->lname->text();
+    sud.name = ui->name->text();
+
     sud.email = ui->email->text();
     sud.password = ui->password->text();
     sud.phone = ui->number->text();
     sud.address = ui->address->text();
     sur= dm.signUp(sud);
 
-    if(sur.validEmail==false && sur.ValidPhone==false){
+    if(sur.validEmail==false && sur.validPhone==false){
         QMessageBox::warning(this,"Error","Incorrect Email and phone, please try Again");
     }
     else if (sur.validEmail==false){
         QMessageBox::warning(this,"Error","Incorrect Email, Please try Again");
-    }else if(sur.ValidPhone==false){
+    }else if(sur.validPhone==false){
          QMessageBox::warning(this,"Error","Incorrect Phone, Please try Again");
     }
 

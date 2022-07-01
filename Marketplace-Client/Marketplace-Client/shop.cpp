@@ -67,7 +67,7 @@ void Shop::on_b_clicked()
 {
 //  QObject* obj = sender();
 //  obj = qobject_cast<QObject *>(b);
-  button = qobject_cast<ButtonId *>(QObject::sender());
+  button = dynamic_cast<ButtonId *>(QObject::sender());
 
   itemd = new Itemdet(this);
   itemd->show();
@@ -95,7 +95,7 @@ void Shop::on_searchButton_clicked()
  //dm->getItemList(sq);
 
 }
-void Shop::getCategories_slot(std::vector<QString> result){
+void Shop::getCategories_slot(QVector<QString> result){
 
     for(int i=0; i < result.size(); i++){
         myList.push_back(result[i]);
@@ -103,7 +103,7 @@ void Shop::getCategories_slot(std::vector<QString> result){
 
 }
 
-void getItemList_slot(std::vector<Item> result){
+void getItemList_slot(QVector<Item> result){
     for(int i=0; i < result.size();i++){
         img[i]=result[i].icon;
          names[i] =result[i].name;

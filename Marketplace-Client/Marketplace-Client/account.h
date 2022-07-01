@@ -39,7 +39,7 @@ private slots:
 
     void walletDeposit_slot(bool result);
 
-    void getOrderHistory_slot(std::vector<OrderSummary> result);
+    void getOrderHistory_slot(QVector<OrderSummary> result);
 
     void getOrderDetails_slot(DetailedOrder result);
 

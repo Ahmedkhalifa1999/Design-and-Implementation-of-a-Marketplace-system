@@ -1,12 +1,13 @@
 #include "itemdet.h"
+#include "shop.h"
 #include "ui_itemdet.h"
 #include "datamanager.h"
-#include"shop.h"
+//#include"shop.h"
 QString item_name;
 QString item_description;
 QVector<QPixmap> item_images;
 MoneyAmount item_price;
-unsigned int quant;
+unsigned int quan;
 CartItem c;
 
 Itemdet::Itemdet(QWidget *parent) :
@@ -45,7 +46,7 @@ Itemdet::Itemdet(QWidget *parent) :
 
     QList<QString> combolist={"1","2","3","4","5","6","7","8","9","10"};
      ui->comboBox->addItems(combolist);
-     c.quantity=quant;
+     c.quantity=quan;
      c.ID=button->id;
 }
 
@@ -74,6 +75,6 @@ void getItemData_slot(DetailedItem result){
 
 void Itemdet::on_comboBox_currentTextChanged(const QString &arg1)
 {
-    quant = arg1.toUInt();
+    quan = arg1.toUInt();
 }
 

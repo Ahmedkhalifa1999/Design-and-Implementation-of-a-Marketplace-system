@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include"datamanager.h"
-#include "shop.h"
+//#include "shop.h"
 
 namespace Ui {
 class Itemdet;
@@ -27,7 +27,7 @@ private slots:
 private:
     Ui::Itemdet *ui;
     DataManager *dm;
-    Shop *s;
+    //Shop *s;
 };
 
 #endif // ITEMDET_H

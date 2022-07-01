@@ -37,14 +37,14 @@ public slots:
     //Account-related signals
     void getAccountDetails_slot (AccountDetails result);
     void updateAccountDetails_slot(bool result);
-    void getOrderHistory_slot(std::vector<OrderSummary> result);
+    void getOrderHistory_slot(QVector<OrderSummary> result);
     void getOrderDetails_slot(DetailedOrder result);
     void walletDeposit_slot(bool result);
 
     //Shop-related signals
-    void getItemList_slot(std::vector<Item> result);
+    void getItemList_slot(QVector<Item> result);
     void getItemData_slot(DetailedItem result);
-    void getCategories_slot(std::vector<QString> result);
+    void getCategories_slot(QVector<QString> result);
 
 private:
     Ui::MainWindow *ui;

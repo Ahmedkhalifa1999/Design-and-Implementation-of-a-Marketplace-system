@@ -4,7 +4,7 @@
 #include <QDialog>
 #include"datamanager.h"
 //#include "mainwindow.h"
-//#include "itemdet.h"
+#include "itemdet.h"
 #include "cart.h"
 #include "account.h"
 #include "buttonid.h"
@@ -33,8 +33,8 @@ private slots:
 
     void on_searchButton_clicked();
 
-    void getCategories_slot(std::vector<QString> result);
-    void getItemList_slot(std::vector<Item> result);
+    void getCategories_slot(QVector<QString> result);
+    void getItemList_slot(QVector<Item> result);
 
 private:
     Ui::Shop *ui;

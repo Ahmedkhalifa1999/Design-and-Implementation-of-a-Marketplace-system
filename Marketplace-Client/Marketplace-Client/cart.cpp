@@ -108,7 +108,7 @@ void Cart:: checkout_slot(CheckoutResult result){
 
 
 void Cart::on_b_clicked(){
-    ButtonId* button = qobject_cast<ButtonId *>(QObject::sender());
+    ButtonId* button = dynamic_cast<ButtonId *>(QObject::sender());
     for(int i =0;i<img.size();i++){
         if(button->id==id[i]){
             imgl[i]->hide();
@@ -138,7 +138,7 @@ void Cart::on_pushButton_clicked()
      dm.updateCart(upd);
 }
 
-void updateCart(std::vector<CartItem> updated){
+void updateCart(QVector<CartItem> updated){
     for(unsigned int i =0;i < dci.size();i++){
 
         dci[i].quantity=updated[i].quantity;
