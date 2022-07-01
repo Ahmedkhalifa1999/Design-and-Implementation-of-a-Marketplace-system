@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `orderitem`;
 CREATE TABLE `orderitem` (
   `orderid` int NOT NULL,
   `itemid` int NOT NULL,
+  `quantity` int NOT NULL,
   PRIMARY KEY (`orderid`,`itemid`),
   KEY `itemid` (`itemid`),
   CONSTRAINT `orderitem_ibfk_1` FOREIGN KEY (`orderid`) REFERENCES `orders` (`orderid`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -38,6 +39,7 @@ CREATE TABLE `orderitem` (
 
 LOCK TABLES `orderitem` WRITE;
 /*!40000 ALTER TABLE `orderitem` DISABLE KEYS */;
+INSERT INTO `orderitem` VALUES (1,2,4),(1,3,4),(2,2,2),(3,1,2),(3,2,2),(4,3,3),(4,4,1);
 /*!40000 ALTER TABLE `orderitem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-29 19:30:23
+-- Dump completed on 2022-07-01 17:38:17

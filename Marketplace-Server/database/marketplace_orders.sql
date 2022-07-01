@@ -26,7 +26,6 @@ CREATE TABLE `orders` (
   `orderid` int NOT NULL,
   `placedate` date NOT NULL,
   `arrivaldate` date DEFAULT NULL,
-  `quantity` int NOT NULL,
   `totalprice` int NOT NULL,
   `customeremail` varchar(50) NOT NULL,
   `address` varchar(50) NOT NULL,
@@ -43,6 +42,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'1950-11-02',NULL,150,'breksamamr@gmail.com','xcvb','arrived'),(2,'1995-11-02',NULL,150,'breksamamr@gmail.com','xcvb','arrived'),(3,'2022-06-30',NULL,320,'weza@gmail.com','Haron','ACCEPTED'),(4,'2022-06-30',NULL,24540,'weza@gmail.com','Haron','ACCEPTED');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-29 19:30:23
+-- Dump completed on 2022-07-01 17:38:17

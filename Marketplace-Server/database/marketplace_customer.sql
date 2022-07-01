@@ -39,7 +39,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('bassant@gmail.com','Bassant Yasser','123456786','Nasrcity',200,'bassantyasser'),('breksamamr@gmail.com','breksam amr','123456789','Heliopolis',10000,'breksoo'),('Caty@gmail.com','Catherine Karam','123456788','shobra',100,'caty'),('gg@gmail.com','samsm','123456700','sheraton',0,'smsmmm'),('mn3m@gmail.com','Ahmed Abdelmoneam','123456784','Fifth settlement',5000,'ahmed'),('princessfofo@gmail.com','Farah Mrwan','123456783','Orphan place',0,'farah'),('to7to7@gmail.com','Muhammed Fathy','123456785','Homeless',50,'fathy'),('weza@gmail.com','Muhammed Moataz','123456787','Haron',1050,'muhammed'),('zz@gmail.com','root','0123456000','downtown',0,'admin');
+INSERT INTO `customer` VALUES ('bassant@gmail.com','Bassant Yasser','123456786','Nasrcity',200,'bassantyasser'),('breksamamr@gmail.com','breksam amr','123456789','Heliopolis',10000,'breksoo'),('Caty@gmail.com','Catherine Karam','123456788','shobra',100,'caty'),('gg@gmail.com','samsm','123456700','sheraton',0,'smsmmm'),('mn3m@gmail.com','Ahmed Abdelmoneam','123456784','Fifth settlement',5000,'ahmed'),('princessfofo@gmail.com','Farah Mrwan','123456783','Orphan place',0,'farah'),('to7to7@gmail.com','Muhammed Fathy','123456785','Homeless',50,'fathy'),('weza@gmail.com','Muhammed Moataz','123456787','Haron',10050,'muhammed'),('zz@gmail.com','root','0123456000','downtown',0,'admin');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-29 19:30:24
+-- Dump completed on 2022-07-01 17:38:17
