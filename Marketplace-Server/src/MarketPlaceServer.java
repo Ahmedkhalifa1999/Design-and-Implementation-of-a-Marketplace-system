@@ -1,4 +1,3 @@
-
 import javafx.application.Application;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -8,12 +7,14 @@ import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
+import java.util.ArrayList;
 
-
-import java.io.IOException;
+import com.opencsv.CSVReader;
 
 public class MarketplaceServer extends Application  {
 
@@ -58,16 +59,8 @@ public class MarketplaceServer extends Application  {
         layout.getChildren().addAll(path, CSVPath ,btn2 ,sd , startDate, ed, endDate , btn);
         root.getChildren().add(layout);
 
-        String sDate = startDate.getText();
-        String eDate = endDate.getText();
-        btn.setOnAction(e-> {
-            try {
-                ParseDate(startDate , endDate);
-            } catch (ParseException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
 
+        btn.setOnAction(e-> getReport (startDate , endDate) );
 
         btn2.setOnAction(e-> addItems (CSVPath ) );
 
@@ -77,27 +70,58 @@ public class MarketplaceServer extends Application  {
     }
 
     private void addItems(TextField csvPath) {
-        String path = csvPath.getText();
-        System.out.println(path);
-    }
+        String path = "\"" + csvPath.getText()+ "\"";
 
-    public void ParseDate (TextField startDate , TextField endDate) throws ParseException {
-        try {
-            String sd = startDate.getText();
-            String ed = endDate.getText();
-            Date sdate = new SimpleDateFormat("dd/MM/yyyy").parse(sd);
-            Date edate = new SimpleDateFormat("dd/MM/yyyy").parse(ed);
 
-        }
-        catch (ParseException e)
+        try
         {
-            System.out.println("Error!");
-        }
+            File file = new File(path);
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line ="";
+            while((line = br.readLine()) != null) {
+                String [] l= line.split(",",0);
+                String name = l[0];
+                int price = Integer.parseInt(l[1]);
+                int quantity = Integer.parseInt(l[2]);
+                String category = l[3];
+                DatabaseManager.item item = new DatabaseManager.item (name , price , quantity, category);
+                DatabaseManager.add_item(item);
+            }
 
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
+    public void getReport ( TextField startDate , TextField endDate)
+    {
+        try {
+            String start = startDate.getText();
+            String end = endDate.getText();
+            ArrayList<DatabaseManager.datedorderitem> arr = DatabaseManager.dateorder(start, end);
+            File file = new File("report.csv");
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("Items:");
+            bw.newLine();
+            for (int i = 0; i < arr.size(); i++) {
+                bw.write((arr.get(i)).itemname() + "," + (arr.get(i)).quantity());
+                bw.newLine();
+            }
+            bw.close();
+            fw.close();
+        }
+        catch (Exception e){}
+    }
 
     public static void main(String[] args) {
+        Server marketplace = new Server();
+        Thread serverThread = new Thread(marketplace);
+        serverThread.start();
         launch();
     }
+
 }
