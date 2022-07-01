@@ -51,7 +51,6 @@
       <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/.qmake.stash" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/.qmake.stash" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/.qtc_clangd/compile_commands.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/.qtc_clangd/compile_commands.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile.Debug" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile.Debug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile.Release" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile.Release" afterDir="false" />
@@ -91,6 +90,7 @@
       <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile.Debug" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile.Debug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile.Release" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile.Release" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Marketplace_Server_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Marketplace_Server_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" afterDir="false" />
@@ -111,11 +111,15 @@
       <change beforePath="$PROJECT_DIR$/database/marketplace_items.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_items.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/marketplace_orderitem.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_orderitem.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/marketplace_orders.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_orders.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Marketplace-Server/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Marketplace-Server/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Marketplace-Server/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Marketplace-Server/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MarketPlaceServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MarketPlaceServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
