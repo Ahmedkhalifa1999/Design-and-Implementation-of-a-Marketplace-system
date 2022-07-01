@@ -21,7 +21,7 @@ DataManager :: DataManager(QTcpSocket *socket){
     this->socket = socket;
     socket->connectToHost(QHostAddress(SERVER_ADDRESS), SERVER_PORT);
     socket->waitForConnected();
-    QObject::connect(this->socket, &QTcpSocket::readyRead, this, &DataManager::server_response);
+    QObject::connect(socket, &QTcpSocket::readyRead, this, &DataManager::server_response);
 }
 bool DataManager :: validate_Email(const QString email)
 {
@@ -50,6 +50,7 @@ bool DataManager :: validate_Phone(const QString phone)
 SignUpResult DataManager :: signUp  (SignUpData data){
 
     SignUpResult signUpResult;
+
 
     if(validate_Email(data.email))
     {
@@ -104,6 +105,7 @@ SignUpResult DataManager :: signUp  (SignUpData data){
 }
 bool DataManager :: signIn(SignInData data, bool save){
     //Validate Email
+    qDebug() << socket->bytesAvailable();
     if(!validate_Email(data.email))
     {
         return false;

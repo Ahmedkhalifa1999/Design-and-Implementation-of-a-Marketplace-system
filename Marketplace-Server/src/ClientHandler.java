@@ -251,9 +251,9 @@ public class ClientHandler implements Runnable
                 System.out.println(response);
                 ByteBuffer writeBuffer = ByteBuffer.allocate(response.length());
                 writeBuffer.put(response.getBytes());
-                //writeBuffer.flip();
+                writeBuffer.flip();
                 Future<Integer> writtenBytes = socket.write(writeBuffer);
-                writtenBytes.get();
+                System.out.println(writtenBytes.get());
 
             } catch (InterruptedException | ExecutionException | IOException e) {
                 // Close everything gracefully.
