@@ -1,5 +1,5 @@
-#include "account.h"
-#include"cart.h"
+//#include "account.h"
+//#include"cart.h"
 #include"datamanager.h"
 #include "ui_account.h"
 #include  "shop.h"
