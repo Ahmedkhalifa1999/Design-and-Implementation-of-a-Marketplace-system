@@ -1,10 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Marketplace-Server:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2c774fd-3c43-4b60-88c0-95789a2f8dcf" name="Changes" comment="" />
+    <list default="true" id="f2c774fd-3c43-4b60-88c0-95789a2f8dcf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/Design-and-Implementation-of-a-Marketplace-system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/Design-and-Implementation-of-a-Marketplace-system.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/gson_2_9_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/gson_2_9_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.42c75df" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.42c75df" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.58b81a0" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.58b81a0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.cda4f37" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.cda4f37" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.e5240b8" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.e5240b8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.fbe6ed5" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Marketplace-Client.pro.user.fbe6ed5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Resource.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/Resource.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/account.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/account.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/account.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/account.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/account.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/account.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/buttonid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/buttonid.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/buttonid.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/buttonid.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/cart.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/cart.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/cart.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/cart.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/cart.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/cart.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/datamanager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/datamanager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/datamanager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/datamanager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/itemdet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/itemdet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/itemdet.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/itemdet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/itemdet.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/itemdet.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/lineedit.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/lineedit.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/lineedit.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/lineedit.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/login.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/login.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/login.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/login.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/login.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/login.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/mainwindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/mainwindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/mainwindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/mainwindow.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/Marketplace-Client/shop.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/.qmake.stash" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/.qmake.stash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/.qtc_clangd/compile_commands.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/.qtc_clangd/compile_commands.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile.Debug" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile.Debug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile.Release" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/Makefile.Release" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/debug/object_script.Marketplace-Client.Debug" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/debug/object_script.Marketplace-Client.Debug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/release/object_script.Marketplace-Client.Release" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/release/object_script.Marketplace-Client.Release" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_account.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_account.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_accountdetails.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_accountdetails.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_cart.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_cart.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_cartcheckout.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_cartcheckout.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_itemdet.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_itemdet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_itemview.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_itemview.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_login.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_login.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_mainwindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_shop.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_shop.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_signinsignup.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop-Debug/ui_signinsignup.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/.qmake.stash" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/.qmake.stash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/Makefile.Debug" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/Makefile.Debug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/Makefile.Release" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/Makefile.Release" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_account.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_account.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_cart.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_cart.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_datamanager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_datamanager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_itemdet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_itemdet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_login.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_login.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_mainwindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_predefs.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/moc_predefs.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/qrc_Resource.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/debug/qrc_Resource.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/object_script.Marketplace-Client.Debug" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/object_script.Marketplace-Client.Debug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/object_script.Marketplace-Client.Release" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/object_script.Marketplace-Client.Release" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_account.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_account.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_cart.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_cart.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_itemdet.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_itemdet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_login.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_login.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_mainwindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_shop.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/ui_shop.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/.qmake.stash" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/.qmake.stash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile.Debug" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile.Debug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile.Release" beforeDir="false" afterPath="$PROJECT_DIR$/../Marketplace-Client/build-Marketplace-Client-Desktop_Qt_6_2_2_MinGW_64_bit-config/Makefile.Release" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/opencsv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/opencsv.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_11_windows_x64_bin_sdk.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_11_windows_x64_bin_sdk.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_base.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_base.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_controls.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_controls.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_fxml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_fxml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_graphics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_graphics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_media.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/openjfx_javafx_media.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Marketplace-Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Marketplace-Server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/marketplace_customer.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_customer.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/marketplace_items.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_items.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/marketplace_orderitem.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_orderitem.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/marketplace_orders.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/marketplace_orders.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MarketPlaceServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MarketPlaceServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,9 +155,10 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "openjdk-18",
     "last_opened_file_path": "C:/Users/ahmed/Desktop/Parallel and Distributed Systems/Design-and-Implementation-of-a-Marketplace-system/Marketplace-Server/JavaFX/openjfx-11_windows-x64_bin-sdk.zip",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
