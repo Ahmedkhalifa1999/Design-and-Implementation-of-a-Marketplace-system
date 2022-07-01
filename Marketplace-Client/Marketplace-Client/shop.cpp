@@ -3,20 +3,15 @@
 #include "datamanager.h"
 
 #include "buttonid.h"
-QList <QString> myList;
-SearchQuery sq;
-QVector <QPixmap> img;
-QVector <QString> names;
-QVector <MoneyAmount> prices;
-QVector <unsigned int> ids;
-QString search;
-QVector <int> butid;
 
 
-Shop::Shop(QWidget *parent) :
+Shop::Shop(DataManager *dataManager, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Shop)
 {
+    this->dm = dataManager;
+    QObject::connect(this->dm, &DataManager::getCategories_signal, this, &Shop::getCategories_slot);
+    QObject::connect(this->dm, &DataManager::getItemList_signal, this, &Shop::getItemList_slot);
     ui->setupUi(this);
     dm->getCategories();
     ui->listWidget->addItems(myList);
@@ -69,21 +64,21 @@ void Shop::on_b_clicked()
 //  obj = qobject_cast<QObject *>(b);
   button = dynamic_cast<ButtonId *>(QObject::sender());
 
-  itemd = new Itemdet(this);
+  itemd = new Itemdet(this->dm, button->id, this);
   itemd->show();
 
 }
 
 void Shop::on_cartButton_clicked()
 {
- cart = new Cart(this);
+ cart = new Cart(this->dm, this);
  cart->show();
 }
 
 
 void Shop::on_accountButton_clicked()
 {
-  acc = new Account(this);
+  acc = new Account(this->dm, this);
   acc->show();
 }
 
@@ -103,7 +98,7 @@ void Shop::getCategories_slot(QVector<QString> result){
 
 }
 
-void getItemList_slot(QVector<Item> result){
+void Shop::getItemList_slot(QVector<Item> result){
     for(int i=0; i < result.size();i++){
         img[i]=result[i].icon;
          names[i] =result[i].name;

@@ -3,8 +3,6 @@ release/buttonid.o
 release/cart.o
 release/datamanager.o
 release/itemdet.o
-release/lineedit.o
-release/lineedit.o
 release/login.o
 release/main.o
 release/mainwindow.o

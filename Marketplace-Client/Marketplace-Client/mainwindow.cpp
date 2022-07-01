@@ -3,14 +3,13 @@
 #include "datamanager.h"
 #include <QPixmap>
 #include <QMessageBox>
-SignUpData sud;
-SignUpResult sur;
-DataManager dm;
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(DataManager *dataManager, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    this->dm = dataManager;
+    QObject::connect(this->dm, &DataManager::signUp_signal, this, &MainWindow::signUp_slot);
     ui->setupUi(this);
 
 }
@@ -29,7 +28,7 @@ void MainWindow::on_registerButton_clicked()
     sud.password = ui->password->text();
     sud.phone = ui->number->text();
     sud.address = ui->address->text();
-    sur= dm.signUp(sud);
+    sur= dm->signUp(sud);
 
     if(sur.validEmail==false && sur.validPhone==false){
         QMessageBox::warning(this,"Error","Incorrect Email and phone, please try Again");
@@ -45,12 +44,12 @@ void MainWindow::on_registerButton_clicked()
 
 void MainWindow::on_loginButton_clicked()
 {
-   log = new Login(this);
+   log = new Login(this->dm, this);
    log->show();
 }
 void MainWindow:: signUp_slot(bool result){
     if (result == true){ //The signup is successful the user does not exist
-        shop = new Shop(this);
+        shop = new Shop(this->dm, this);
         shop->show();
     }
     else {

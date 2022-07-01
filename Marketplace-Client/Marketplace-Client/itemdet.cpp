@@ -3,19 +3,15 @@
 #include "ui_itemdet.h"
 #include "datamanager.h"
 //#include"shop.h"
-QString item_name;
-QString item_description;
-QVector<QPixmap> item_images;
-MoneyAmount item_price;
-unsigned int quan;
-CartItem c;
 
-Itemdet::Itemdet(QWidget *parent) :
+Itemdet::Itemdet(DataManager *dataManager, unsigned int ID, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Itemdet)
 {
+    this->dm = dataManager;
+    QObject::connect(this->dm, &DataManager::getItemData_signal, this, &Itemdet::getItemData_slot);
     ui->setupUi(this);
-    dm->getItemData(button->id);
+    dm->getItemData(ID);
 
     QLabel* labpic = new QLabel(this);
     labpic->setPixmap(item_images[0].scaled(300,600,Qt::KeepAspectRatio));
@@ -47,7 +43,7 @@ Itemdet::Itemdet(QWidget *parent) :
     QList<QString> combolist={"1","2","3","4","5","6","7","8","9","10"};
      ui->comboBox->addItems(combolist);
      c.quantity=quan;
-     c.ID=button->id;
+     c.ID=ID;
 }
 
 Itemdet::~Itemdet()
@@ -66,7 +62,7 @@ void Itemdet::on_addCartButton_clicked()
    dm->addToCart(c);
 }
 
-void getItemData_slot(DetailedItem result){
+void Itemdet::getItemData_slot(DetailedItem result){
     item_name = result.name;
     item_description = result.description;
     item_images[0]=result.images[0];

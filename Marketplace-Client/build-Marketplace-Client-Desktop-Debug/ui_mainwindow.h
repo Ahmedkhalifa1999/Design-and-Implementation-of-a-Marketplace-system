@@ -33,17 +33,15 @@ public:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
     QLineEdit *password;
-    QLabel *label_8;
-    QLineEdit *number;
     QLineEdit *email;
+    QLabel *label_8;
     QLineEdit *address;
-    QLabel *label_5;
-    QLabel *label_7;
-    QLabel *label_6;
-    QLineEdit *fname;
-    QLabel *label_4;
+    QLineEdit *name;
     QLabel *label_3;
-    QLineEdit *lname;
+    QLineEdit *number;
+    QLabel *label_5;
+    QLabel *label_6;
+    QLabel *label_7;
     QPushButton *registerButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -97,7 +95,13 @@ public:
         password->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         password->setEchoMode(QLineEdit::Password);
 
-        gridLayout->addWidget(password, 3, 1, 1, 1);
+        gridLayout->addWidget(password, 2, 1, 1, 1);
+
+        email = new QLineEdit(gridLayoutWidget);
+        email->setObjectName(QString::fromUtf8("email"));
+        email->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(email, 1, 1, 1, 1);
 
         label_8 = new QLabel(gridLayoutWidget);
         label_8->setObjectName(QString::fromUtf8("label_8"));
@@ -107,72 +111,53 @@ public:
         label_8->setFont(font3);
         label_8->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
 
-        gridLayout->addWidget(label_8, 5, 0, 1, 1);
-
-        number = new QLineEdit(gridLayoutWidget);
-        number->setObjectName(QString::fromUtf8("number"));
-        number->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(number, 4, 1, 1, 1);
-
-        email = new QLineEdit(gridLayoutWidget);
-        email->setObjectName(QString::fromUtf8("email"));
-        email->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(email, 2, 1, 1, 1);
+        gridLayout->addWidget(label_8, 4, 0, 1, 1);
 
         address = new QLineEdit(gridLayoutWidget);
         address->setObjectName(QString::fromUtf8("address"));
         address->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(address, 5, 1, 1, 1);
+        gridLayout->addWidget(address, 4, 1, 1, 1);
 
-        label_5 = new QLabel(gridLayoutWidget);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setFont(font3);
-        label_5->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
+        name = new QLineEdit(gridLayoutWidget);
+        name->setObjectName(QString::fromUtf8("name"));
+        name->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(label_5, 1, 0, 1, 1);
-
-        label_7 = new QLabel(gridLayoutWidget);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setFont(font3);
-        label_7->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
-
-        gridLayout->addWidget(label_7, 4, 0, 1, 1);
-
-        label_6 = new QLabel(gridLayoutWidget);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setFont(font3);
-        label_6->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
-
-        gridLayout->addWidget(label_6, 3, 0, 1, 1);
-
-        fname = new QLineEdit(gridLayoutWidget);
-        fname->setObjectName(QString::fromUtf8("fname"));
-        fname->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(fname, 0, 1, 1, 1);
-
-        label_4 = new QLabel(gridLayoutWidget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setFont(font3);
-        label_4->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
-
-        gridLayout->addWidget(label_4, 0, 0, 1, 1);
+        gridLayout->addWidget(name, 0, 1, 1, 1);
 
         label_3 = new QLabel(gridLayoutWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setFont(font3);
         label_3->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
 
-        gridLayout->addWidget(label_3, 2, 0, 1, 1);
+        gridLayout->addWidget(label_3, 1, 0, 1, 1);
 
-        lname = new QLineEdit(gridLayoutWidget);
-        lname->setObjectName(QString::fromUtf8("lname"));
-        lname->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        number = new QLineEdit(gridLayoutWidget);
+        number->setObjectName(QString::fromUtf8("number"));
+        number->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
 
-        gridLayout->addWidget(lname, 1, 1, 1, 1);
+        gridLayout->addWidget(number, 3, 1, 1, 1);
+
+        label_5 = new QLabel(gridLayoutWidget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setFont(font3);
+        label_5->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
+
+        gridLayout->addWidget(label_5, 0, 0, 1, 1);
+
+        label_6 = new QLabel(gridLayoutWidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setFont(font3);
+        label_6->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
+
+        gridLayout->addWidget(label_6, 2, 0, 1, 1);
+
+        label_7 = new QLabel(gridLayoutWidget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setFont(font3);
+        label_7->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500038, fy:0.511, stop:0.370192 rgba(255, 255, 255, 0), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.427885 rgba(255, 188, 188, 80), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));"));
+
+        gridLayout->addWidget(label_7, 3, 0, 1, 1);
 
         registerButton = new QPushButton(centralwidget);
         registerButton->setObjectName(QString::fromUtf8("registerButton"));
@@ -182,7 +167,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 900, 22));
+        menubar->setGeometry(QRect(0, 0, 900, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -201,11 +186,10 @@ public:
         loginButton->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", " TheMarket", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Address", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "Last name", nullptr));
-        label_7->setText(QCoreApplication::translate("MainWindow", "Phone number", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "First name", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "E-mail", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "Name", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "Phone number", nullptr));
         registerButton->setText(QCoreApplication::translate("MainWindow", "Register", nullptr));
     } // retranslateUi
 

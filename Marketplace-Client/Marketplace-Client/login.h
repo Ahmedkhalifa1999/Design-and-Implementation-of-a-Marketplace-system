@@ -11,18 +11,25 @@ class Login : public QDialog
 {
     Q_OBJECT
 
+    SignInData sid;
+    DataManager *dm;
+    bool flag,save;
+
 public:
-    explicit Login(QWidget *parent = nullptr);
+    explicit Login(DataManager *dataManager, QWidget *parent = nullptr);
     ~Login();
 
 private slots:
-    void signIn_slot(bool result);
 
     void on_logButton_clicked();
 
     void on_regButton_clicked();
 
     void on_checkBox_stateChanged(int arg1);
+
+public slots:
+
+    void signIn_slot(bool result);
 
 private:
     Ui::Login *ui;

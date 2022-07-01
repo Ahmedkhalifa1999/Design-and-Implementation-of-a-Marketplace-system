@@ -3,8 +3,6 @@ debug/buttonid.o
 debug/cart.o
 debug/datamanager.o
 debug/itemdet.o
-debug/lineedit.o
-debug/lineedit.o
 debug/login.o
 debug/main.o
 debug/mainwindow.o

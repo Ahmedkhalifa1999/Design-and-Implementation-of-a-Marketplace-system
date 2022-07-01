@@ -1,22 +1,17 @@
 #include "cart.h"
 #include "ui_cart.h"
 #include "datamanager.h"
-#include"lineedit.h"
 #include<QMessageBox>
-DataManager dm;
-QVector <DetailedCartItem> dci;
-QVector <CartItem> upd;
-QVector< unsigned int>id,qu;
-QVector <QPixmap> img;
-QVector <QString> names;
-QVector <MoneyAmount> prices;
-unsigned int unavailItem , index;
-Cart::Cart(QWidget *parent) :
+
+Cart::Cart(DataManager *dataManager, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Cart)
 {
+    this->dm = dataManager;
+    QObject::connect(this->dm, &DataManager::checkout_signal, this, &Cart::checkout_slot);
+    QObject::connect(this->dm, &DataManager::getCart_signal, this, &Cart::getCart_slot);
     ui-> setupUi(this);
-    dm.getCart(); //Vector of detailed cart item
+    dm->getCart(); //Vector of detailed cart item
 
     for(unsigned int i=0; i < dci.size();i++){
 
@@ -83,7 +78,7 @@ void Cart :: getCart_slot (QVector <DetailedCartItem> result){
 }
 void Cart::on_Checkout_clicked()
 {
-    dm.checkout();
+    dm->checkout();
     ui->Checkout->setEnabled(false);
 }
 
@@ -135,14 +130,5 @@ void Cart::on_pushButton_clicked()
         upd[i].quantity= (vl[i]->text()).toUInt();
     }
 
-     dm.updateCart(upd);
-}
-
-void updateCart(QVector<CartItem> updated){
-    for(unsigned int i =0;i < dci.size();i++){
-
-        dci[i].quantity=updated[i].quantity;
-
-    }
-
+     dm->updateCart(upd);
 }

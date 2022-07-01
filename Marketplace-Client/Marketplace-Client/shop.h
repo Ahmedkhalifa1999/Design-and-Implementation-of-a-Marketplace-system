@@ -9,8 +9,6 @@
 #include "account.h"
 #include "buttonid.h"
 
-ButtonId *button;
-
 namespace Ui {
 class Shop;
 }
@@ -18,9 +16,18 @@ class Shop;
 class Shop : public QDialog
 {
     Q_OBJECT
+    QList <QString> myList;
+    SearchQuery sq;
+    QVector <QPixmap> img;
+    QVector <QString> names;
+    QVector <MoneyAmount> prices;
+    QVector <unsigned int> ids;
+    QString search;
+    QVector <int> butid;
+    ButtonId *button;
 
 public:
-    explicit Shop(QWidget *parent = nullptr);
+    explicit Shop(DataManager *dataManager, QWidget *parent = nullptr);
     ~Shop();
     //ButtonId *button;
 
@@ -32,6 +39,8 @@ private slots:
     void on_accountButton_clicked();
 
     void on_searchButton_clicked();
+
+public slots:
 
     void getCategories_slot(QVector<QString> result);
     void getItemList_slot(QVector<Item> result);

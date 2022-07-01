@@ -5,14 +5,12 @@
 #include <QMessageBox>
 //#include "shop.h"
 
-AutoSignInResult asir;
-SignInData sid;
-DataManager dm;
-bool flag,save;
-Login::Login(QWidget *parent) :
+Login::Login(DataManager *dataManager, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login)
 {
+    this->dm = dataManager;
+    QObject::connect(this->dm, &DataManager::signIn_signal, this, &Login::signIn_slot);
     ui->setupUi(this);
 }
 
@@ -26,7 +24,7 @@ void Login::on_logButton_clicked()
  sid.email = ui->emailLog->text();
  sid.password = ui->passLog->text();
  save = ui->checkBox->isChecked(); //if the user want to be rememberd or not
- flag = dm.signIn(sid,save);
+ flag = dm->signIn(sid,save);
 
   if(flag==false){
    QMessageBox::warning(this,"Error ","Invalid Email, Please try Again");
@@ -41,15 +39,10 @@ void Login::on_regButton_clicked()
 }
 
 
-AutoSignInResult autoSignIn(){
-
-}
-
-
 void Login::signIn_slot(bool result){
 
     if (result == true){  //The signin is successful the user put right credentials
-        shop = new Shop(this);
+        shop = new Shop(this->dm, this);
         shop->show();
     }
     else {

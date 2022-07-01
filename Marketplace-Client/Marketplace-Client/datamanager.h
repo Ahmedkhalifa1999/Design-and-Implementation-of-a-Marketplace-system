@@ -6,7 +6,6 @@
 #include <QPixmap>
 #include <QTcpSocket>
 #include "buttonid.h"
-#include "lineedit.h"
 
 #include <QVector>
 #include <QFile>
@@ -168,7 +167,6 @@ public:
     void addToCart(CartItem item);
     void updateCart(QVector<CartItem> updated);
     void checkout();
-    LineEdit *quant;
     //Account-related functionality
     void getAccountDetails();
     UpdateAccountResult updateAccountDetails(AccountDetails details);

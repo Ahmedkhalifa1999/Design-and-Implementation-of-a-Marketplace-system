@@ -6,28 +6,20 @@
 #include<QMessageBox>
 #include<QMetaEnum>
 
-DataManager dm;
-AccountDetails ad,details;
-MoneyAmount wal;
-UpdateAccountResult uar;
-QVector<unsigned int> ids;
-QVector<OrderState> states;
-unsigned int orderid;
-QVector<MoneyAmount> amounts;
-QVector<unsigned int> itemid;
-QVector<QPixmap> itempic;
-QVector<QString> itemname;
-QVector<MoneyAmount> itemprice;
-QVector<unsigned int> itemquant;
 
-
-Account::Account(QWidget *parent) :
+Account::Account(DataManager *dataManager, QWidget *parent) :
     QDialog(parent),
 
     ui(new Ui::Account)
 {
+    this->dm = dataManager;
+    QObject::connect(this->dm, &DataManager::getAccountDetails_signal, this, &Account::getAccountDetails_slot);
+    QObject::connect(this->dm, &DataManager::updateAccountDetails_signal, this, &Account::updateAccountDetails_slot);
+    QObject::connect(this->dm, &DataManager::walletDeposit_signal, this, &Account::walletDeposit_slot);
+    QObject::connect(this->dm, &DataManager::getOrderHistory_signal, this, &Account::getOrderHistory_slot);
+    QObject::connect(this->dm, &DataManager::getOrderDetails_signal, this, &Account::getOrderDetails_slot);
     ui->setupUi(this);
-    dm.getAccountDetails();
+    dm->getAccountDetails();
     ui->name->insert(ad.name);
     ui->email->insert(ad.email);
     ui->email->setEnabled(false);
@@ -35,7 +27,7 @@ Account::Account(QWidget *parent) :
     ui->address->insert(ad.address);
     ui->balance->setText((QString::number(ad.wallet.pounds)+"."+QString::number(ad.wallet.piasters)));
 
-    dm.getOrderHistory();
+    dm->getOrderHistory();
 
     for(int i=0;i<ids.size();i++){
        QLabel* idl = new QLabel(this);
@@ -109,9 +101,9 @@ void Account::on_butt_clicked()
 {
 //  QObject* obj = sender();
 //  obj = qobject_cast<QObject *>(b);
-  button = dynamic_cast<ButtonId *>(QObject::sender());
+  ButtonId *button = dynamic_cast<ButtonId *>(QObject::sender());
   orderid = button->id;
-  dm.getOrderDetails(orderid);
+  dm->getOrderDetails(orderid);
 
 
 }
@@ -128,7 +120,7 @@ void Account::getAccountDetails_slot(AccountDetails result){
 
 void Account::on_save_clicked()
 {
-  uar= dm.updateAccountDetails(ad);
+  uar= dm->updateAccountDetails(ad);
   if(uar.validEmail == false){
      QMessageBox::warning(this,"Error","Invalid Email so please try again");
  }
@@ -166,7 +158,7 @@ void Account::on_pushButton_clicked() //go to home page
 
 }
 
-void walletDeposit(MoneyAmount amount){
+void Account::walletDeposit(MoneyAmount amount){
     ad.wallet.pounds =amount.pounds;
     ad.wallet.piasters=amount.piasters;
 }
@@ -174,7 +166,7 @@ void walletDeposit(MoneyAmount amount){
 
 void Account::on_pushButton_2_clicked() //go to cart page
 {
-    cart = new Cart(this);
+    cart = new Cart(this->dm, this);
     cart -> show();
 }
 
@@ -183,7 +175,7 @@ void Account::on_deposit_clicked()
 {
     wal.pounds= (ui->poundLine->text()).toUInt();
     wal.piasters= (ui->piasterLine->text()).toUInt();
-    dm.walletDeposit(wal);
+    dm->walletDeposit(wal);
 }
 
 void Account::walletDeposit_slot(bool result){
@@ -219,7 +211,7 @@ void Account::getOrderDetails_slot(DetailedOrder result){
 
     }
 }
-QString enumtostring(OrderState os){
+QString Account::enumtostring(OrderState os){
     if(os==OrderState::ACCEPTED)
         return "ACCEPTED";
     else if(os==OrderState::REJECTED)
@@ -228,6 +220,7 @@ QString enumtostring(OrderState os){
         return "SHIPPED";
     else if(os==OrderState::SHIPPING)
         return "SHIPPING";
+    return "REJECTED";
 }
 
 

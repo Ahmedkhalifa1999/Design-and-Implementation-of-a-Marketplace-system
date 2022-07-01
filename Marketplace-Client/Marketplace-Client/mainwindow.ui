@@ -260,7 +260,7 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:2, fx:0.500
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

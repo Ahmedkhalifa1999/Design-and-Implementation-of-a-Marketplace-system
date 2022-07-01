@@ -14,9 +14,12 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    SignUpData sud;
+    SignUpResult sur;
+    DataManager *dm;
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(DataManager *dataManager, QWidget *parent = nullptr);
     ~MainWindow();
 
 
@@ -27,24 +30,7 @@ private slots:
     void on_loginButton_clicked();
 
 public slots:
-    //Sign-in & sign-up signals
     void signUp_slot(bool result);
-    void signIn_slot(bool result);
-
-    //Cart-related signals
-    void checkout_slot(CheckoutResult result);
-    void  getCart_slot (QVector <DetailedCartItem> result);
-    //Account-related signals
-    void getAccountDetails_slot (AccountDetails result);
-    void updateAccountDetails_slot(bool result);
-    void getOrderHistory_slot(QVector<OrderSummary> result);
-    void getOrderDetails_slot(DetailedOrder result);
-    void walletDeposit_slot(bool result);
-
-    //Shop-related signals
-    void getItemList_slot(QVector<Item> result);
-    void getItemData_slot(DetailedItem result);
-    void getCategories_slot(QVector<QString> result);
 
 private:
     Ui::MainWindow *ui;
