@@ -1,4 +1,5 @@
 #include "itemdet.h"
+#include "shop.h"
 #include "ui_itemdet.h"
 #include "datamanager.h"
 //#include"shop.h"

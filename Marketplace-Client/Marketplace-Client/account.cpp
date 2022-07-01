@@ -109,7 +109,7 @@ void Account::on_butt_clicked()
 {
 //  QObject* obj = sender();
 //  obj = qobject_cast<QObject *>(b);
-  button = qobject_cast<ButtonId *>(QObject::sender());
+  button = dynamic_cast<ButtonId *>(QObject::sender());
   orderid = button->id;
   dm.getOrderDetails(orderid);
 
@@ -195,7 +195,7 @@ void Account::walletDeposit_slot(bool result){
         QMessageBox::warning(this,"Error","The Deposit operation is not done");
 }
 
-void Account::getOrderHistory_slot(std::vector<OrderSummary> result){
+void Account::getOrderHistory_slot(QVector<OrderSummary> result){
 
     for(int i=0;i<result.size();i++){
         ids[i]=result[i].ID;
