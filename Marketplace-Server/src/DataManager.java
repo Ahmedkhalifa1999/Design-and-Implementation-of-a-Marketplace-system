@@ -132,8 +132,8 @@ public class DataManager {
 
         if (!DatabaseManager.checkemail(data.email())) {
             DatabaseManager.addRegister(data);
+
             this.email = data.email();
-            DatabaseManager.addcart(data.email());
             return true;
         }
         return false;
