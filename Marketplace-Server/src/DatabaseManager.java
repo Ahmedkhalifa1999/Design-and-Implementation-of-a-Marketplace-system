@@ -18,6 +18,7 @@ public class DatabaseManager {
     static final String path ="C:\\Users\\ahmed\\Desktop\\Parallel and Distributed Systems\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\icons";
 
     static final String path2 ="C:\\Users\\ahmed\\Desktop\\Parallel and Distributed Systems\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\images";
+
     public record datedorderitem(
             String itemname,
             int quantity
@@ -622,10 +623,10 @@ public class DatabaseManager {
     public static ArrayList<String> getImages(int ID) {
         //convert to string
         String s = String.valueOf(ID);
-        File file = new File(path2);
+        File file = new File("C:\\Users\\HP\\Documents\\GitHub\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\images");
         ArrayList<String> arr = new ArrayList<String>();
         //arr -> arraylist of paths of matched images
-        arr = findFilearr(s, file);
+        //arr = findFilearr(s, file);
         return arr;
 
 
@@ -634,10 +635,8 @@ public class DatabaseManager {
     public static String getIcon(int ID) {
         //convert to string
         String s = String.valueOf(ID);
-        File file = new File(path);
-        //s+=".jpg";
-        ArrayList<String> arr = new ArrayList<String>();
-        arr=     findFilearr(s, file);
-        return arr.get(0);
+        File file = new File("Marketplace-Server/database/icons");
+        String str = findFilestr(s, file);
+        return str;
     }
 }
