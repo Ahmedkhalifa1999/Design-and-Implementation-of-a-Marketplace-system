@@ -628,11 +628,13 @@ public class DatabaseManager {
 
     }
 
-    public static String getIcon(int ID) {
+    public String getIcon(int ID) {
         //convert to string
         String s = String.valueOf(ID);
-        File file = new File("Marketplace-Server/database/icons");
-        String str = findFilestr(s, file);
-        return str;
+        File file = new File("C:\\Users\\HP\\Documents\\GitHub\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\icons");
+        //s+=".jpg";
+        ArrayList<String> arr = new ArrayList<String>();
+        arr=     findFilearr(s, file);
+        return arr.get(0);
     }
 }
