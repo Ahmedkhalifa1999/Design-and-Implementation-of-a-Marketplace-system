@@ -68,10 +68,10 @@ void Shop::getCategories_slot(QVector<QString> result){
 
 void Shop::getItemList_slot(QVector<Item> result){
     for(int i=0; i < result.size();i++){
-        img[i]=result[i].icon;
-         names[i] =result[i].name;
-         prices[i]=result[i].price;
-         ids[i]=result[i].ID;
+        img.push_back(result[i].icon);
+        names.push_back(result[i].name);
+        prices.push_back(result[i].price);
+        ids.push_back(result[i].ID);
     }
 
     for(int i=0;i<img.size();i++){

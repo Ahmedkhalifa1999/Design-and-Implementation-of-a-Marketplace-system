@@ -20,75 +20,6 @@ Account::Account(DataManager *dataManager, QWidget *parent) :
     QObject::connect(this->dm, &DataManager::getOrderDetails_signal, this, &Account::getOrderDetails_slot);
     ui->setupUi(this);
     dm->getAccountDetails();
-    ui->name->insert(ad.name);
-    ui->email->insert(ad.email);
-    ui->email->setEnabled(false);
-    ui->phone->insert(ad.phone);
-    ui->address->insert(ad.address);
-    ui->balance->setText((QString::number(ad.wallet.pounds)+"."+QString::number(ad.wallet.piasters)));
-
-    dm->getOrderHistory();
-
-    for(int i=0;i<ids.size();i++){
-       QLabel* idl = new QLabel(this);
-         idl->setText(QString::number(ids[i]));
-         ui->gridLayout_3->addWidget(idl, i,0);
-    }
-
-    for(int i=0;i<states.size();i++){
-       QLabel* st = new QLabel(this);
-          QString stat = enumtostring(states[i]);
-         st->setText(stat);
-         ui->gridLayout_3->addWidget(st, i,1);
-    }
-
-    for(int i=0;i<amounts.size();i++){
-       QLabel* pr = new QLabel(this);
-         pr->setText(QString::number(amounts[i].pounds)+"."+QString::number(amounts[i].piasters));
-         ui->gridLayout_3->addWidget(pr, i,2);
-    }
-
-    for(int i=0;i<ids.size();i++){
-        ButtonId *b = new ButtonId();
-        b->setText("View Order");
-        b->id = ids[i];
-        ui->gridLayout_3->addWidget(b, i,3);
-        connect(b,SIGNAL(clicked()),this,SLOT(on_butt_clicked()));
-
-    }
-
-    for(int i=0;i<itemid.size();i++){
-       QLabel* it = new QLabel(this);
-         it->setText(QString::number(itemid[i]));
-         ui->gridLayout_4->addWidget(it, i,0);
-    }
-
-    for(int i=0;i<itempic.size();i++){
-       QLabel* p = new QLabel(this);
-         p->setPixmap(itempic[i].scaled(100,100,Qt::KeepAspectRatio));
-         ui->gridLayout_4->addWidget(p, i,1);
-    }
-
-    for(int i=0;i<itemname.size();i++){
-       QLabel* in = new QLabel(this);
-         in->setText(itemname[i]);
-         ui->gridLayout_4->addWidget(in, i,2);
-    }
-
-    for(int i=0;i<itemprice.size();i++){
-       QLabel* ip = new QLabel(this);
-         ip->setText(QString::number(itemprice[i].pounds)+"."+QString::number(itemprice[i].piasters));
-         ui->gridLayout_4->addWidget(ip, i,3);
-    }
-
-    for(int i=0;i<itemquant.size();i++){
-       QLabel* iq = new QLabel(this);
-         iq->setText(QString::number(itemquant[i]));
-         ui->gridLayout_4->addWidget(iq, i,4);
-    }
-
-
-
 
 
 }
@@ -110,11 +41,19 @@ void Account::on_butt_clicked()
 void Account::getAccountDetails_slot(AccountDetails result){
 
     ad.name=result.name;
-
     ad.phone=result.phone;
     ad.email = result.email;
     ad.address= result.address;
     ad.wallet = result.wallet;
+
+    ui->name->insert(ad.name);
+    ui->email->insert(ad.email);
+    ui->email->setEnabled(false);
+    ui->phone->insert(ad.phone);
+    ui->address->insert(ad.address);
+    ui->balance->setText((QString::number(ad.wallet.pounds)+"."+QString::number(ad.wallet.piasters)));
+
+    dm->getOrderHistory();
 
 }
 
@@ -194,7 +133,33 @@ void Account::getOrderHistory_slot(QVector<OrderSummary> result){
         states[i]=result[i].state;
         amounts[i]=result[i].totalAmount;
     }
+    for(int i=0;i<ids.size();i++){
+       QLabel* idl = new QLabel(this);
+         idl->setText(QString::number(ids[i]));
+         ui->gridLayout_3->addWidget(idl, i,0);
+    }
 
+    for(int i=0;i<states.size();i++){
+       QLabel* st = new QLabel(this);
+          QString stat = enumtostring(states[i]);
+         st->setText(stat);
+         ui->gridLayout_3->addWidget(st, i,1);
+    }
+
+    for(int i=0;i<amounts.size();i++){
+       QLabel* pr = new QLabel(this);
+         pr->setText(QString::number(amounts[i].pounds)+"."+QString::number(amounts[i].piasters));
+         ui->gridLayout_3->addWidget(pr, i,2);
+    }
+
+    for(int i=0;i<ids.size();i++){
+        ButtonId *b = new ButtonId();
+        b->setText("View Order");
+        b->id = ids[i];
+        ui->gridLayout_3->addWidget(b, i,3);
+        connect(b,SIGNAL(clicked()),this,SLOT(on_butt_clicked()));
+
+    }
 
 
 }
@@ -209,6 +174,35 @@ void Account::getOrderDetails_slot(DetailedOrder result){
         itemprice[i]=result.items[i].price;
         itemquant[i]=result.items[i].quantity;
 
+    }
+    for(int i=0;i<itemid.size();i++){
+       QLabel* it = new QLabel(this);
+         it->setText(QString::number(itemid[i]));
+         ui->gridLayout_4->addWidget(it, i,0);
+    }
+
+    for(int i=0;i<itempic.size();i++){
+       QLabel* p = new QLabel(this);
+         p->setPixmap(itempic[i].scaled(100,100,Qt::KeepAspectRatio));
+         ui->gridLayout_4->addWidget(p, i,1);
+    }
+
+    for(int i=0;i<itemname.size();i++){
+       QLabel* in = new QLabel(this);
+         in->setText(itemname[i]);
+         ui->gridLayout_4->addWidget(in, i,2);
+    }
+
+    for(int i=0;i<itemprice.size();i++){
+       QLabel* ip = new QLabel(this);
+         ip->setText(QString::number(itemprice[i].pounds)+"."+QString::number(itemprice[i].piasters));
+         ui->gridLayout_4->addWidget(ip, i,3);
+    }
+
+    for(int i=0;i<itemquant.size();i++){
+       QLabel* iq = new QLabel(this);
+         iq->setText(QString::number(itemquant[i]));
+         ui->gridLayout_4->addWidget(iq, i,4);
     }
 }
 QString Account::enumtostring(OrderState os){

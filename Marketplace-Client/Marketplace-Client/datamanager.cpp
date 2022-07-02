@@ -641,16 +641,19 @@ void DataManager :: server_response(){
         QByteArray decodedimage;
         QImage image;
         QPixmap pixmap;
+        QJsonObject pricesJsonObject;
 
         // Get value from object
         serverResponseResultJsonValue = serverResponseJsonObj.value("Items");
         // Get array from value
         serverResponseJsonArray = serverResponseResultJsonValue.toArray();
         for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
-            item.ID = (jsonvalue.toObject().value("ID")).toInt();
-            item.name =(jsonvalue.toObject().value("name")).toString();
-            item.price.pounds = (jsonvalue.toObject().value("Pound")).toInt();
-            item.price.piasters = (jsonvalue.toObject().value("Piasters")).toInt();
+            jsonvalue = serverResponseJsonArray[i];
+            item.ID = (jsonvalue.toObject().value("Item ID")).toInt();
+            item.name =(jsonvalue.toObject().value("Name")).toString();
+            pricesJsonObject = jsonvalue["Price"].toObject();
+            item.price.pounds = (pricesJsonObject.value("Pounds")).toInt();
+            item.price.piasters = (pricesJsonObject.value("Piasters")).toInt();
 
             //convert QbyteArray from document to QString
             encodedimage = (jsonvalue.toObject().value("Icon")).toString();

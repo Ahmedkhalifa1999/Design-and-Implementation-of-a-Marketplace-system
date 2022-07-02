@@ -13,6 +13,21 @@ Cart::Cart(DataManager *dataManager, QWidget *parent) :
     ui-> setupUi(this);
     dm->getCart(); //Vector of detailed cart item
 
+
+}
+
+Cart::~Cart()
+{
+    delete ui;
+}
+void Cart :: getCart_slot (QVector <DetailedCartItem> result){
+    for(int i =0;i<result.size();i++){
+        dci[i].icon=result[i].icon;
+        dci[i].ID=result[i].ID;
+        dci[i].name=result[i].name;
+        dci[i].price=result[i].price;
+        dci[i].quantity=result[i].quantity;
+    }
     for(unsigned int i=0; i < dci.size();i++){
 
         id[i]=dci[i].ID;
@@ -61,20 +76,6 @@ Cart::Cart(DataManager *dataManager, QWidget *parent) :
 
     }
 
-}
-
-Cart::~Cart()
-{
-    delete ui;
-}
-void Cart :: getCart_slot (QVector <DetailedCartItem> result){
-    for(int i =0;i<result.size();i++){
-        dci[i].icon=result[i].icon;
-        dci[i].ID=result[i].ID;
-        dci[i].name=result[i].name;
-        dci[i].price=result[i].price;
-        dci[i].quantity=result[i].quantity;
-    }
 }
 void Cart::on_Checkout_clicked()
 {

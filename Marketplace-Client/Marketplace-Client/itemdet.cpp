@@ -13,6 +13,35 @@ Itemdet::Itemdet(DataManager *dataManager, unsigned int ID, QWidget *parent) :
     ui->setupUi(this);
     dm->getItemData(ID);
 
+    QList<QString> combolist={"1","2","3","4","5","6","7","8","9","10"};
+     ui->comboBox->addItems(combolist);
+     c.quantity=1;
+     c.ID=ID;
+}
+
+Itemdet::~Itemdet()
+{
+    delete ui;
+}
+
+void Itemdet::on_shopButton_clicked()
+{
+     hide();
+}
+
+
+void Itemdet::on_addCartButton_clicked()
+{
+    c.quantity=quan;
+   dm->addToCart(c);
+}
+
+void Itemdet::getItemData_slot(DetailedItem result){
+    item_name = result.name;
+    item_description = result.description;
+    item_images[0]=result.images[0];
+    item_price=result.price;
+
     QLabel* labpic = new QLabel(this);
     labpic->setPixmap(item_images[0].scaled(300,600,Qt::KeepAspectRatio));
     ui->gridLayout->addWidget(labpic,0,0,-1,1);
@@ -39,34 +68,6 @@ Itemdet::Itemdet(DataManager *dataManager, unsigned int ID, QWidget *parent) :
     QLabel* labprice = new QLabel(this);
     labprice->setText(QString::number(item_price.pounds)+"."+QString::number(item_price.piasters));
     ui->gridLayout->addWidget(labprice,4,1);
-
-    QList<QString> combolist={"1","2","3","4","5","6","7","8","9","10"};
-     ui->comboBox->addItems(combolist);
-     c.quantity=quan;
-     c.ID=ID;
-}
-
-Itemdet::~Itemdet()
-{
-    delete ui;
-}
-
-void Itemdet::on_shopButton_clicked()
-{
-     hide();
-}
-
-
-void Itemdet::on_addCartButton_clicked()
-{
-   dm->addToCart(c);
-}
-
-void Itemdet::getItemData_slot(DetailedItem result){
-    item_name = result.name;
-    item_description = result.description;
-    item_images[0]=result.images[0];
-    item_price=result.price;
 }
 
 void Itemdet::on_comboBox_currentTextChanged(const QString &arg1)
