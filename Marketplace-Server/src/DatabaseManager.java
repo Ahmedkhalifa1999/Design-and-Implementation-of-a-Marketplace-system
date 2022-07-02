@@ -41,6 +41,31 @@ public class DatabaseManager {
         }
     }
 
+    public static int addcart (String email)
+    {
+        try{
+            Connection connection = start_connection();
+            PreparedStatement statement = connection.prepareStatement("SELECT max(cartid) FROM marketplace.cart");
+            ResultSet resultSet = statement.executeQuery();
+            int id=0;
+            while (resultSet.next())
+            {
+                id = resultSet.getInt("max(cartid)");
+            }
+            id++;
+            statement = connection.prepareStatement("INSERT INTO cart (cartid, totalprice, customeremail) VALUES (?, null ,?);");
+            statement.setInt(1,id);
+            statement.setString(2,email);
+            statement.executeUpdate();
+            connection.close();
+            return id;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return 0;
+        }
+    }
     public static void addRegister(DataManager.RegistrationData data)
     {
         try{
