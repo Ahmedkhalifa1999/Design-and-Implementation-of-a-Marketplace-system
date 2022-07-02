@@ -15,6 +15,8 @@ public class DatabaseManager {
     static final String USER = "root";
     static final String PASS = "64deadpool128";
 
+    static final String path ="C:\\Users\\HP\\Documents\\GitHub\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\icons";
+
     public record datedorderitem(
             String itemname,
             int quantity
@@ -631,7 +633,7 @@ public class DatabaseManager {
     public static String getIcon(int ID) {
         //convert to string
         String s = String.valueOf(ID);
-        File file = new File("C:\\Users\\HP\\Documents\\GitHub\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\icons");
+        File file = new File(path);
         //s+=".jpg";
         ArrayList<String> arr = new ArrayList<String>();
         arr=     findFilearr(s, file);
