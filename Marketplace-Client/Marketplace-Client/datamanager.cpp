@@ -297,13 +297,13 @@ void DataManager :: getItemList(SearchQuery query){
 
     searchQueryObject.insert("ID", QJsonValue::fromVariant(GETITEMLIST_REQUEST));
     searchQueryObject.insert("Name", QJsonValue::fromVariant(query.name));
-    searchQueryObject.insert("MaxResult", QJsonValue::fromVariant(query.maxResults));
+    searchQueryObject.insert("Max Results", QJsonValue::fromVariant(query.maxResults));
 
     for(unsigned int i = 0 ; i < query.categories.size() ; i++ ){
         searchQueryArray.insert(i ,QJsonValue::fromVariant(query.categories[i]) );
     }
     // NOT SURE
-    searchQueryObject.insert("Category", (searchQueryArray));
+    searchQueryObject.insert("Categories", (searchQueryArray));
 
     QJsonDocument searchQueryJsonDoc(searchQueryObject);
     //ToJson Compact

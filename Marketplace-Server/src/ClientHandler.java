@@ -192,12 +192,12 @@ public class ClientHandler implements Runnable
                     }
                     case 16 -> {
                         //get item list
-                        String searchQueryName = responseObject.get("Name").getAsString();
+                        String searchQueryName = requestObject.get("Name").getAsString();
                         ArrayList<String> searchQueryCategories = new ArrayList<>();
-                        for (JsonElement JSON_category : responseObject.get("Categories").getAsJsonArray()) {
+                        for (JsonElement JSON_category : requestObject.get("Categories").getAsJsonArray()) {
                             searchQueryCategories.add(JSON_category.getAsString());
                         }
-                        int searchQueryMaxResults = responseObject.get("Max Results").getAsInt();
+                        int searchQueryMaxResults = requestObject.get("Max Results").getAsInt();
                         DataManager.SearchQuery searchQuery =
                                 new DataManager.SearchQuery(searchQueryName, searchQueryCategories, searchQueryMaxResults);
                         ArrayList<DataManager.Item> searchResults = dataManager.getItemList(searchQuery);
@@ -206,8 +206,11 @@ public class ClientHandler implements Runnable
                             JsonObject JSON_item = new JsonObject();
                             JSON_item.addProperty("Item ID", result.ID());
                             JSON_item.addProperty("Name", result.name());
-                            JSON_item.addProperty("Icon",
-                                    new String(ImageEncoder.encode(Files.readAllBytes(Path.of(result.icon())))));
+                            if (Files.exists(Path.of(result.icon())) && result.icon() != "")
+                                JSON_item.addProperty("Icon",
+                                        new String(ImageEncoder.encode(Files.readAllBytes(Path.of(result.icon())))));
+                            else
+                                JSON_item.addProperty("Icon", "");
                             JsonObject JSON_itemPrice = new JsonObject();
                             JSON_itemPrice.addProperty("Pounds", result.price().pounds());
                             JSON_itemPrice.addProperty("Piasters", result.price().piasters());
@@ -226,7 +229,10 @@ public class ClientHandler implements Runnable
                         responseObject.addProperty("Description", detailedItem.description());
                         JsonArray itemImages_JSON = new JsonArray();
                         for (String itemImage : detailedItem.images()) {
-                            itemImages_JSON.add(new String(ImageEncoder.encode(Files.readAllBytes(Path.of(itemImage)))));
+                            if (Files.exists(Path.of(itemImage)) && itemImage != "")
+                                itemImages_JSON.add(new String(ImageEncoder.encode(Files.readAllBytes(Path.of(itemImage)))));
+                            else
+                                itemImages_JSON.add("");
                         }
                         responseObject.add("Images", itemImages_JSON);
                         JsonObject detailedItemPrice = new JsonObject();

@@ -113,7 +113,7 @@ public class DatabaseManager {
     {
         try {
             Connection connection = start_connection();
-            PreparedStatement statement = connection.prepareStatement("SELECT ID, state, totalprice FROM orders WHERE customeremail = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT orderid, state, totalprice FROM orders WHERE customeremail = ?");
             statement.setString(1, email);
             ResultSet rs = statement.executeQuery();
             int ID = 0, price = 0, arr_indx = 0;
@@ -144,8 +144,8 @@ public class DatabaseManager {
             int res_indx = 0;
             for (int i = 0; i < query.categories().size(); i++) {
                 Connection connection = start_connection();
-                PreparedStatement statement = connection.prepareStatement("SELECT itemid, itemname, itemprice FROM items WHERE itemname = ? AND Category = ? LIMIT ?");
-                statement.setString(1, query.name());
+                PreparedStatement statement = connection.prepareStatement("SELECT itemid, itemname, itemprice FROM items WHERE itemname LIKE ? AND Category = ? LIMIT ?");
+                statement.setString(1, "%" + query.name() + "%");
                 statement.setString(2, query.categories().get(i));
                 statement.setInt(3, query.maxResults());
                 ResultSet rs = statement.executeQuery();
