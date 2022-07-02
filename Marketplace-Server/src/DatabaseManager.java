@@ -65,15 +65,15 @@ public class DatabaseManager {
     {
         try {
             Connection connection = start_connection();
-            PreparedStatement statement = connection.prepareStatement("UPDATE customer SET name = ?, mobile = ?, Address = ?, wallet = ?  WHERE email =?");
-            int pou = data.amount().pounds();
-            int pia= data.amount().piasters();
-            int temp = pou*100+pia;
+            PreparedStatement statement = connection.prepareStatement("UPDATE customer SET name = ?, mobile = ?, Address = ?  WHERE email =?");
+            //int pou = data.amount().pounds();
+            //int pia= data.amount().piasters();
+            //int temp = pou*100+pia;
             statement.setString(1, data.firstName());
             statement.setString(2, data.phone());
             statement.setString(3, data.address());
-            statement.setInt(4,temp);
-            statement.setString(5,data.email());
+            //statement.setInt(4,temp);
+            statement.setString(4,data.email());
             statement.executeUpdate();
             connection.close();
         }

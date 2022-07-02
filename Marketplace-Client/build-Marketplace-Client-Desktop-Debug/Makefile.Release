@@ -296,6 +296,12 @@ release/moc_account.cpp: ../Marketplace-Client/account.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/datamanager.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/QPixmap \
@@ -469,6 +475,12 @@ release/moc_cart.cpp: ../Marketplace-Client/cart.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/datamanager.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/QPixmap \
@@ -1008,6 +1020,12 @@ release/moc_login.cpp: ../Marketplace-Client/login.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/account.h \
 		release/moc_predefs.h \
 		C:/Qt/6.3.1/mingw_64/bin/moc.exe
@@ -1189,6 +1207,12 @@ release/moc_mainwindow.cpp: ../Marketplace-Client/mainwindow.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/account.h \
 		release/moc_predefs.h \
 		C:/Qt/6.3.1/mingw_64/bin/moc.exe
@@ -1365,6 +1389,12 @@ release/moc_shop.cpp: ../Marketplace-Client/shop.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/account.h \
 		release/moc_predefs.h \
 		C:/Qt/6.3.1/mingw_64/bin/moc.exe
@@ -1905,6 +1935,12 @@ release/cart.o: ../Marketplace-Client/cart.cpp ../Marketplace-Client/cart.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QDialog \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/datamanager.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QString \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/QPixmap \
@@ -2316,6 +2352,12 @@ release/itemdet.o: ../Marketplace-Client/itemdet.cpp ../Marketplace-Client/itemd
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/account.h \
 		ui_itemdet.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
@@ -2535,6 +2577,12 @@ release/login.o: ../Marketplace-Client/login.cpp ../Marketplace-Client/login.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/account.h \
 		ui_login.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
@@ -2565,12 +2613,6 @@ release/login.o: ../Marketplace-Client/login.cpp ../Marketplace-Client/login.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlayout.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
-		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QMessageBox \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\login.o ..\Marketplace-Client\login.cpp
@@ -2751,6 +2793,12 @@ release/main.o: ../Marketplace-Client/main.cpp ../Marketplace-Client/mainwindow.
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/account.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qapplication.h \
@@ -2950,6 +2998,12 @@ release/mainwindow.o: ../Marketplace-Client/mainwindow.cpp ../Marketplace-Client
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/account.h \
 		ui_mainwindow.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
@@ -2978,12 +3032,6 @@ release/mainwindow.o: ../Marketplace-Client/mainwindow.cpp ../Marketplace-Client
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlayout.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
-		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QMenuBar \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qmenubar.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qmenu.h \
@@ -3164,6 +3212,12 @@ release/shop.o: ../Marketplace-Client/shop.cpp ../Marketplace-Client/shop.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		../Marketplace-Client/account.h \
 		ui_shop.h \
 		C:/Qt/6.3.1/mingw_64/include/QtCore/QVariant \
@@ -3193,12 +3247,6 @@ release/shop.o: ../Marketplace-Client/shop.cpp ../Marketplace-Client/shop.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QLineEdit \
-		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlineedit.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextcursor.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextformat.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qpen.h \
-		C:/Qt/6.3.1/mingw_64/include/QtGui/qtextoption.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QListWidget \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlistwidget.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlistview.h \

@@ -144,7 +144,7 @@ public class DataManager {
     public boolean authenticate(UserCredentials data) {
 
         if (DatabaseManager.validate(data)) {
-            DataManager user = new DataManager(data.email(), data.password());
+            this.email = data.email();
             return true;
         }
         return false;
@@ -280,6 +280,10 @@ public class DataManager {
 
 
         return categories;
+    }
+
+    public ArrayList<Item> getItemByID(ArrayList<Integer> itemIDs) {
+        return null;
     }
 
 }

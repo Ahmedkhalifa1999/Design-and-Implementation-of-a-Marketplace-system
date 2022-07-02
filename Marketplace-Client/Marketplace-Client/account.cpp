@@ -59,6 +59,7 @@ void Account::getAccountDetails_slot(AccountDetails result){
 
 void Account::on_save_clicked()
 {
+    ad.address = this->ui->address->text();
   uar= dm->updateAccountDetails(ad);
   if(uar.validEmail == false){
      QMessageBox::warning(this,"Error","Invalid Email so please try again");

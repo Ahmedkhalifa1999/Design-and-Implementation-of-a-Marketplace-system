@@ -215,7 +215,7 @@ UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
     {
         updateAccountResult.validPhone = false;
     }
-    if((updateAccountResult.validEmail == false)||(updateAccountResult.validPhone = false)){
+    if((updateAccountResult.validEmail == false)||(updateAccountResult.validPhone == false)){
 
         return updateAccountResult;
     }
@@ -281,7 +281,7 @@ void DataManager :: walletDeposit(MoneyAmount amount){
     QJsonObject priceJsonObject;
 
     walletDepositObject.insert("ID", QJsonValue::fromVariant(WALLETDEPOSIT_REQUEST));
-     walletDepositObject.insert("Price", priceJsonObject);
+     walletDepositObject.insert("Amount", priceJsonObject);
 
     priceJsonObject.insert("Pounds", QJsonValue::fromVariant(amount.pounds));
     priceJsonObject.insert("Piasters", QJsonValue::fromVariant(amount.piasters));
@@ -326,7 +326,7 @@ void DataManager :: getItemData(unsigned int ID){
     QJsonObject itemDataObject;
 
     itemDataObject.insert("ID", QJsonValue::fromVariant(GETITEMDATA_REQUEST));
-    itemDataObject.insert("ItemID", QJsonValue::fromVariant(ID));
+    itemDataObject.insert("Item ID", QJsonValue::fromVariant(ID));
 
     QJsonDocument itemDataJsonDoc(itemDataObject);
     //ToJson Compact

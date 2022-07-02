@@ -39,7 +39,8 @@ void Itemdet::on_addCartButton_clicked()
 void Itemdet::getItemData_slot(DetailedItem result){
     item_name = result.name;
     item_description = result.description;
-    item_images[0]=result.images[0];
+    if (!result.images.empty()) item_images.push_back(result.images[0]);
+    else item_images.push_back(QPixmap());
     item_price=result.price;
 
     QLabel* labpic = new QLabel(this);
