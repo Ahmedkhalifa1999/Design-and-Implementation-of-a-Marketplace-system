@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `items`
+-- Table structure for table `cart`
 --
 
-DROP TABLE IF EXISTS `items`;
+DROP TABLE IF EXISTS `cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `items` (
-  `itemid` int NOT NULL,
-  `itemname` varchar(100) NOT NULL,
-  `itemprice` int NOT NULL,
-  `quantity` int NOT NULL,
-  `Category` varchar(50) NOT NULL,
-  PRIMARY KEY (`itemid`)
+CREATE TABLE `cart` (
+  `cartid` int NOT NULL,
+  `totalprice` int DEFAULT NULL,
+  `customeremail` varchar(50) NOT NULL,
+  PRIMARY KEY (`cartid`),
+  UNIQUE KEY `customeremail_UNIQUE` (`customeremail`),
+  KEY `customeremail_idx` (`customeremail`),
+  CONSTRAINT `customeremail` FOREIGN KEY (`customeremail`) REFERENCES `customer` (`email`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `items`
+-- Dumping data for table `cart`
 --
 
-LOCK TABLES `items` WRITE;
-/*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (1,'Grey sweatpants',80,20,'clothes'),(2,'Black sweatpants',80,2,'clothes'),(3,'Black Hoodie',180,9,'clothes'),(4,'Iphone 13 pro',24000,2,'Mobiles'),(5,'Iphone 13 pro max',27000,5,'Mobiles'),(6,'Nivea body cream cocoa butter 50ml',15,50,'skin care'),(7,'Iphone 13 ',20000,10,'Mobiles'),(8,'TRESemme Botanix Conditioner 200ml',32,10,'Hair care'),(9,'Apple AirPods Pro with Charging Case',3790,3,'Headphones & Earphones'),(10,'Technic Pressed Pigment Eye Shadow Palette Invite Only',369,2,'Makeup');
-/*!40000 ALTER TABLE `items` ENABLE KEYS */;
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (1,NULL,'weza@gmail.com');
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-02  7:34:21
+-- Dump completed on 2022-07-02  7:34:20

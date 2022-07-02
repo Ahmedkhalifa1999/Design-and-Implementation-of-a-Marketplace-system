@@ -16,30 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `items`
+-- Table structure for table `cartitem`
 --
 
-DROP TABLE IF EXISTS `items`;
+DROP TABLE IF EXISTS `cartitem`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `items` (
+CREATE TABLE `cartitem` (
+  `cartid` int NOT NULL,
   `itemid` int NOT NULL,
-  `itemname` varchar(100) NOT NULL,
-  `itemprice` int NOT NULL,
   `quantity` int NOT NULL,
-  `Category` varchar(50) NOT NULL,
-  PRIMARY KEY (`itemid`)
+  PRIMARY KEY (`cartid`,`itemid`),
+  KEY `itemid` (`itemid`),
+  CONSTRAINT `cartitem_ibfk_1` FOREIGN KEY (`itemid`) REFERENCES `items` (`itemid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cartitem_ibfk_2` FOREIGN KEY (`cartid`) REFERENCES `cart` (`cartid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `items`
+-- Dumping data for table `cartitem`
 --
 
-LOCK TABLES `items` WRITE;
-/*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (1,'Grey sweatpants',80,20,'clothes'),(2,'Black sweatpants',80,2,'clothes'),(3,'Black Hoodie',180,9,'clothes'),(4,'Iphone 13 pro',24000,2,'Mobiles'),(5,'Iphone 13 pro max',27000,5,'Mobiles'),(6,'Nivea body cream cocoa butter 50ml',15,50,'skin care'),(7,'Iphone 13 ',20000,10,'Mobiles'),(8,'TRESemme Botanix Conditioner 200ml',32,10,'Hair care'),(9,'Apple AirPods Pro with Charging Case',3790,3,'Headphones & Earphones'),(10,'Technic Pressed Pigment Eye Shadow Palette Invite Only',369,2,'Makeup');
-/*!40000 ALTER TABLE `items` ENABLE KEYS */;
+LOCK TABLES `cartitem` WRITE;
+/*!40000 ALTER TABLE `cartitem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cartitem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
