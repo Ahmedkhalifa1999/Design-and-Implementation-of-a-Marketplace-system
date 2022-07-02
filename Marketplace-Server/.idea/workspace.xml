@@ -66,8 +66,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="MarketplaceServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MarketplaceServer" />
+    <configuration name="MarketPlaceServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MarketPlaceServer" />
       <module name="Marketplace-Server" />
       <option name="VM_PARAMETERS" value="--module-path &quot;JavaFX\javafx-sdk-11\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
@@ -76,7 +76,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MarketplaceServer" />
+        <item itemvalue="Application.MarketPlaceServer" />
       </list>
     </recent_temporary>
   </component>

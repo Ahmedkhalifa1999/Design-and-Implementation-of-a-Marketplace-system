@@ -181,6 +181,7 @@ void DataManager :: getAccountDetails(){
 
     //Build JSON File
     QJsonObject accountDetailsObject;
+
     accountDetailsObject.insert("ID", QJsonValue::fromVariant(GETACCOUNTDETAILS_REQUEST));
 
     QJsonDocument accountDetailsJsonDoc(accountDetailsObject);
@@ -221,13 +222,16 @@ UpdateAccountResult DataManager :: updateAccountDetails(AccountDetails details){
 
     // Build JSON file
     QJsonObject accountDetailsObject;
+    QJsonObject priceJsonObject;
     accountDetailsObject.insert("ID", QJsonValue::fromVariant(UPDATEACCOUNTDETAILS_REQUEST));
     accountDetailsObject.insert("Name", QJsonValue::fromVariant(details.name));
     accountDetailsObject.insert("Email", QJsonValue::fromVariant(details.email));
     accountDetailsObject.insert("Address", QJsonValue::fromVariant(details.address));
     accountDetailsObject.insert("Phone", QJsonValue::fromVariant(details.phone));
-    accountDetailsObject.insert("Pounds", QJsonValue::fromVariant(details.wallet.pounds));
-    accountDetailsObject.insert("Piasters", QJsonValue::fromVariant(details.wallet.piasters));
+    accountDetailsObject.insert("Price", priceJsonObject);
+
+    priceJsonObject.insert("Pounds", QJsonValue::fromVariant(details.wallet.pounds));
+    priceJsonObject.insert("Piasters", QJsonValue::fromVariant(details.wallet.piasters));
 
     QJsonDocument accountDetailsJsonDoc(accountDetailsObject);
     //ToJson Compact
@@ -274,10 +278,13 @@ void DataManager :: getOrderDetails(unsigned int ID){
 void DataManager :: walletDeposit(MoneyAmount amount){
     //send JSON contain Request ID , Amount
     QJsonObject walletDepositObject;
+    QJsonObject priceJsonObject;
 
     walletDepositObject.insert("ID", QJsonValue::fromVariant(WALLETDEPOSIT_REQUEST));
-    walletDepositObject.insert("Pounds", QJsonValue::fromVariant(amount.pounds));
-    walletDepositObject.insert("Piasters", QJsonValue::fromVariant(amount.piasters));
+     walletDepositObject.insert("Price", priceJsonObject);
+
+    priceJsonObject.insert("Pounds", QJsonValue::fromVariant(amount.pounds));
+    priceJsonObject.insert("Piasters", QJsonValue::fromVariant(amount.piasters));
 
     QJsonDocument walletDepositJsonDoc(walletDepositObject);
     //ToJson Compact
@@ -517,16 +524,17 @@ void DataManager :: server_response(){
         CheckoutItem checkoutitem;
 
 
-        checkoutResult.unavailableItem = (serverResponseJsonObj.value("UnavailableItem")).toBool();
-        checkoutResult.notEnoughFunds = (OrderState)((serverResponseJsonObj.value("NotEnoughFunds")).toBool());
+        checkoutResult.unavailableItem = (serverResponseJsonObj.value("Unavailable")).toBool();
+        checkoutResult.notEnoughFunds = (OrderState)((serverResponseJsonObj.value("Funds")).toBool());
 
 
-        serverResponseResultJsonValue = serverResponseJsonObj.value("ItemAvailability");
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Availability");
         // Get array from value
         serverResponseJsonArray = serverResponseResultJsonValue.toArray();
         for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
-            checkoutitem.ID = (jsonvalue.toObject().value("ID")).toInt();
-            checkoutitem.availableQuantity =(jsonvalue.toObject().value("AvailableQuantity")).toBool();
+            jsonvalue = serverResponseJsonArray[i];
+            checkoutitem.ID = (jsonvalue.toObject().value("Item ID")).toInt();
+            checkoutitem.availableQuantity =(jsonvalue.toObject().value("Quantity")).toBool();
 
             checkoutResult.itemAvailability.append(checkoutitem);
         }
@@ -542,13 +550,15 @@ void DataManager :: server_response(){
         //Pass them to signal Emitted to UI
 
         AccountDetails accountDetails;
+        QJsonObject pricesJsonObject;
 
         accountDetails.name = (serverResponseJsonObj.value("Name")).toString();
         accountDetails.email =  (serverResponseJsonObj.value("Email")).toString();
         accountDetails.address =  (serverResponseJsonObj.value("Address")).toString();
         accountDetails.phone =  (serverResponseJsonObj.value("Phone")).toString();
-        accountDetails.wallet.pounds =  (serverResponseJsonObj.value("Pounds")).toInt();
-        accountDetails.wallet.piasters = (serverResponseJsonObj.value("Piasters")).toInt();
+        pricesJsonObject =  serverResponseJsonObj.value("Wallet").toObject();
+        accountDetails.wallet.pounds = (pricesJsonObject.value("Pounds")).toInt();
+        accountDetails.wallet.piasters = (pricesJsonObject.value("Piasters")).toInt();
 
         //emit signal to UI
         emit getAccountDetails_signal(accountDetails);
@@ -566,15 +576,19 @@ void DataManager :: server_response(){
         QJsonArray serverResponseJsonArray;
         QJsonValue  jsonvalue ; // used inside loop
         OrderSummary Order;     // used inside loop
+        QJsonObject pricesJsonObject;
+
         // Get value from object
-        serverResponseResultJsonValue = serverResponseJsonObj.value("OrderHistory");
+        serverResponseResultJsonValue = serverResponseJsonObj.value("Order History");
         // Get array from value
         serverResponseJsonArray = serverResponseResultJsonValue.toArray();
         for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
-            Order.ID = (jsonvalue.toObject().value("ID")).toInt();
-            Order.state =(OrderState)((jsonvalue.toObject().value("state")).toInt());
-            Order.totalAmount.pounds = (jsonvalue.toObject().value("Pound")).toInt();
-            Order.totalAmount.piasters = (jsonvalue.toObject().value("Piasters")).toInt();
+            jsonvalue = serverResponseJsonArray[i];
+            Order.ID = (jsonvalue.toObject().value("Item ID")).toInt();
+            Order.state =(OrderState)((jsonvalue.toObject().value("Order State")).toInt());
+            pricesJsonObject = jsonvalue["Price"].toObject();
+            Order.totalAmount.pounds = (pricesJsonObject.value("Pounds")).toInt();
+            Order.totalAmount.piasters = (pricesJsonObject.value("Piasters")).toInt();
             OrderHistory.append(Order);
         }
         emit getOrderHistory_signal(OrderHistory);
@@ -590,20 +604,25 @@ void DataManager :: server_response(){
         QByteArray decodedimage;
         QImage image;
         QPixmap pixmap;
+        QJsonObject pricesJsonObject;
 
 
 
-        OrderDetails.ID = (serverResponseJsonObj.value("OrderID")).toInt();
+        OrderDetails.ID = (serverResponseJsonObj.value("Order ID")).toInt();
         OrderDetails.state = (OrderState)((serverResponseJsonObj.value("State")).toInt());
-        OrderDetails.totalAmount.pounds =(serverResponseJsonObj.value("Pounds")).toInt();
-        OrderDetails.totalAmount.piasters =  (serverResponseJsonObj.value("Piasters")).toInt();
+        pricesJsonObject =  serverResponseJsonObj.value("Price").toObject();
+        OrderDetails.totalAmount.pounds = (pricesJsonObject.value("Pounds")).toInt();
+        OrderDetails.totalAmount.piasters = (pricesJsonObject.value("Piasters")).toInt();
         serverResponseResultJsonValue = serverResponseJsonObj.value("Items");
         // Get array from value
         serverResponseJsonArray = serverResponseResultJsonValue.toArray();
         for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
+            jsonvalue = serverResponseJsonArray[i];
+            item.ID = (jsonvalue.toObject().value("Name")).toInt();
             item.name = (jsonvalue.toObject().value("Name")).toString();
-            item.price.pounds =(jsonvalue.toObject().value("Pounds")).toInt();
-            item.price.piasters =(jsonvalue.toObject().value("Piasters")).toInt();
+            pricesJsonObject = jsonvalue["Price"].toObject();
+            item.price.pounds = (pricesJsonObject.value("Pounds")).toInt();
+            item.price.piasters = (pricesJsonObject.value("Piasters")).toInt();
             item.quantity = (jsonvalue.toObject().value("Quantity")).toInt();
 
             //convert QbyteArray from document to QString
@@ -682,12 +701,14 @@ void DataManager :: server_response(){
         QImage image; //
         QJsonValue  jsonvalue ; // used inside loop
         QPixmap pixmap;
+        QJsonObject pricesJsonObject;
 
 
         detailedItem.name = (serverResponseJsonObj.value("Name")).toString();
         detailedItem.description = (serverResponseJsonObj.value("Description")).toString();
-        detailedItem.price.pounds =  (serverResponseJsonObj.value("Pounds")).toInt();
-        detailedItem.price.piasters = (serverResponseJsonObj.value("Piasters")).toInt();
+        pricesJsonObject = serverResponseJsonObj.value("Price").toObject();
+        detailedItem.price.pounds = (pricesJsonObject.value("Pounds")).toInt();
+        detailedItem.price.piasters = (pricesJsonObject.value("Piasters")).toInt();
         // Get value from object
         serverResponseResultJsonValue = serverResponseJsonObj.value("Images");
         // Get array from value
@@ -741,6 +762,7 @@ void DataManager :: server_response(){
         // Get array from value
         serverResponseJsonArray = serverResponseResultJsonValue.toArray();
         for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
+            jsonvalue = serverResponseJsonArray[i];
             cartitem.name =(jsonvalue.toObject().value("name")).toString();
             cartitem.price.pounds = (jsonvalue.toObject().value("Pound")).toInt();
             cartitem.price.piasters = (jsonvalue.toObject().value("Piasters")).toInt();

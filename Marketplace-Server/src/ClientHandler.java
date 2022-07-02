@@ -118,8 +118,8 @@ public class ClientHandler implements Runnable
                     case 6 -> {
                         //get account details
                         DataManager.AccountDetails accountDetails = dataManager.getAccountDetails();
-                        responseObject.addProperty("First Name", accountDetails.firstName());
-                        responseObject.addProperty("Last Name", accountDetails.firstName());
+                        responseObject.addProperty("Name", accountDetails.firstName());
+                        //responseObject.addProperty("Last Name", accountDetails.firstName());
                         responseObject.addProperty("Email", accountDetails.email());
                         responseObject.addProperty("Address", accountDetails.address());
                         responseObject.addProperty("Phone", accountDetails.phone());
