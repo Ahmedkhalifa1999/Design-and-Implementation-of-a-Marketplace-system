@@ -248,6 +248,38 @@ public class DatabaseManager {
         }
     }
 
+    public static ArrayList<DataManager.Item> getItemByID_db (ArrayList<Integer> ids)
+    {
+        try {
+            Connection connection = start_connection();
+            ArrayList<DataManager.Item> res = new ArrayList<DataManager.Item>();
+            for (int i = 0; i < ids.size(); i++) {
+                PreparedStatement statement = connection.prepareStatement("SELECT itemid, itemname, itemprice FROM items WHERE itemid = ?");
+                statement.setInt(1, ids.get(i));
+                ResultSet rs = statement.executeQuery();
+                String i_name = "";
+                int i_id = 0, i_price = 0;
+                int pou = 0, pia = 0;
+                while (rs.next()) {
+                    i_id = rs.getInt("itemid");
+                    i_price = rs.getInt("itemprice");
+                    pou = (int)i_price/100;
+                    pia = (int)i_price%100;
+                    i_name = rs.getString("itemname");
+                }
+                DataManager.MoneyAmount price = new DataManager.MoneyAmount(pou, pia);
+                String icon = getIcon(ids.get(i));
+                DataManager.Item temp = new DataManager.Item(i_id, i_name, icon, price);
+                res.add(temp);
+            }
+            connection.close();
+            return res;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static DataManager.AccountDetails acc_details (String email)
     {
         try {

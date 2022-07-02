@@ -283,7 +283,8 @@ public class DataManager {
     }
 
     public ArrayList<Item> getItemByID(ArrayList<Integer> itemIDs) {
-        return null;
+
+        return DatabaseManager.getItemByID_db(itemIDs);
     }
 
 }
