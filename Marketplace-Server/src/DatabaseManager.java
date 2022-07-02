@@ -619,7 +619,7 @@ public class DatabaseManager {
     public static ArrayList<String> getImages(int ID) {
         //convert to string
         String s = String.valueOf(ID);
-        File file = new File("Marketplace-Server/database/images");
+        File file = new File("C:\\Users\\HP\\Documents\\GitHub\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\images");
         ArrayList<String> arr = new ArrayList<String>();
         //arr -> arraylist of paths of matched images
         arr = findFilearr(s, file);
@@ -628,7 +628,7 @@ public class DatabaseManager {
 
     }
 
-    public String getIcon(int ID) {
+    public static String getIcon(int ID) {
         //convert to string
         String s = String.valueOf(ID);
         File file = new File("C:\\Users\\HP\\Documents\\GitHub\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\icons");
