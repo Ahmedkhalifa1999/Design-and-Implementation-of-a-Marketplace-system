@@ -198,7 +198,7 @@ signals:
 
     //Cart-related signals
     void checkout_signal(CheckoutResult detailedResult);
-    void getCart_signal(QVector<DetailedCartItem> result);
+    void getCart_signal(QVector<Item> result);
 
     //Account-related signals
     void getAccountDetails_signal(AccountDetails result);

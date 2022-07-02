@@ -250,6 +250,30 @@ public class ClientHandler implements Runnable
                         responseObject.addProperty("ID", 21);
                         responseObject.add("Categories", JSON_categories);
                     }
+                    case 22 -> {
+                        JsonArray JSON_IDs = requestObject.get("Cart").getAsJsonArray();
+                        ArrayList<Integer> IDs = new ArrayList<Integer>();
+                        for (JsonElement JSON_ID : JSON_IDs) IDs.add(JSON_ID.getAsInt());
+                        ArrayList<DataManager.Item> item_data = dataManager.getItemByID(IDs);
+                        JsonArray JSON_items = new JsonArray();
+                        for (DataManager.Item entry: item_data) {
+                            JsonObject JSON_item = new JsonObject();
+                            JSON_item.addProperty("Item ID", entry.ID());
+                            JSON_item.addProperty("Name", entry.name());
+                            if (Files.exists(Path.of(entry.icon())) && entry.icon() != "")
+                                JSON_item.addProperty("Icon",
+                                        new String(ImageEncoder.encode(Files.readAllBytes(Path.of(entry.icon())))));
+                            else
+                                JSON_item.addProperty("Icon", "");
+                            JsonObject JSON_itemPrice = new JsonObject();
+                            JSON_itemPrice.addProperty("Pounds", entry.price().pounds());
+                            JSON_itemPrice.addProperty("Piasters", entry.price().piasters());
+                            JSON_item.add("Price", JSON_itemPrice);
+                            JSON_items.add(JSON_item);
+                        }
+                        responseObject.addProperty("ID", 23);
+                        responseObject.add("Cart", JSON_items);
+                    }
                 }
 
                 Gson JSONBuilder = new Gson();

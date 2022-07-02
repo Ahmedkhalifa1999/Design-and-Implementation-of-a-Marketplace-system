@@ -1,22 +1,21 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="Marketplace-Server:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Marketplace_Server_jar</output-path>
-    <root id="archive" name="Marketplace-Server.jar">
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
-      </element>
+    <root id="archive" name="Marketplace-Server_jar.jar">
       <element id="module-output" name="Marketplace-Server" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-fxml-11.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-fxml-11-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-java-8.0.29.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/JavaFX/openjfx-11_windows-x64_bin-sdk.zip" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-controls-11.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-controls-11-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-graphics-11.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-graphics-11-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-base-11.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-base-11-win.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/gson-2.9.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-media-11.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-media-11-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/gson-2.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-fxml-11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-fxml-11-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/opencsv-5.6.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-lang3-3.12.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-text-1.9.jar" path-in-jar="/" />
@@ -24,8 +23,6 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-logging-1.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-collections-3.2.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-collections4-4.4.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/JavaFX/openjfx-11_windows-x64_bin-sdk.zip" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-java-8.0.29.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

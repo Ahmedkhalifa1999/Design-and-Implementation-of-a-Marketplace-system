@@ -39,7 +39,7 @@ private slots:
 
 public slots:
     void checkout_slot(CheckoutResult result);
-    void getCart_slot (QVector <DetailedCartItem> result);
+    void getCart_slot (QVector <Item> result);
 
 
 private:

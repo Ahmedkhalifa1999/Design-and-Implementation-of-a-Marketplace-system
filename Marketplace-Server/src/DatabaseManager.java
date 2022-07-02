@@ -15,9 +15,9 @@ public class DatabaseManager {
     static final String USER = "root";
     static final String PASS = "64deadpool128";
 
-    static final String path ="C:\\Users\\HP\\Documents\\GitHub\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\icons";
+    static final String path ="C:\\Users\\ahmed\\Desktop\\Parallel and Distributed Systems\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\icons";
 
-    static final String path2 ="C:\\Users\\HP\\Documents\\GitHub\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\images";
+    static final String path2 ="C:\\Users\\ahmed\\Desktop\\Parallel and Distributed Systems\\Design-and-Implementation-of-a-Marketplace-system\\Marketplace-Server\\database\\images";
     public record datedorderitem(
             String itemname,
             int quantity

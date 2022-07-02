@@ -20,13 +20,14 @@ Cart::~Cart()
 {
     delete ui;
 }
-void Cart :: getCart_slot (QVector <DetailedCartItem> result){
+void Cart :: getCart_slot (QVector <Item> result){
     for(int i =0;i<result.size();i++){
         dci[i].icon=result[i].icon;
         dci[i].ID=result[i].ID;
         dci[i].name=result[i].name;
         dci[i].price=result[i].price;
-        dci[i].quantity=result[i].quantity;
+        //dci[i].quantity=result[i].quantity;
+        dci[i].quantity = 0;
     }
     for(unsigned int i=0; i < dci.size();i++){
 

@@ -23,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DataManager_t {
-    const uint offsetsAndSize[48];
-    char stringdata0[402];
+    const uint offsetsAndSize[46];
+    char stringdata0[378];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_DataManager_t, stringdata0) + ofs), len 
@@ -39,35 +39,33 @@ QT_MOC_LITERAL(48, 15), // "checkout_signal"
 QT_MOC_LITERAL(64, 14), // "CheckoutResult"
 QT_MOC_LITERAL(79, 14), // "detailedResult"
 QT_MOC_LITERAL(94, 14), // "getCart_signal"
-QT_MOC_LITERAL(109, 23), // "QList<DetailedCartItem>"
-QT_MOC_LITERAL(133, 24), // "getAccountDetails_signal"
-QT_MOC_LITERAL(158, 14), // "AccountDetails"
-QT_MOC_LITERAL(173, 27), // "updateAccountDetails_signal"
-QT_MOC_LITERAL(201, 22), // "getOrderHistory_signal"
-QT_MOC_LITERAL(224, 19), // "QList<OrderSummary>"
-QT_MOC_LITERAL(244, 22), // "getOrderDetails_signal"
-QT_MOC_LITERAL(267, 13), // "DetailedOrder"
-QT_MOC_LITERAL(281, 20), // "walletDeposit_signal"
-QT_MOC_LITERAL(302, 18), // "getItemList_signal"
-QT_MOC_LITERAL(321, 11), // "QList<Item>"
-QT_MOC_LITERAL(333, 18), // "getItemData_signal"
-QT_MOC_LITERAL(352, 12), // "DetailedItem"
-QT_MOC_LITERAL(365, 20), // "getCategories_signal"
-QT_MOC_LITERAL(386, 15) // "server_response"
+QT_MOC_LITERAL(109, 11), // "QList<Item>"
+QT_MOC_LITERAL(121, 24), // "getAccountDetails_signal"
+QT_MOC_LITERAL(146, 14), // "AccountDetails"
+QT_MOC_LITERAL(161, 27), // "updateAccountDetails_signal"
+QT_MOC_LITERAL(189, 22), // "getOrderHistory_signal"
+QT_MOC_LITERAL(212, 19), // "QList<OrderSummary>"
+QT_MOC_LITERAL(232, 22), // "getOrderDetails_signal"
+QT_MOC_LITERAL(255, 13), // "DetailedOrder"
+QT_MOC_LITERAL(269, 20), // "walletDeposit_signal"
+QT_MOC_LITERAL(290, 18), // "getItemList_signal"
+QT_MOC_LITERAL(309, 18), // "getItemData_signal"
+QT_MOC_LITERAL(328, 12), // "DetailedItem"
+QT_MOC_LITERAL(341, 20), // "getCategories_signal"
+QT_MOC_LITERAL(362, 15) // "server_response"
 
     },
     "DataManager\0signUp_signal\0\0result\0"
     "signIn_signal\0checkout_signal\0"
     "CheckoutResult\0detailedResult\0"
-    "getCart_signal\0QList<DetailedCartItem>\0"
+    "getCart_signal\0QList<Item>\0"
     "getAccountDetails_signal\0AccountDetails\0"
     "updateAccountDetails_signal\0"
     "getOrderHistory_signal\0QList<OrderSummary>\0"
     "getOrderDetails_signal\0DetailedOrder\0"
     "walletDeposit_signal\0getItemList_signal\0"
-    "QList<Item>\0getItemData_signal\0"
-    "DetailedItem\0getCategories_signal\0"
-    "server_response"
+    "getItemData_signal\0DetailedItem\0"
+    "getCategories_signal\0server_response"
 };
 #undef QT_MOC_LITERAL
 
@@ -95,11 +93,11 @@ static const uint qt_meta_data_DataManager[] = {
       15,    1,  113,    2, 0x06,   15 /* Public */,
       17,    1,  116,    2, 0x06,   17 /* Public */,
       18,    1,  119,    2, 0x06,   19 /* Public */,
-      20,    1,  122,    2, 0x06,   21 /* Public */,
-      22,    1,  125,    2, 0x06,   23 /* Public */,
+      19,    1,  122,    2, 0x06,   21 /* Public */,
+      21,    1,  125,    2, 0x06,   23 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      23,    0,  128,    2, 0x0a,   25 /* Public */,
+      22,    0,  128,    2, 0x0a,   25 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    3,
@@ -111,8 +109,8 @@ static const uint qt_meta_data_DataManager[] = {
     QMetaType::Void, 0x80000000 | 14,    3,
     QMetaType::Void, 0x80000000 | 16,    3,
     QMetaType::Void, QMetaType::Bool,    3,
-    QMetaType::Void, 0x80000000 | 19,    3,
-    QMetaType::Void, 0x80000000 | 21,    3,
+    QMetaType::Void, 0x80000000 | 9,    3,
+    QMetaType::Void, 0x80000000 | 20,    3,
     QMetaType::Void, QMetaType::QStringList,    3,
 
  // slots: parameters
@@ -130,7 +128,7 @@ void DataManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 0: _t->signUp_signal((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 1: _t->signIn_signal((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 2: _t->checkout_signal((*reinterpret_cast< std::add_pointer_t<CheckoutResult>>(_a[1]))); break;
-        case 3: _t->getCart_signal((*reinterpret_cast< std::add_pointer_t<QList<DetailedCartItem>>>(_a[1]))); break;
+        case 3: _t->getCart_signal((*reinterpret_cast< std::add_pointer_t<QList<Item>>>(_a[1]))); break;
         case 4: _t->getAccountDetails_signal((*reinterpret_cast< std::add_pointer_t<AccountDetails>>(_a[1]))); break;
         case 5: _t->updateAccountDetails_signal((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 6: _t->getOrderHistory_signal((*reinterpret_cast< std::add_pointer_t<QList<OrderSummary>>>(_a[1]))); break;
@@ -166,7 +164,7 @@ void DataManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             }
         }
         {
-            using _t = void (DataManager::*)(QVector<DetailedCartItem> );
+            using _t = void (DataManager::*)(QVector<Item> );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&DataManager::getCart_signal)) {
                 *result = 3;
                 return;
@@ -238,7 +236,7 @@ const QMetaObject DataManager::staticMetaObject = { {
     qt_static_metacall,
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_DataManager_t
-, QtPrivate::TypeAndForceComplete<DataManager, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<CheckoutResult, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<DetailedCartItem>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<AccountDetails, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<OrderSummary>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<DetailedOrder, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<Item>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<DetailedItem, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<QString>, std::false_type>
+, QtPrivate::TypeAndForceComplete<DataManager, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<CheckoutResult, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<Item>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<AccountDetails, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<OrderSummary>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<DetailedOrder, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<Item>, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<DetailedItem, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<QString>, std::false_type>
 , QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
@@ -299,7 +297,7 @@ void DataManager::checkout_signal(CheckoutResult _t1)
 }
 
 // SIGNAL 3
-void DataManager::getCart_signal(QVector<DetailedCartItem> _t1)
+void DataManager::getCart_signal(QVector<Item> _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 3, _a);

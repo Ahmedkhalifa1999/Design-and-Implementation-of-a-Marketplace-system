@@ -22,6 +22,8 @@ DataManager :: DataManager(QTcpSocket *socket){
     socket->connectToHost(QHostAddress(SERVER_ADDRESS), SERVER_PORT);
     socket->waitForConnected();
     QObject::connect(socket, &QTcpSocket::readyRead, this, &DataManager::server_response);
+    this->cartfile.setFileName("cart_data.txt");
+    //this->cartfile.open(QIODevice::ReadWrite | QIODevice::Text);
 }
 bool DataManager :: validate_Email(const QString email)
 {
@@ -281,10 +283,10 @@ void DataManager :: walletDeposit(MoneyAmount amount){
     QJsonObject priceJsonObject;
 
     walletDepositObject.insert("ID", QJsonValue::fromVariant(WALLETDEPOSIT_REQUEST));
-     walletDepositObject.insert("Amount", priceJsonObject);
 
     priceJsonObject.insert("Pounds", QJsonValue::fromVariant(amount.pounds));
     priceJsonObject.insert("Piasters", QJsonValue::fromVariant(amount.piasters));
+    walletDepositObject.insert("Amount", priceJsonObject);
 
     QJsonDocument walletDepositJsonDoc(walletDepositObject);
     //ToJson Compact
@@ -746,43 +748,48 @@ void DataManager :: server_response(){
         emit getCategories_signal(categories);
         break;
     }
-    case GETCART_RESPONSE :
-    {
-        QVector <DetailedCartItem> cartItemList;
-        QJsonArray serverResponseJsonArray;
-        QJsonValue  jsonvalue ; // used inside loop
-        DetailedCartItem cartitem;     // used inside loop
-        QString encodedimage;
-        QByteArray decodedimage;
-        QImage image;
-        QPixmap pixmap;
+    case GETCART_RESPONSE :{
+        QVector <Item> ItemList;
+                QJsonArray serverResponseJsonArray;
+                QJsonValue  jsonvalue ; // used inside loop
+                Item item;    // used inside loop
+                QString encodedimage;
+                QByteArray decodedimage;
+                QImage image;
+                QPixmap pixmap;
+                QJsonObject pricesJsonObject;
 
-        // Get value from object
-        serverResponseResultJsonValue = serverResponseJsonObj.value("Items");
-        // Get array from value
-        serverResponseJsonArray = serverResponseResultJsonValue.toArray();
-        for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
-            jsonvalue = serverResponseJsonArray[i];
-            cartitem.name =(jsonvalue.toObject().value("name")).toString();
-            cartitem.price.pounds = (jsonvalue.toObject().value("Pound")).toInt();
-            cartitem.price.piasters = (jsonvalue.toObject().value("Piasters")).toInt();
-            cartitem.quantity = (jsonvalue.toObject().value("Quantity")).toInt();
+                // Get value from object
+                serverResponseResultJsonValue = serverResponseJsonObj.value("Cart");
+                // Get array from value
+                serverResponseJsonArray = serverResponseResultJsonValue.toArray();
+                for(unsigned int i = 0 ; i < serverResponseJsonArray.size() ; i++){
+                    jsonvalue = serverResponseJsonArray[i];
+                    item.ID = (jsonvalue.toObject().value("Item ID")).toInt();
+                    item.name =(jsonvalue.toObject().value("Name")).toString();
+                    pricesJsonObject = jsonvalue["Price"].toObject();
+                    item.price.pounds = (pricesJsonObject.value("Pounds")).toInt();
+                    item.price.piasters = (pricesJsonObject.value("Piasters")).toInt();
 
-            //convert QbyteArray from document to QString
-            encodedimage = (jsonvalue.toObject().value("Icon")).toString();
 
-            // decode the base64 string to QbyteArray
-            decodedimage = QByteArray::fromBase64(encodedimage.toLatin1());
+                    //convert QbyteArray from document to QString
+                    encodedimage = (jsonvalue.toObject().value("Icon")).toString();
 
-            // convert to QImage
-            image = QImage::fromData(decodedimage,"JPEG");
-            pixmap = QPixmap::fromImage(image);
-            cartitem.icon = pixmap;
-            cartItemList.append(cartitem);
-        }
-        emit getCart_signal(cartItemList);
-        break;
-    }
+                    // decode the base64 string to QbyteArray
+                    decodedimage = QByteArray::fromBase64(encodedimage.toLatin1());
+
+                    // convert to QImage
+                    image = QImage::fromData(decodedimage,"JPEG");
+                    pixmap = QPixmap::fromImage(image);
+                    item.icon = pixmap;
+                    ItemList.append(item);
+                }
+
+
+                emit getCart_signal(ItemList);
+
+                break;
+            }
     }
 
 }

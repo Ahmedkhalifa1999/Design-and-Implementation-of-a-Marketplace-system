@@ -25,7 +25,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Cart_t {
     const uint offsetsAndSize[20];
-    char stringdata0[134];
+    char stringdata0[122];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_Cart_t, stringdata0) + ofs), len 
@@ -40,13 +40,13 @@ QT_MOC_LITERAL(61, 13), // "checkout_slot"
 QT_MOC_LITERAL(75, 14), // "CheckoutResult"
 QT_MOC_LITERAL(90, 6), // "result"
 QT_MOC_LITERAL(97, 12), // "getCart_slot"
-QT_MOC_LITERAL(110, 23) // "QList<DetailedCartItem>"
+QT_MOC_LITERAL(110, 11) // "QList<Item>"
 
     },
     "Cart\0on_pushButton_clicked\0\0"
     "on_Checkout_clicked\0on_b_clicked\0"
     "checkout_slot\0CheckoutResult\0result\0"
-    "getCart_slot\0QList<DetailedCartItem>"
+    "getCart_slot\0QList<Item>"
 };
 #undef QT_MOC_LITERAL
 
@@ -90,7 +90,7 @@ void Cart::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 1: _t->on_Checkout_clicked(); break;
         case 2: _t->on_b_clicked(); break;
         case 3: _t->checkout_slot((*reinterpret_cast< std::add_pointer_t<CheckoutResult>>(_a[1]))); break;
-        case 4: _t->getCart_slot((*reinterpret_cast< std::add_pointer_t<QList<DetailedCartItem>>>(_a[1]))); break;
+        case 4: _t->getCart_slot((*reinterpret_cast< std::add_pointer_t<QList<Item>>>(_a[1]))); break;
         default: ;
         }
     }
@@ -104,7 +104,7 @@ const QMetaObject Cart::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_Cart_t
 , QtPrivate::TypeAndForceComplete<Cart, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<CheckoutResult, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<DetailedCartItem>, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<CheckoutResult, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QVector<Item>, std::false_type>
 
 
 >,
